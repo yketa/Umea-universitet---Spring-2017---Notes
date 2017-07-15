@@ -1,0 +1,362 @@
+\documentclass[class=report, float=false, crop=false]{standalone}
+\usepackage[subpreambles=true]{standalone}
+
+\input{preamble}
+
+\graphicspath{{figures/images/}}
+
+% \begin{cbunit}
+
+\begin{document}
+
+\chapter{Renormalisation group theory}
+\label{appendix:rg}
+
+The renormalisation group (RG) theory, attributed to Kenneth G. Wilson \cite{wilson1971renormalization,wilson1974renormalization,wilson1975renormalization}, relies on coarse-graining arguments near critical points and gives a genuine way of thinking about critical phenomena and provides a theoretical motivation for scaling assumptions. Moreover, this theory allows one to calculate critical exponent although being particularly technical.\\
+
+In this appendix, we mean to present the renormalisation group theory and how it leads to the scaling hypothesis we made, focusing on its implications on numerical simulations scaling. All demonstrations and discussions are based on \cite{goldenfeld1992lectures} and unpublished documents by Peter Olsson.
+
+\section{Coarse-graining argument}
+
+\subsection{Block spins}
+\label{block_spins}
+
+We can easily illustrate the RG theory with the Ising model for spins with nearest neighbours interactions. In this model, a system of spins displays a ferromagnetic transition at the temperature $T=T_C$, where the correlation length diverges.\\
+
+Consider a system $\Omega$ of spins on a $d$-dimensional hypercubic lattice, with spacing $a$. We have that the spins are correlated on lengths scales of order $\xi$, the basic idea is thus to consider that spins on a length scale $la$, with $l$ satisfying
+\begin{align*}
+a << la << \xi
+\end{align*}
+act as a single spin, which we will call a \textit{block spin}.\\
+
+We can then make the assumptions that block spins interact with their nearest block spin neighbours, as do the single spins, with coupling constants -- between spins, and between spins and external field -- somewhat different. Our block spin system is then described by the same Hamiltonian than the single spin spin. However, the spacing between block spins is $l$ times larger than the spacing between single spins, leading to the correlation length
+\begin{align*}
+\xi_l = \frac{\xi}{l}
+\end{align*}
+smaller than the correlation length of the original system. This tells us that the latter system is further from criticality than the former, leading to a reduced temperature
+\begin{align*}
+t_l \equiv 1 - \frac{T}{T_{C,l}} = s(l) \underbrace{\left(1 - \frac{T}{T_C}\right)}_{t} < t
+\end{align*}
+with $s$ a function to determine.\\
+
+Since two consecutive scale changes with the factors $l_1$ and $l_2$ are equivalent to a single scale change of factor $l_1l_2$, we have that
+\begin{align*}
+s(l_1l_2) = s(l_1)s(l_2)
+\end{align*}
+which is satisfied by
+\begin{align*}
+s(l) = l^y
+\end{align*}
+for any $y$, hence the scaling assumptions.\\
+
+Furthermore, we realise that the critical temperature, characterising a state where the correlation length is infinite, is a fixed point of the scaling transformation.
+
+\subsection{Renormalisation group transformations}
+
+We need to formalise the scaling transformation we have introduced.\\
+
+Consider a system $\Omega$ described by the general Hamiltonian
+\begin{equation}
+\mathcal{H} \equiv -\beta H_{\Omega} = \sum_n K_n \Theta_n\{S\}
+\end{equation}
+where $\beta = 1/kT$ with $k$ the Boltzmann constant and $T$ the temperature, $K_n$ are the coupling constants, and $\Theta\{S\}$ the local operators on the degrees of freedom $\{S\}$.\\
+
+We introduce $\forall l>1$ the \textit{renormalisation group transformation} $R_l$ which acts on the coupling constants $[K] \equiv (K_n)_n$
+\begin{equation}
+R_l[K] \equiv [K']
+\end{equation}
+and which is most often complicated and non-linear. These transformations verify
+\begin{equation}
+\forall l_1, l_2 > 1,~ R_{l_1l_2}[K]=R_{l_2}\cdot R_{l_1}[K]
+\label{semi_group}
+\end{equation}
+and do not admit inverses since $l$ has to be greater or equal to $1$, therefore RG transformations form a semi-group.\\
+
+RG transformations are coarse-graining transformations which reduce the number $N$ of degrees of freedom by a factor $l^{-d}$ to $N'=Nl^{-d}$, where $d$ is the dimension of the system. Therefore, the degrees of freedom $\{S_i\}_{1\ldots N}$ and the Hamiltonian $\mathcal{H}$ are replaced by \textit{block variables} $\{S'_I\}_{1\ldots N'}$ and an effective Hamiltonian $\mathcal{H'}$ for these new degrees of freedom respectively.\\
+
+We introduce a \textit{projection operator} $P(S_i,S'_I)$ which satisfies
+\begin{equation}
+e^{\mathcal{H}'\{[K'],S'_I\}} = \text{Tr}_{\{S_i\}}P(S_i,S'_I)e^{\mathcal{H}\{[K],S_i\}}
+\end{equation}
+where $\text{Tr}_{\{S_i\}}$ denotes the sum over the degrees of freedom $\{S\}$, and must fulfil the following requirements
+\begin{itemize}
+\item[(i)] $P(S_i,S'_I) \ge 0$,
+\item[(ii)] $P(S_i,S'_I)$ reflects the symmetries of the system,
+\item[(iii)] $\sum_{\{S'_I\}} P(S_i,S'_I) = 1$.
+\end{itemize}
+In the context of part \ref{block_spins}, the projection operator $P$ is the function that associates an up or down spin to a block of spins.\\
+
+% We can notice that RG transformations then leave the partition function, and therefore the free energy, of the system unchanged
+% \begin{align*}
+% Z[K'] &\equiv \text{Tr}_{\{S'_I\}}e^{\mathcal{H}'\{[K'],S'_I\}}\\
+% &= \text{Tr}_{\{S'_I\}}\text{Tr}_{\{S_I\}}P(S_i,S'_I)e^{\mathcal{H}\{[K],S_i\}}\\
+% &= \text{Tr}_{\{S_i\}}e^{\mathcal{H}\{[K],S_i\}}\cdot1\\
+% &= Z[K]
+% \end{align*}
+
+% We define the free energy $Z$
+% \begin{equation}
+% Z[K]=\text{Tr}_{\{S\}}e^{\mathcal{H}\{[K],S_i\}}
+% \end{equation}
+% and the function $g$
+% \begin{equation}
+% g[K] \equiv \frac{1}{N}\ln Z[K]
+% \end{equation}
+% which is related to the free energy per degree of freedom.\\
+
+% Condition (iii) ensures that the partition function, and thus the free energy, remains unchanged
+% \begin{align*}
+% Z[K'] &\equiv \text{Tr}_{\{S'_I\}}e^{\mathcal{H}'\{[K'],S'_I\}}\\
+% &= \text{Tr}_{\{S'_I\}}\text{Tr}_{\{S_I\}}P(S_i,S'_I)e^{\mathcal{H}\{[K],S_i\}}\\
+% &= \text{Tr}_{\{S_i\}}e^{\mathcal{H}\{[K],S_i\}}\cdot1\\
+% &= Z[K]
+% \end{align*}
+% while the function $g$ is rescaled
+% \begin{align*}
+% \frac{1}{N}\ln Z[K] &= \frac{l^d}{l^dN}\ln Z[K']\\
+% &= l^{-d} \frac{1}{N'} \ln Z[K']
+% \end{align*}
+% \textit{i.e.},
+% \begin{equation}
+% g[K] = l^{-d}g[K']
+% \end{equation}
+
+We define the free energy $Z$
+\begin{equation}
+Z[K]=\text{Tr}_{\{S\}}e^{\mathcal{H}\{[K],S_i\}}
+\end{equation}
+and the free energy density $f$
+\begin{equation}
+f[K] = \frac{1}{L^d} Z[K]
+\end{equation}
+where $L$ is the characteristic dimension of the system, which is the quotient of the free energy by the volume of the system.\\
+
+Condition (iii) ensures that the partition function, and thus the free energy, remains unchanged
+\begin{align*}
+Z[K'] &\equiv \text{Tr}_{\{S'_I\}}e^{\mathcal{H}'\{[K'],S'_I\}}\\
+&= \text{Tr}_{\{S'_I\}}\text{Tr}_{\{S_I\}}P(S_i,S'_I)e^{\mathcal{H}\{[K],S_i\}}\\
+&= \text{Tr}_{\{S_i\}}e^{\mathcal{H}\{[K],S_i\}}\cdot1\\
+&= Z[K]
+\end{align*}
+while the free energy density $f$ is rescaled
+\begin{align*}
+\frac{1}{L^d}\ln Z[K] &= \frac{l^{-d}}{(L/l)^d}\ln Z[K']\\
+&= l^{-d} \frac{1}{L'} \ln Z[K']
+\end{align*}
+\textit{i.e.},
+\begin{equation}
+f[K] = l^{-d}f[K']
+\label{free_energy_scaling}
+\end{equation}
+
+\section{Renormalisation group flows}
+
+\subsection{Fixed points of the coupling constants space}
+
+An infinite number of iterations of the RG transformations is required in order to eliminate all degrees of freedom of a thermodynamic system in the thermodynamic limit $N\rightarrow+\infty$. By doing so, singular behaviour may occur.\\
+
+For any $l>1$, $R_l$ is a function from the coupling constants $[K]$ space to this same space, which we will denote $\mathcal{K}$. We will call \textit{renormalisation group flows} the trajectories in the coupling constants space which are obtained by iterating RG transformations. It is likely to find fixed points of the RG transformations in $\mathcal{K}$, we will then call the \textit{basin of attraction} of such a fixed point the set of points of $\mathcal{K}$ from which an infinite number of iterations of RG transformations inevitably lead.\\
+
+We have $\forall l>1$ that the correlation length $\xi$ transforms under the RG transformation $R_l$ as
+\begin{equation}
+\xi[K'] = \xi[K]/l
+\end{equation}
+therefore, for a fixed point $[K^*]$
+\begin{align*}
+\xi[K*] = \xi[K*]/l
+\end{align*}
+which allows us to distinguishes two cases
+\begin{itemize}
+\item[(i)] $\xi[K^*] = 0$, for which we will call $[K^*]$ a \textit{"trivial" fixed point}, and
+\item[(ii)] $\xi[K^*] = +\infty$, for which we will call $[K^*]$ a \textit{critical fixed point}.
+\end{itemize}
+We can then notice that since $n$ iterations of $R_l$ transform the correlation length as
+\begin{align*}
+\xi[K] = l^n \xi[K^{(n)}]
+\end{align*}
+we have that all points in the basin attraction of a critical fixed point $[K^*]$, which satisfy $\xi[K^{(n)}] \xrightarrow[n\rightarrow+\infty]{} \xi[K^*] = +\infty$, have infinite correlation length. This basin of attraction is called the \textit{critical manifold}.\\
+
+We have implicitly that the critical points were isolated, however this is not necessarily the case. In fact, fixed points are classified according to their codimension, but this does not affect the validity of our demonstration.\\
+
+We note that it is also possible for RG flows to describe limit cycles or strange attractors, but in practice it is almost never the case. We will then neglect these possibilities from now on.
+
+\subsection{Relevance of variables}
+
+We are interested in the behaviour of RG flows in the vicinity of a critical fixed point $[K^*]$.\\
+
+Consider $[K]$ a point of $\mathcal{K}$ close to $[K^*]$
+\begin{align*}
+[K] = [K^*] + [\delta K]
+\end{align*}
+then $\forall l>1$, $[K]$ transforms under $R_l$ as $R_l[K]=[K']$ with
+\begin{align*}
+[K']\{[K^*]+[\delta K]\} &= \underbrace{[K']\{[K^*]\}}_{[K^*]} + [\delta K']\\
+\text{\textit{i.e.}, } [K']\{[K^*]+[\delta K]\} &= [K^*] + \underbrace{\left(\left.\frac{\partial K'_n}{\partial K_m}\right|_{K_m = K^*_m} \right)_{n,m}}_{\textstyle M^{(l)}} [\delta K] + \mathcal{O}\left([\delta K]^2\right)
+\end{align*}
+according to Taylor's theorem, where $M^{(l)}$ is the linearised RG transformation in the vicinity of $[K^*]$ and is a real matrix.\\
+
+In practice, $M^{(l)}$ is most often diagonalisable with real eigenvalues. For present purposes, we will assume for the rest of our presentation that it is symmetric without further notice. We advise the interested reader to read part 9.4.4 of \cite{goldenfeld1992lectures} for corrections to be brought to our theory in the case of a non-symmetric linearised RG transformation.\\
+
+We will denote the eigenvalues and eigenvectors of $M^{(l)}$ by $\Lambda^{(\sigma)}_l$ and $\vec{e}^{\hspace{1pt}(\sigma)}$ respectively, where $(\vec{e}^{\hspace{1pt}(\sigma)})_{\sigma}$ is an orthonormal base of $\mathcal{K}$ according to the spectral theorem. We can then infer from the semi-group property of equation \ref{semi_group} that
+\begin{align*}
+\forall l,l' >1,~ M^{(l)}M^{(l')} &= M^{(ll')}\\
+\Rightarrow \forall \sigma,~ \Lambda^{(\sigma)}_l\Lambda^{(\sigma)}_{l'} &= \Lambda^{(\sigma)}_{ll'}
+\end{align*}
+which we can differentiate with respect to $l'$
+\begin{align*}
+\frac{d}{dl'}\left(\Lambda^{(\sigma)}_l\Lambda^{(\sigma)}_{l'}\right) &= \frac{d}{dl'}\Lambda^{(\sigma)}_{ll'}\\
+\Leftrightarrow \cancelto{0}{\frac{d\Lambda^{(\sigma)}_l}{dl'}}\Lambda^{(\sigma)}_{l'} + \Lambda^{(\sigma)}_l\frac{d\Lambda^{(\sigma)}_{l'}}{dl'} &= \frac{d}{dl'} \Lambda^{(\sigma)}_{ll'}\\
+\Rightarrow \Lambda^{(\sigma)}_l\left.\frac{d\Lambda^{(\sigma)}_{l'}}{dl'}\right|_{l'=1} &= \frac{d\Lambda^{(\sigma)}_l}{dl}
+\end{align*}
+% i really have doubts concerning the resolution of this equation... that's how the book did though
+and therefore write
+\begin{equation}
+\Lambda^{(\sigma)}_l = l^{y_{\sigma}}
+\label{eigenvalues_scaling}
+\end{equation}
+where $y_{\sigma}$ is independent of l.\\
+
+Finally, we have that
+\begin{equation}
+\begin{aligned}
+[\delta K'] &= M^{(l)} [\delta K]\\
+&= \sum_{\sigma} \Lambda^{(\sigma)}_l \underbrace{\left(\vec{e}^{\hspace{1pt}(\sigma)}\cdot[\delta K]\right)}_{a^{(\sigma)}} \vec{e}^{\hspace{1pt}(\sigma)}\\
+&= \sum_{\sigma} \underbrace{l^{y_{\sigma}}a^{(\sigma)}}_{\textstyle a^{(\sigma)}'} \vec{e}^{\hspace{1pt}(\sigma)}
+\end{aligned}
+\end{equation}
+for which we will distinguish 3 cases:
+\begin{itemize}
+\item[(i)] $y_{\sigma} > 0$, which implies that $a^{(\sigma)}'$ grows as $l$ increases, and for which we will describe the corresponding eigenvalue/direction/eigenvector as \textit{relevant},
+\item[(ii)] $y_{\sigma} < 0$, which implies that $a^{(\sigma)}'$ shrinks as $l$ increases, and for which we will describe the corresponding eigenvalue/direction/eigenvector as \textit{irrelevant},
+\item[(iii)] $y_{\sigma} = 0$, which implies that $a^{(\sigma)}'$ does not change as $l$ increases, and for which we will describe the corresponding eigenvalue/direction/eigenvector as \textit{marginal}.
+\end{itemize}
+Therefore, if we start at $[K]$ near $[K^*]$, but not in the critical manifold then the flow in directions out of the critical manifold in the vicinity of $[K^*]$ are associated with relevant eigenvalues. The irrelevant eigenvalues correspond to directions into the fixed point, and their corresponding eigenvectors span the critical manifold.
+
+\subsection{Relation between RG flows and the phase diagram}
+
+Starting from any point in $\mathcal{K}$, which is equivalent to the phase space, we can determine to which fixed point an infinite number of iterations of RG transformations leads to. The state of the system described by this fixed point then represents the phase at the original point.\\
+
+RG theory therefore enables one to investigate the whole phase diagram. We will however focus on critical behaviours and advise the interested reader to read part 9.3.3 of \cite{goldenfeld1992lectures} about the global properties of RG flows and the different types of fixed points and their significance.\\
+
+We have that points that are slightly off the critical manifolds are repelled from it in the relevant directions. Therefore, it is the same eigenvalues that drive all slightly off-critical systems away from the critical fixed point: this is the origin of universality. Furthermore, we have that the critical behaviour is not determined by the initial values of the coupling constants but only by the flow behaviour.
+
+\section{Critical scaling}
+
+\subsection{Scaling behaviour of the free energy density and its derivatives}
+
+We have that the linearised RG transformation $R_l$ close to the critical fixed point $[K^*]$, $M^{(l)}$, is diagonal in the orthonormal base $(\vec{e}^{\hspace{1pt}(\sigma)})_{\sigma}$ of $\mathcal{K}$. We want to investigate the behaviour of the free energy density $f$ and its derivatives close to this critical fixed point, we will then denote $[K^*]\equiv \sum_{\sigma} K^*_{\sigma}\vec{e}^{\hspace{1pt}(\sigma)}$ and introduce $\tilde{f}$ such that
+\begin{equation}
+\begin{aligned}
+f[K]=f(K_0,\ldots,K_m)&\equiv\tilde{f}(\tilde{K_0},\ldots,\tilde{K_m})=\tilde{f}[\tilde{K}]\\
+\forall \sigma \in \llbracket0,m\rrbracket,~ \tilde{K_{\sigma}} &= \begin{cases} \frac{K_{\sigma}-K_{\sigma}^*}{K_{\sigma}^*} &\text{ if } K_{\sigma}^* \neq 0 \\ K^_{\sigma} &\text{ if } K_{\sigma}^* = 0 \end{cases}
+\end{aligned}
+\end{equation}
+and which verifies the following property
+\begin{align*}
+\forall \sigma \in \llbracket0,m\rrbracket,~ \frac{\partial}{\partial K_{\sigma}} f[K] = \begin{cases} \frac{1}{K_{\sigma}^*} \frac{\partial}{\partial \tilde{K}_{\sigma}} \tilde{f}[\tilde{K}] &\text{ if } K_{\sigma}^* \neq 0 \\ \frac{\partial}{\partial K_{\sigma}} \tilde{f}[\tilde{K}] &\text{ if } K_{\sigma}^* = 0 \end{cases}
+\end{align*}
+which implies
+\begin{equation}
+\forall \sigma \in \llbracket0,m\rrbracket,~ \frac{\partial}{\partial K_{\sigma}} f[K] \propto \frac{\partial}{\partial \tilde{K}_{\sigma}} \tilde{f}[\tilde{K}]
+\end{equation}
+this property being also easily demonstrated for cross-derivatives and higher order derivatives.\\
+
+According to equations \ref{free_energy_scaling} and \ref{eigenvalues_scaling}, the free energy density transforms under $n$ iterations of the RG transformation $R_l$ as
+\begin{equation}
+f[K] = l^{-nd} f[K'] = l^{-nd} \tilde{f}[\tilde{K}'] = l^{-nd} \tilde{f}(l^{ny_0}\tilde{K}_0,\ldots,l^{ny_m}\tilde{K}_m)
+\end{equation}
+Besides that it has to be greater or equal to $1$, there is no restriction to the values $l$ can take, we then introduce $b$ such that
+\begin{equation}
+l^n = \left(\frac{b}{\tilde{K}_0}\right)^{1/y_0} \geq 1
+\label{choice_of_l}
+\end{equation}
+therefore we have the free energy density and its derivatives
+\begin{equation}
+\begin{aligned}
+f[K] &= \left(\frac{\tilde{K}_0}{b}\right)^{d/y_0}\tilde{f}\left(b,\left(\frac{b}{\tilde{K}_0}\right)^{y_1/y_0}\tilde{K}_1,\ldots,\left(\frac{b}{\tilde{K}_0}\right)^{y_m/y_0}\tilde{K}_m\right)\\
+\forall \sigma \in \llbracket0,m\rrbracket,~ \frac{\partial}{\partial K_{\sigma}} f[K] &\propto \left(\frac{\tilde{K}_0}{b}\right)^{(d-y_{\sigma})/y_0}\frac{\partial}{\partial K_{\sigma}}\tilde{f}\left(b,\left(\frac{b}{\tilde{K}_0}\right)^{y_1/y_0}\tilde{K}_1,\ldots,\left(\frac{b}{\tilde{K}_0}\right)^{y_m/y_0}\tilde{K}_m\right)
+\label{free_energy_der_scaling}
+\end{aligned}
+\end{equation}
+for which we will distinguish 2 cases:
+\begin{itemize}
+\item[(i)] $\forall \sigma \in \llbracket0,m\rrbracket,~ \vec{e}^{\hspace{1pt}(\sigma)}$ is a relevant eigenvector, then if we take $\tilde{K}_{\sigma}=0,~\forall \sigma \in \llbracket1,m\rrbracket$, we can rewrite equation \ref{free_energy_der_scaling} as
+\begin{equation}
+\begin{aligned}
+\begin{cases} &f[K] = \left(\frac{\tilde{K}_0}{b}\right)^{d/y_0}\tilde{f}\left(b,0,\ldots,0\right) \\
+&\forall \sigma \in \llbracket0,m\rrbracket,~ \frac{\partial}{\partial K_{\sigma}} f[K] \propto \left(\frac{\tilde{K}_0}{b}\right)^{(d-y_{\sigma})/y_0}\frac{\partial}{\partial K_{\sigma}}\tilde{f}\left(b,0,\ldots,0\right) \end{cases} \Rightarrow\begin{cases} f[K] &\isEquivTo{\tilde{K}_0\rightarrow0} \tilde{K}_0^{c_0} \\ \frac{\partial}{\partial K_{\sigma}} f[K] &\isEquivTo{\tilde{K}_0\rightarrow0} \tilde{K}_0^{c_{0,\sigma}} \end{cases}
+\end{aligned}
+\label{critical_exponents_RG}
+\end{equation}
+where $c_0$ and $c_{0,\sigma}$ are constants, hence the power-law scaling of the thermodynamic constants close to criticality.\\
+
+Therefore, RG theory gives a theoretical explanation of the power-law scaling at criticality, thus supporting our scaling assumptions, and furthermore provides a technique to calculate the corresponding critical exponents. However, as stated in the introduction to this appendix, this calculation remains particularly technical, "where the renormalization group approach has been successful a lot of ingenuity has been required: one cannot write a renormalization group cookbook" \cite{wilson1975renormalization}. We advise the interested reader to read part 9.6 of \cite{goldenfeld1992lectures} on the application of RG theory to the 2D Ising model.\\
+
+\item[(ii)] $\exists~ \sigma \in \llbracket1,m-1\rrbracket,~ \vec{e}^{\hspace{1pt}(0)},\ldots,\vec{e}^{\hspace{1pt}(p-1)}$ are revelant eigenvectors -- which implies $y_0,\ldots,y_{p-1}>0$ -- and $\vec{e}^{\hspace{1pt}(p)},\ldots,\vec{e}^{\hspace{1pt}(m)}$ are irrelevant eigenvectors -- which implies $y_p,\ldots,y_m<0$ --, then we can notice that in equation \ref{free_energy_der_scaling}
+\begin{align*}
+\forall \sigma \in \llbracket p,m\rrbracket,~ \left(\frac{b}{\tilde{K}_0}\right)^{y_{\sigma}/y_0}\tilde{K}_{\sigma} \xrightarrow[\tilde{K}_0\rightarrow0]{} 0
+\end{align*}
+therefore if $\tilde{f}$ is analytic in the limit of the vanishing coupling constants in the irrelevant directions, then the results of equation \ref{critical_exponents_RG} still hold. However, this is often not the case. When $\tilde{f}$ is singular in the limit that a particular irrelevant variable vanishes, the irrelevant variable is termed a \textit{dangerous irrelevant variable}.\\
+\end{itemize}
+
+We want to draw attention to the fact that in the case of the free energy density depending solely on two relevant variables $K_0$ and $K_1$, or on a relevant variable $K_0$ and a non-dangerous irrelevant variable $K_1$, we have close to criticality
+\begin{equation}
+f[K] = \left(\frac{\tilde{K}_0}{b}\right)^{d/y_0}\tilde{f}\left(b,\left(\frac{b}{\tilde{K}_0}\right)^{y_1/y_0}\tilde{K}_1\right) \equiv \tilde{K}_0^{d/y_0}\tilde{f}_1\left(\tilde{K}_0^{-y_1/y_0}\tilde{K}_1\right)
+\label{fitting_function}
+\end{equation}
+with a similar result for the derivatives of the free energy density, therefore in the context of numerical simulations of a system close to criticality with two relevant variables not equal to their critical values, it is still possible to determine from the data the fitting function $\tilde{f}_1$ and then the critical exponent.\\
+
+In the case of $K_1$ being a relevant variable, we will call $\Delta \equiv y_1/y_0$ the \textit{crossover scaling critical exponent} and $z \equiv \tilde{K}_1/\tilde{K}_O^{\Delta}$ the \textit{crossover scaling variable} \cite{PRL99.178001}. What happens if $z$ is non-neglible is that this variable is able to drive the system from the neighbourhood of one fixed point to that of another. Therefore, we may not observe the correct assymptotic behaviour when neglecting the term associated with $K_1$, hence the importance of this correction.\\
+
+Furthermore, what has been eluded in our demonstration is that to verify equation \ref{choice_of_l}, $b$ has to be of the same sign as $\tilde{K}_0$, therefore in equation \ref{critical_exponents_RG} the value and most importantly the sign of $\tilde{f}(b,0,\ldots,0)$ and its derivatives, and thus the sign of the asymptotic approximation, may change depending on the sign of $\tilde{K}_0$. What is most often observed is a scaling behaviour at criticality of the type
+\begin{equation}
+\begin{aligned}
+f[K] &\operatorname*{~=~}_{\tilde{K}_0\rightarrow0} A^{(0)}_{\pm} |\tilde{K}_O|^{c_0} + \smallO{|\tilde{K}_O|^{c_0}}\\
+\frac{\partial}{\partial K_{\sigma}}f[K] &\operatorname*{~=~}_{\tilde{K}_0\rightarrow0} A^{(0,\sigma)}_{\pm} |\tilde{K}_O|^{c_{0,\sigma}} + \smallO{|\tilde{K}_O|^{c_{0,\sigma}}}
+\end{aligned}
+\label{absolute_value_scaling}
+\end{equation}
+where the values of $A^{(0)}_{\pm}$ and $A^{(0,\sigma)}_{\pm}$ may change depending on the sign of $\tilde{K}_0$.
+
+\subsection{Corrections to scaling}
+
+Consider for a given Hamiltonian that the RG transformation $R_l$ close to the critical fixed point $[K^*]$ is diagonal in the orthonormal base $(\vec{e}^{\hspace{1pt}(0)},\vec{e}^{\hspace{1pt}(1)})$ with $\vec{e}^{\hspace{1pt}(0)}$ a relevant eigenvector and $\vec{e}^{\hspace{1pt}(1)}$ an irrelevant eigenvector. We then have, with the notation of equations \ref{free_energy_der_scaling} and \ref{fitting_function}, and in the framework of equation \ref{absolute_value_scaling}, the following relation
+\begin{equation}
+\begin{aligned}
+f[K] &\equiv \left|\tilde{K}_0\right|^{d/y_0}\tilde{f}_1^{\pm}\left(\left|\tilde{K}_0\right|^{-y_1/y_0}\tilde{K}_1\right)\\
+\forall \sigma \in \llbracket0,1\rrbracket,~ \frac{\partial}{\partial K_{\sigma}} f[K] &\equiv \left|\tilde{K}_0\right|^{(d-y_{\sigma})/y_0}\tilde{f}_{1,\sigma}^{\pm}\left(\left|\tilde{K}_0\right|^{-y_1/y_0}\tilde{K}_1\right)
+\end{aligned}
+\end{equation}
+In practice, it is very difficult to access the asymptotic critical regime $\tilde{K_0}\rightarrow0$, therefore the irrelevant variable may not be negligible and corrections have to be brought to our scaling assumptions.\\
+
+A solution is to assume that $\tilde{f}_1$ and/or $\tilde{f}_{1,\sigma}$ are analytic functions in the limit that their argument, which we will call $x$ for convenience, vanishes -- assumption which is valid if $\tilde{K}_1$ is not a dangerous irrelevant variable. Therefore, we have a new assymptotic behaviour
+\begin{equation}
+\begin{aligned}
+f[K] &\operatorname*{~=~}_{\tilde{K}_0\rightarrow0} \left|\tilde{K}_0\right|^{d/y_0} \left( A_1 + B_1 \left|\tilde{K}_0\right|^{-y_1/y_0}\tilde{K}_1 + \mathcal{O}\left(x^2\right)\right)\\
+\forall \sigma \in \llbracket0,1\rrbracket,~ \frac{\partial}{\partial K_{\sigma}} f[K] &\operatorname*{~=~}_{\tilde{K}_0\rightarrow0} \left|\tilde{K}_0\right|^{(d-y_{\sigma})/y_0} \left( A_{1,\sigma} + B_{1,\sigma} \left|\tilde{K}_0\right|^{-y_1/y_0}\tilde{K}_1 + \mathcal{O}\left(x^2\right)\right)
+\label{scaling_corrections}
+\end{aligned}
+\end{equation}
+according to Taylor's theorem, where $A_1$, $B_1$, $A_{1,\sigma}$ and $B_{1,\sigma}$ are -- non-universal -- constants.\\
+
+As expected, the leading behaviour as $\tilde{K}_0\rightarrow0$ is a power-law in $\tilde{K}_0$. We may then distinguish 2 cases:
+\begin{itemize}
+\item[(i)] $|y_1|/y_0 > 1$, which implies that the correction becomes smaller as $\tilde{K}_0\rightarrow0$,
+\item[(ii)] $|y_1|/y_0 < 1$, which implies that the correction may not be negligible for small but non-zero $\tilde{K}_0$. This first order correction is actually singular, since it gives rise to a cusp \cite{wiki:cusp} at $\tilde{K}_0 = 0$. Such a correlation is referred as a \textit{confluent singularity}.
+\end{itemize}
+
+\subsection{Finite-size scaling}
+
+Numerical simulations use finite systems of which we will denote $L$ the characteristic length. As the system approaches a critical fixed point, its correlation length $\xi$ diverges, therefore when $L$ and $\xi$ are comparable, the thermodynamic properties of the system can not be considered as being those of an infinite system anymore. What is observed is that the transition associated with the critical fixed point appears less sharp.\\
+
+To address this issue, one has to include the characteristic length of the system -- or rather its inverse $1/L$ which vanishes as the system approaches the critical fixed point associated with an infinite system -- in the variables of the free energy density, which will then transform under $n$ iteration of the RG transformation $R_l$ as
+\begin{equation}
+f[K] = l^{-nd} f[K'] = l^{-nd} \tilde{f}[\tilde{K}'] = l^{-nd} \tilde{f}(l^{ny_0}\tilde{K}_0,\ldots,l^{ny_m}\tilde{K}_m,l^nL^{-1})
+\end{equation}
+A crossover scaling analysis, as described in the discussion of equation \ref{fitting_function}, can then be performed.
+
+% \input{references/biblio}
+
+\end{document}
+
+% \end{cbunit}

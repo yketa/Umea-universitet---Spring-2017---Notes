@@ -1,0 +1,26 @@
+\documentclass[crop,tikz]{standalone}
+\usepackage[subpreambles=true]{standalone}
+
+\input{figures/tikz/preamble}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=5]
+\node[point] at (0,0) {};
+%\draw (0,0) node[below]{$\vec{v_{\mathcal{A}}}$};
+\draw (0,0) ellipse (1 and 0.5); % ellipsoid A
+\node[point] at (0.8,0.4) {};
+%\draw (0.8,0.4) node[above]{$\vec{v_{\mathcal{B}}}$};
+\draw[rotate around={-36:(0.8,0.4)}] (0.8,0.4) ellipse (1 and 0.5); % ellipsoid B
+\draw[dashed] (0,0) ellipse (0.655762*1 and 0.655762*0.5); % ellipsoid A rescaled
+\draw[dashed, rotate around={-36:(0.8,0.4)}] (0.8,0.4) ellipse (0.655762*1 and 0.655762*0.5); % ellipsoid B rescaled
+\node[point, rotate around={-45:(0,0)}] at (0.847365,0.265584) {};
+\draw[->] (0,0) node[below]{$\vec{v_{\mathcal{A}}}$} -- (0.847365,0.265584) node[right]{$\vec{r_{C,\mathcal{A}}}$} node[midway, above]{$\vec{a}$};
+\node[point] at (0.42741055,  0.05560676) {};
+\draw[->] (0.8,0.4) node[above]{$\vec{v_{\mathcal{B}}}$} -- (0.42741055,  0.05560676) node[below]{$\vec{r_{C,\mathcal{B}}}$} node[midway, above]{$\vec{b}$};
+\node[point] at (0.555670,0.174160) {};
+\draw (0.555670,0.174160) node[above]{$\vec{r_{C}}$};
+%\draw (0.847365,0.265584) -- (0.42741055,  0.05560676);
+\end{tikzpicture}
+
+\end{document}

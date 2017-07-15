@@ -1,0 +1,243 @@
+\documentclass[class=report, float=false, crop=false]{standalone}
+\usepackage[subpreambles=true]{standalone}
+
+\input{preamble}
+
+\graphicspath{{figures/images/}}
+
+% \begin{cbunit}
+
+\begin{document}
+
+\chapter{Quaternions}
+\label{chap:quaternions}
+
+\section{Interest of quaternions}
+
+\subsection{Theoretical interest}
+
+The intrinsic geometry of the rotation group is that of a sphere, therefore it is more natural to use quaternions to represent rotations like it is more natural rectangular coordinates to represent translations \cite{shoemake1985animating}.\\
+
+Furthermore, quaternions allow us to represent the orientation with a single vector and are safe from gimbal lock which results from the alignment of two of the three axes of rotation, causing the loss of one degree of rotational freedom, while Euler angles and rotation matrix are not \cite{munjiza2009application}.
+
+\subsection{Numerical interest}
+\label{quaternions_interest}
+
+Computationally speaking, resorting to quaternions is more efficient than resorting to rotation matrix or axis-angle representations \cite{eberly2002rotation}.\\
+
+A rotation can be expressed with 4 floats when using a quaternion while it would need 6 floats with the axis-angle representation and 9 floats with the rotation matrix representation. Moreover, the composition of two rotations can be done with 12 additions and 16 multiplications when using quaternions while it would need 18 additions and 27 multiplications when using rotation matrix. Composing rotations when using axis-angle reprensation is way harder since it would need to convert this representation to a rotation matrix or a quaternion, do the composition, and then extract the axis angle-pair.\\
+
+However, when using quaternions, the rotation of $n$ vectors needs -- at least \cite{eberly2002rotation} -- $12 + 6n$ additions and $12 + 9n$ multiplications and this result is achieved by converting the quaternion to a rotation matrix.\\
+
+The quaternion are also more resistant to rounding errors. Indeed, while a slightly off quaternion still represents a rotation after being normalised, one may have a hard time to convert back a slightly off orthogonal matrix to a proper orthogonal matrix \cite{wiki:quaternions}.\\
+
+Furthermore, quaternions are used in many fields where it is essential to interpolate rotations smoothly -- in video games for example, \textit{Tomb Raider} (1996) being the first mass-market computer game to have used quaternions to achieve smooth 3D rotation \cite{bobick1998rotating}, or aircraft kinematics \cite{phillips2001review} -- something which is difficultly achievable with the means of rotation matrix or Euler angles.
+
+\section{Rotation of a rigid body}
+
+\subsection{Equation of conservation of the angular momentum}
+
+Please find in \hyperref[appendix:euler]{appendix \ref{appendix:euler}} the extensive demonstrations of the equations presented in this part.\\
+
+Consider a body $\mathcal{O}$ of angular momentum $\vec{A} = \bar{\bar{I}}\vec{\omega}$, with $\bar{\bar{I}}$ its tensor of moments of inertia and $\vec{\omega}$ its rotation vector. If the total torque $\vec{M}$ is exerted on $\mathcal{O}$, then its angular momentum varies as
+\begin{equation}
+\boxed{\frac{d}{dt}\vec{A} = \frac{d}{dt}\bar{\bar{I}}\vec{\omega} = \vec{M}}
+\label{TMC_}
+\end{equation}
+where both $\bar{\bar{I}}$ and $\vec{\omega}$ vary as a function of the time.\\
+
+In the base $(\vec{u_i})_{i=1:3}$ formed by the axis of inertia of the body, the tensor of inertia is constant and diagonal, therefore
+\begin{align*}
+\vec{A} = \sum_{k=1}^3 \underbrace{\bar{\bar{I}}\vec{u_k}}_{I_k} \underbrace{\vec{\omega}\cdot\vec{u_k}}_{\omega_k} \vec{u_k}
+\end{align*}
+which allows us to write
+\begin{equation}
+\boxed{\forall k \in \llbracket1,3\rrbracket,~ I_k \dot{\omega_k} + \varepsilon_{k,l,m}\omega_lI_m\omega_m = M_k}
+\label{euler_rot_}
+\end{equation}
+
+\subsection{Expression with quaternions}
+
+Please find in \hyperref[appendix:quaternions]{appendix \ref{appendix:quaternions}} a complete presentation of ellipsoids.\\
+
+If $\vec{r}(t)$ denotes the orientation of the body in the world frame as a function of time then it can be obtained through a 3D rotation from $\vec{r}(0)$ \cite{rapaport1985molecular}. This rotation can be expressed with an unit quaternion $q(t)$ such that
+\begin{equation}
+\boxed{\vec{r}(t) = q(t)\vec{r}(0)q^*(t)}
+\label{orientation}
+\end{equation}
+We have that $\vec{\omega}(t)$ satisfies $\dot{\vec{r}}(t) = \vec{\omega}(t)\times\vec{r}(t)$ and we can infer from equation \ref{orientation} that
+\begin{align*}
+\dot{\vec{r}}(t) &= \dot{q}(t)\vec{r}(0)q^*(t) + q(t)\vec{r}(0)\dot{q}^*(t)\\
+&= \dot{q}(t)q^*(t)\vec{r}(t)\cancel{q(t)q^*(t)} + \cancel{q(t)q^*(t)}\vec{r}(t)q(t)\dot{q}^*(t)
+\end{align*}
+We know that $\frac{d}{dt} qq^* = \frac{d}{dt} \underbrace{N^2(q)}_{=1} = 0 = \dot{q}q^* + q\dot{q}^*$ so $q\dot{q}^* = - \dot{q}q^*$ and then
+\begin{align*}
+\dot{\vec{r}}(t) = \underbrace{\dot{q}(t)q^*(t)}_{g(t)}\vec{r}(t) - \vec{r}(t)\underbrace{\dot{q}(t)q^*(t)}_{g(t)}
+\end{align*}
+Moreover, the scalar part in the above equation equals to 0. We can then identify $g(t)$ to an $\mathbb{R}^3$ vector $\vec{g}(t)$ and write
+\begin{align*}
+\dot{\vec{r}}(t) &= \vec{g}(t)\times\vec{r}(t) - \vec{r}(t)\times\vec{g}(t)\\
+&= 2\vec{g}(t)\times\vec{r}(t)
+\end{align*}
+By identification, it appears that $\vec{\omega}(t) = 2\vec{g}(t) = 2\dot{q}(t)q^*(t)$. We know that $\vec{\omega'}(t) = q^*(t)\vec{\omega}(t)q(t)$, therefore
+\begin{equation}
+\boxed{\vec{\omega'}(t) = 2q^*(t)\dot{q}(t)}
+\label{omega}
+\end{equation}
+
+We now have an equation which links the rotation vector $\vec{\omega'}(t)$ and the rotation quaternion $q$ \cite{mandre}. Equation \ref{euler_rot_} showed that the first derivative of $\vec{\omega'}(t)$ is linked to the sum $\sum \vec{M'}$ of the moments exerted on the body and expressed in the body frame. We should then be able to have such a link between these moments and the quaternion $q$
+\begin{align*}
+\dot{\vec{\omega'}}(t) &= 2(\dot{q}^*(t)\dot{q}(t) + q^*(t)\ddot{q}(t))\\
+\Leftrightarrow \ddot{q}(t) &= \frac{1}{2}(q(t)\dot{\vec{\omega'}}(t) - 2q(t)\underbrace{\dot{q}^*(t)\dot{q}(t)}_{N^2(\dot{q}(t))})\\
+&= q(t)\left(\frac{1}{2}\dot{\vec{\omega'}} - N^2(\dot{q}(t))\right)
+\end{align*}
+Since that, according to equation \ref{euler_rot_}, $\dot{\vec{\omega'}} = \bar{\bar{I}}^{-1}\left(\sum\vec{M'} - \vec{\omega'}\times(\bar{\bar{I}}\vec{\omega'})\right) = \bar{\bar{I}}^{-1}\left(\sum\vec{M'} - 2q^*\dot{q}\times(\bar{\bar{I}}2q^*\dot{q})\right)$ we can finally write
+\begin{equation}
+\boxed{\ddot{q}(t) = q(t)\left(\bar{\bar{I}}^{-1}\left(\frac{1}{2}\sum\vec{M'} - 2q^*(t)\dot{q}(t)\times\left(\bar{\bar{I}}q^*(t)\dot{q}(t)\right)\right) - N^2(\dot{q}(t))\right)}
+\label{conservation__}
+\end{equation}
+For spherically symmetric bodies, a simpler equation can be derived from equation \ref{TMC_}:
+\begin{equation}
+\boxed{\ddot{q}(t) = q(t)\left(\frac{1}{2I}\sum\vec{M'} - N^2(\dot{q}(t))\right)}
+\end{equation}
+These equations are the quaternion expressions of the conservation of the angular momentum.
+
+\section{Numerical integration}
+
+\subsection{Issue with the integration of quaternions}
+\label{Kleppmann}
+
+What we have to keep in mind is that the quaternion from equations \ref{omega} and \ref{conservation__} is an unit vector of $\mathbb{R}^4$. Therefore, this vector does not move in the whole $\mathbb{R}^4$ space but is \textbf{constrained to the 4D hypersphere of radius 1}.\\
+
+The basic Euler method would guess from $q_0 \equiv q(t = t_0)$ and $\dot{q_0} \equiv \dot{q}(t = t_0)$ the value of the quaternion after an increment $h$ of time, $q(t = t_0 + h) \equiv q_1 = q_0 + h \dot{q_0}$.\\
+
+However, this new quaternion lies outside of the unit quaternion hypersphere and renormalisation is not enough. Indeed, if you consider the limit case of a body rotating infinitely fast, the Euler method followed by a renormalisation of the incremented quaternion would give a move of a quarter of the sphere instead of an infinite number of revolutions.\\
+
+A better increment can be found through geometric considerations \cite{kleppmann2007simulation}.
+
+\begin{figure}[h!]
+\centering
+\includestandalone{figures/tikz/quaternion_numerical_integration}
+\caption{Scheme of the numerical integration}
+\label{num_int_quat}
+\end{figure}
+
+We can notice that $\forall t$, $\dot{q}(t)\cdot q(t) = \left(\frac{1}{2}q(t)\vec{\omega'}(t)\right)\cdot q(t)$ according to equation \ref{omega}, then
+\begin{align*}
+\dot{q}(t)\cdot q(t) &= \frac{1}{2}[\vec{q}(t)\times \vec{\omega'}(t) + q_0(t)\vec{\omega'}(t),-\vec{q(t)}\cdot\vec{\omega'}(t)]\cdot[\vec{q}(t),q_0(t)]\\
+&=\underbrace{\cancel{\left(\vec{q}(t)\times\vec{\omega'}(t)\right)\cdot\vec{q}(t)}}_{=0} + \cancel{q_0(t) \vec{\omega'}(t)\cdot \vec{q}(t)} - \cancel{q_0(t)\vec{q}(t)\cdot\vec{\omega'}(t)}\\
+&=0
+\end{align*}
+Therefore, since $q(t)$ is a radius of the hypersphere, $\dot{q}(t)$ is always tangent to the hypersphere.\\
+
+In our integration, we want $q_1$ to have moved an arc of length $h\dot{q_0}$ on the hypersphere in the direction $\dot{q_0}$.
+
+From figure \ref{num_int_quat}, we understand that we have to take $q_1$ in the direction of $q'_1 \equiv q_0 + \tan(|h\dot{q_0}|)\frac{\dot{q_0}}{|\dot{q_0}|}$, so:
+\begin{equation}
+\boxed{q_1 = \frac{q_0 + \tan(|h\dot{q_0}|)\frac{\dot{q_0}}{|\dot{q_0}|}}{|q_0 + \tan(|h\dot{q_0}|)\frac{\dot{q_0}}{|\dot{q_0}|}|}}
+\label{int_kleppmann}
+\end{equation}
+
+\subsection{Modified Verlet's method}
+\label{Verlet_princ}
+
+A modified Verlet integration algorithm is proposed in \cite{vaagberg2017shear}.\\
+
+Consider a quantity $\zeta(t)$ which is a function of time and whose derivatives are $\dot{\zeta}(t)$ and $\ddot{\zeta}(\zeta(t),\dot{\zeta}(t))$. Note $\zeta_0 \equiv \zeta(t = t_0)$ and $\dot{\zeta}_0 \equiv \dot{\zeta}(t = t_0)$, then with
+\begin{align*}
+\dot{\tilde{\zeta}}_1 &= \dot{\zeta}_0 + h\ddot{\zeta}(\zeta_0,\dot{\zeta}_0)\\
+\tilde{\zeta}_1 &= \zeta_0 + h\dot{\zeta}_0
+\end{align*}
+where $h$ is the increment of time, we have
+\begin{align*}
+\dot{\zeta}_1 &= \dot{\zeta}_0 + \frac{h}{2}(\ddot{\zeta}(\zeta_0,\dot{\zeta}_0) + \ddot{\zeta}(\tilde{\zeta}_1,\dot{\tilde{\zeta}}_1))
+\\
+\zeta_1 &= \zeta_0 + \frac{h}{2}(\dot{\zeta}_0 + \dot{\zeta}_1)
+\end{align*}
+where $\zeta_1 \equiv \zeta(t = t_0 + h)$ and $\dot{\zeta}_1 \equiv \dot{\zeta}(t = t_0 + h)$.
+
+\subsection{Quaternion direct integration}
+\label{quaternion_d_int}
+
+\subsubsection{Principle}
+
+We have seen that the Euler's equation for the body's rotation vector $\vec{\omega}$ is equivalent to equation \ref{conservation__} expressed for the body's quaternion $q$, we can then solve this equation with the mean of the modified Verlet's method.
+
+\subsubsection{Initial conditions}
+\label{quat_init}
+
+The equation \ref{conservation__} is a second order differential equation, we then need initial conditions for both $q(t)$ and $\dot{q}(t)$.\\
+
+% According to the equation \ref{orientation} at $t = 0$ we have $\vec{r}(0) = q(0)\vec{r}(0)q^*(0)$. We must then have $\boxed{q(0) = 1}$.\\
+There are 2 ways to initialise the quaternion:
+\begin{itemize}
+\item If we have already chosen the initial orientation $\vec{r}(0)$ of the body, then we must have $\boxed{q(0) = 1}$ according to equation \ref{orientation} evaluated at $t = 0$.
+\item If we do not get to choose $\vec{r}(0)$, then we can obtain the initial orientation of the body through a rotation of angle $2\theta$ around an axis $\vec{v}$ and we then have $\boxed{q(0) = [\vec{v}\sin\theta,\cos\theta]}$.\\
+\end{itemize}
+
+According to the equation \ref{omega} at $t = 0$ we have $\vec{\omega'}(0) = 2q^*(0)\dot{q}(0) \Rightarrow \boxed{\dot{q}(0) = \frac{1}{2} q(0)\vec{\omega'}(0)}$.
+%\begin{align*}
+% = 2[-\vec{q}(0),q_0(0)][\dot{\vec{q}}(0),\dot{q_0}(0)]\\
+%&= 2[\underbrace{\dot{\vec{q}}(0)\times\vec{q}(0)}_{A\dot{\vec{q}}(0)} + \underbrace{q_0\dot{\vec{q}}(0)}_{B\dot{\vec{q}}(0)}~\underbrace{-\dot{q_0}(0)\vec{q}(0)}_{C\dot{\vec{q}}(0)},\underbrace{q_0(0)\dot{q_0}(0)}_{D\dot{\vec{q}}(0)} + \underbrace{\vec{q}(0)\cdot\dot{\vec{q}}(0)}_{E\dot{\vec{q}}(0)}]
+%\end{align*}
+
+\subsubsection{Integration scheme}
+
+We use the same notations as in part \ref{Verlet_princ}.\\
+
+We have that $\dot{q}$ is not constrained to any particular space, therefore there is no particular precaution to take when integrating it with the modified Verlet's method. However, $q$ is constrained to the 4D hypersphere. In order to avoid errors, we have to use the technique developed in part \ref{Kleppmann} and calculate
+\begin{align*}
+\tilde{q}_1 &= \frac{q_0 + \tan(|h\dot{q_0}|)\frac{\dot{q_0}}{|\dot{q_0}|}}{|q_0 + \tan(|h\dot{q_0}|)\frac{\dot{q_0}}{|\dot{q_0}|}|}\\
+\dot{\tilde{q}}_1' &= \frac{1}{2}(\dot{q}_0 + \dot{q}_1)\\
+q_1 &= \frac{q_0 + \tan(|h\dot{\tilde{q}}_1'|)\frac{\dot{\tilde{q}}_1'}{|\dot{\tilde{q}}_1'|}}{|q_0 + \tan(|h\dot{\tilde{q}}_1'|)\frac{\dot{\tilde{q}}_1'}{|\dot{\tilde{q}}_1'|}|}
+\end{align*}
+
+Higher order methods will then rely on the same trick.
+
+\subsection{Quaternion - rotation vector integration}
+
+\subsubsection{Principle}
+
+Experimentally, we observe that the method described in part \ref{quaternion_d_int} is not numerically stable, and that the errors diverge exponentially over time in the case of torque-free precession.\\
+
+A better method is to combine the solving of equation \ref{euler_rot_}, which gives $\dot{\vec{\omega'}}(\vec{\omega'}(t),\vec{M'}(t))$, and equation \ref{omega}, which can be rewritten as
+\begin{align*}
+\dot{q}(t) = \frac{1}{2}q(t)\vec{\omega'}(t)
+\end{align*}
+and gives $\dot{q}(\vec{\omega'}(t),q(t))$.
+
+\subsubsection{Initial conditions}
+
+The equation \ref{euler_rot_} is a first order differential equation in $\vec{\omega'}$, therefore we only need an initial condition for the rotation vector of the body $\boxed{\vec{\omega'}(0) = \vec{\omega'}_0}$.\\
+
+Equation \ref{omega} is a first order differential equation in $q$, therefore we only need an initial condition for the quaternion, for whcih we can refer to part \ref{quat_init}.
+
+\subsubsection{Integration scheme}
+
+We use the same notations as in part \ref{Verlet_princ}. We will consider a body described by the position of its centre $\vec{r}$, its velocity $\vec{v}$, its quaternion $q$ and its rotation vector $\vec{\omega'}$. We will denote $\vec{f}$ and $\vec{M'}$ the sum of the forces and the moments exerted on the body, in the reference and in the body frame respectively.\\
+
+The first step is an Euler integration over the time step $h$
+\begin{align*}
+\tilde{\vec{\omega'_1}} &= \vec{\omega'_0} + h\dot{\vec{\omega'_0}}(\vec{M'}(\vec{r_0}^{(i)},\vec{v_0}^{(i)},q_0^{(i)},\vec{\omega'_0}^{(i)}),\vec{\omega'_0})\\
+\tilde{q_1} &= \left\langle q_0 + \tan\left(|h\dot{q}_0(q_0,\vec{\omega'_0})|\right) \frac{\dot{q}_0(q_0,\vec{\omega'_0})}{|\dot{q}_0(q_0,\vec{\omega'_0})|}\right\rangle\\
+\tilde{\vec{v_1}} &= \vec{v_0} + \frac{h}{m} \vec{f}(\vec{r_0}^{(i)},\vec{v_0}^{(i)},q_0^{(i)},\vec{\omega'_0}^{(i)})\\
+\tilde{\vec{r_1}} &= \vec{r_0} + h\vec{v_0}
+\end{align*}
+where $\langle q \rangle = q/|q|$, from which we can calculate
+\begin{align*}
+\Delta q = \frac{h}{2} \left( \dot{q_0}(q_0,\vec{\omega'_0}) + \dot{q_1}(\tilde{q_1},\tilde{\vec{\omega'_1}}) \right)
+\end{align*}
+and finally do the integration
+\begin{align*}
+\vec{\omega'_1} &= \vec{\omega'_0} + \frac{h}{2}\left(\dot{\vec{\omega'_0}}(\vec{M'}(\vec{r_0}^{(i)},\vec{v_0}^{(i)},q_0^{(i)},\vec{\omega'_0}^{(i)}),\vec{\omega'_0}) + \dot{\vec{\omega'_1}}(\vec{M'}(\tilde{\vec{r_1}}\hspace{1pt}^{(i)},\tilde{\vec{v_1}}\hspace{1pt}^{(i)},\tilde{q_1}^{(i)},\tilde{\vec{\omega'_1}}^{(i)}),\tilde{\vec{\omega'_1}}) \right)\\
+q_1 &= \left\langle q_0 + \tan\left(|\Delta q|\right) \frac{\Delta q}{|\Delta q|} \right \rangle\\
+\vec{v_1} &= \vec{v_0} + \frac{h}{2m} \Big( \underbrace{\vec{f}(\vec{r_0}^{(i)},\vec{v_0}^{(i)},q_0^{(i)},\vec{\omega'_0}^{(i)})}_{\textstyle m\frac{\tilde{\vec{v_1}} - \vec{v_0}}{h}} + \vec{f}(\tilde{\vec{r_1}}\hspace{1pt}^{(i)},\tilde{\vec{v_1}}\hspace{1pt}^{(i)},\tilde{q_1}^{(i)},\tilde{\vec{\omega'_1}}^{(i)}) \Big)\\
+&= \frac{1}{2} \left(\tilde{\vec{v_1}} + \vec{v_0} + \frac{h}{m} \vec{f}(\tilde{\vec{r_1}}\hspace{1pt}^{(i)},\tilde{\vec{v_1}}\hspace{1pt}^{(i)},\tilde{q_1}^{(i)},\tilde{\vec{\omega'_1}}^{(i)}) \right)\\
+\vec{r_1} &= \vec{r_0} + \frac{h}{2}\left(\vec{v_0} + \vec{v_1}\right)
+\end{align*}
+
+% \input{references/biblio}
+
+\end{document}
+
+% \end{cbunit}
