@@ -26,7 +26,7 @@ What has been observed is that granular materials develop a yield stress in a di
 
 Jamming is encountered everywhere, whether it is unintended -- \textit{e.g.}, grains and beans jam in hoppers \cite{youtube1,youtube2,to2001jamming}, cars jam on the highway \cite{eisenblatter1998jamming} -- or purposefully put into practice in engineering applications -- \textit{e.g.}, to easily, efficiently and reliably hold objects \cite{youtube3,brown2010universal}.\\
 
-The phenomenon is also present in other systems with other control parameters. Foams jam upon decreasing the applied shear stress and supercooled liquids jam upon decreasing the temperature -- the latter phenomenon being already known as the glass transition from a flowing liquid to a frozen glass.\\
+The phenomenon is also present in other systems with other control parameters \cite{d2001jamming}. Foams jam upon decreasing the applied shear stress and supercooled liquids jam upon decreasing the temperature -- the latter phenomenon being already known as the glass transition from a flowing liquid to a frozen glass.\\
 
 These observations led Liu and Nagel to hypothesise that they are controlled by the same mechanisms \cite{liu1998nonlinear}, and thus to summarise them in a phase diagram \cite{PRE68.011306} which axis are the aforementioned parameters: temperature $T$, shear stress $\sigma$ and packing fraction $\phi$ (figure \ref{phase_diagram_jamming}). The surface below which states are jammed corresponds to the points for which the system behaves like a solid on any experimental time scale and the point J is meant to correspond to the packing fraction $\phi_J$ at which the system at $T=0$ and $\sigma=0$ jam in the thermodynamic limit (infinite system, \textit{i.e.}, $N\rightarrow+\infty$).
 
@@ -726,11 +726,15 @@ A graphical method to determine the values of $\phi_J$ and $q$, based on the stu
 \subsubsection{Method}
 \label{levenberg_marquadt}
 
+\myparagraph{Fitting}
+
 Equation \ref{fitting_function_form} suggests that it is possible to collapse the data from simulations at different packing fractions and shear strain rates on a single curve in the ($p\dot{\gamma}^{-q}$,$\delta\phi\dot{\gamma}^h$) plane. To perform this fitting, and thus find the values of $\beta$ and $\phi_J$, we choose arbitrarily the expression of $g_2$
 \begin{align*}
 X\equiv\delta\phi\dot{\gamma}^h,~ g_2:X\mapsto\exp\left(\sum_{i=0}^5a_iX^i\right)
 \end{align*}
-and use the Levenberg-Marquardt algorithm \cite{marquardt1963algorithm,press2015numerical} with $\phi_J$, $q$, $h$ and $a_0$ through $a_5$ as free parameters.\\
+and use the Levenberg-Marquardt algorithm \cite{marquardt1963algorithm,press2015numerical} with $\phi_J$, $q$, $h$ and $a_0$ through $a_5$ as free parameters.
+
+\myparagraph{Error checking}
 
 Consider $n$ experimental points $(x_i,y_i)$, each associated with a standard deviation $\sigma_i$, which we fit with a function $y(x,a_1,\ldots,a_m)$ where $p_1,\ldots,p_m$ are free parameters. We define the \textit{chi-square} function
 \begin{align*}
@@ -738,11 +742,13 @@ Consider $n$ experimental points $(x_i,y_i)$, each associated with a standard de
 \end{align*}
 whose value should ideally be close to the number of degrees of freedom $n-m$ \cite{press1996numerical}.\\
 
-To check the quality of the fit obtained with this algorithm, we will be very mindful to the following conditions as suggested by \cite{PRE83.030302}:
+To check the quality of the fit obtained with the Levenberg-Marquadt algorithm, we will be very mindful to the following conditions as suggested by \cite{PRE83.030302}:
 \begin{itemize}
 \item[(i)] The agreement between data and the fitting model, as measured by the value of the quotient of the chi-square by the degrees of freedom $\chi^2/\text{DOF}$, is good, \textit{i.e.} $\chi^2/\text{DOF}$ is close to unity.
-\item[(ii)] The fitting parameters are reasonably independent of the precise range of the data included in the fit.
+\item[(ii)] The fitting parameters are reasonably independent of the precise range of the data included in the fit.\\
 \end{itemize}
+
+**** how error bars can be calculated from $\chi^2/\text{DOF}$? ****
 
 \subsubsection{Complement on soft- to hard-core mapping}
 
@@ -787,7 +793,7 @@ We can choose $l$ such that $\delta\phi l^{1/\nu} = -b \Leftrightarrow l = \left
 \delta z(\delta\phi,\dot{\gamma}) \sim \left(-\frac{\delta\phi}{b}\right)^{-\nu x} &h_0\left(-b,\dot{\gamma}\left(-\frac{\delta\phi}{b}\right)^{-\nu z}\right)\\
 \isEquivTo{\delta\phi\rightarrow0} (-\delta\phi)^{-\nu x}~&
 \end{align*}
-from which we infer $u_z = -\nu x$ according to equation \ref{deltaz_critical_vanish} and notice that $h' \equiv -\nu z = 1/h$ according to equation \ref{fitting_function_form}.\\
+from which we infer $u_z = -\nu x$ according to equation \ref{deltaz_critical_vanish} and where we will denote $h' \equiv -\nu z$, with $h' = 1/h$ according to equation \ref{fitting_function_form}.\\
 
 We introduce the function $h_1$ such that
 \begin{equation}
