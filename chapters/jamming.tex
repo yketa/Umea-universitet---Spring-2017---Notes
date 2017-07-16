@@ -732,9 +732,15 @@ X\equiv\delta\phi\dot{\gamma}^h,~ g_2:X\mapsto\exp\left(\sum_{i=0}^5a_iX^i\right
 \end{align*}
 and use the Levenberg-Marquardt algorithm \cite{marquardt1963algorithm,press2015numerical} with $\phi_J$, $q$, $h$ and $a_0$ through $a_5$ as free parameters.\\
 
+Consider $n$ experimental points $(x_i,y_i)$, each associated with a standard deviation $\sigma_i$, which we fit with a function $y(x,a_1,\ldots,a_m)$ where $p_1,\ldots,p_m$ are free parameters. We define the \textit{chi-square} function
+\begin{align*}
+\chi^2 \equiv \sum_{i=1}^n \left(\frac{y_i-y(x_i,a_1,\ldots,a_m)}{\sigma_i}\right)^2
+\end{align*}
+whose value should ideally be close to the number of degrees of freedom $n-m$ \cite{press1996numerical}.\\
+
 To check the quality of the fit obtained with this algorithm, we will be very mindful to the following conditions as suggested by \cite{PRE83.030302}:
 \begin{itemize}
-\item[(i)] The agreement between data and the fitting model, as measured by the value of the quotient of the merit function by the degrees of freedom $\chi^2/\text{DOF}$, is good, \textit{i.e.} $\chi^2/\text{DOF}$ is close to unity.
+\item[(i)] The agreement between data and the fitting model, as measured by the value of the quotient of the chi-square by the degrees of freedom $\chi^2/\text{DOF}$, is good, \textit{i.e.} $\chi^2/\text{DOF}$ is close to unity.
 \item[(ii)] The fitting parameters are reasonably independent of the precise range of the data included in the fit.
 \end{itemize}
 
