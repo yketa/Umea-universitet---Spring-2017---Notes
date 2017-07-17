@@ -771,7 +771,27 @@ p(\delta\phi,\dot{\gamma}) \isEquivTo{\delta\phi\rightarrow0} (-\delta\phi)^{-\n
 \end{equation}
 from which we can infer $y_p = -\nu y \Leftrightarrow y_E = -2 \nu y = -2q/h$ where $q$ and $h$ are the exponents introduced in equation \ref{fitting_function_form}.\\
 
-Therefore, considering that the fitting described in part \ref{levenberg_marquadt} has been performed, $c$ remains the only unknown variable in equation \ref{phieff_soft2hard}.
+Therefore, considering that the fitting described in part \ref{levenberg_marquadt} has been performed, $c$ remains the only unknown variable in equation \ref{phieff_soft2hard}. We then have a quick way to check the efficiency of this method.\\
+
+Equations \ref{phieff} and \ref{phieff_soft2hard} can be rewritten as
+\begin{equation}
+\eta_p^s(\phi,\dot{\gamma}) = A(\phi_J-\phi +cE(\phi,\dot{\gamma})^{-h/2q})^{-\beta}
+\label{phieff_soft2hard_check}
+\end{equation}
+where $A$ is an additional parameter which can be determined if we take two points $\eta_{p,1} \equiv \eta_p(\phi_1,\dot{\gamma}_1)$ and $\eta_{p,2} \equiv \eta_p(\phi_2,\dot{\gamma}_2)$, whose corresponding energies are $E_1 \equiv E(\phi_1,\dot{\gamma}_1)$ and $E_2 \equiv E(\phi_2,\dot{\gamma}_2)$, which we hypothesise satisfy equation \ref{phieff_soft2hard_check}.\\
+
+We can isolate $c$ in equation \ref{phieff_soft2hard_check}, giving
+\begin{align*}
+c = E(\phi,\dot{\gamma})^{h/2q}\left(A^{1/\beta}\eta_p(\phi,\dot{\gamma})^{-1/\beta}-\phi_J+\phi\right)
+\end{align*}
+which has to be satisfied by the two aforementioned points, therefore
+\begin{align*}
+&E_1^{h/2q}\left(A^{1/\beta}\eta_{p,1}^{-1/\beta}-\phi_J+\phi_1\right) = E_2^{h/2q}\left(A^{1/\beta}\eta_{p,2}^{-1/\beta}-\phi_J+\phi_2\right)\\
+\Leftrightarrow &A=\left(\left(\eta_{p,1}^{-1/\beta}E_1^{h/2q} - \eta_{p,2}^{-1/\beta}E_2^{h/2q}\right)^{-1}\left(E_1^{h/2q}(\phi_J-\phi_1) + E_2^{h/2q}(\phi_2-\phi_J)\right)\right)^{\beta}
+\end{align*}
+which can be re-injected in the expression of $c$ evaluated with either point.\\
+
+We can thus graphically evaluate the efficiency of the mapping in a log-log plot of $\eta_p(\phi,\dot{\gamma})$ vs. $\phi_J-\phi_{\text{eff}}$.
 
 \subsection{Contact number}
 
