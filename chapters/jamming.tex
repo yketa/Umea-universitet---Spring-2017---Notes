@@ -672,32 +672,40 @@ All this information can be accessed by using the Perram and Wertheim method des
 \section{Scaling analysis}
 \label{scaling_analysis}
 
-\subsection{Pressure}
-
-\subsubsection{Scaling assumption}
+\subsection{Scaling assumption}
 
 Please find in \hyperref[appendix:rg]{appendix \ref{appendix:rg}} a presentation of renomalisation group theory.\\
 
-According to the discussions of parts \ref{jamming_phenomenon} and \ref{methods_jamming_transition}, we can describe an athermal system of particles with the variables $\delta\phi=\phi-\phi_J$ and $\dot{\gamma}$. We will always assume that our system is in the thermodynamic limit $N\rightarrow+\infty \Leftrightarrow 1/L \rightarrow 0$, where $L$ is the characteristic length and then neglect the influence of the number of particles $N$ on the thermodynamic quantities describing the system. Moreover, in a renormalisation group picture, we will assume that $\delta\phi$ is a relevant variable while $\dot{\gamma}$ is a non-dangereous irrelevant variable.\\
+According to the discussions of parts \ref{jamming_phenomenon} and \ref{methods_jamming_transition}, we can describe an athermal system of particles with the variables $\delta\phi=\phi-\phi_J$ and $\dot{\gamma}$. We will always assume that our system is in the thermodynamic limit $N\rightarrow+\infty \Leftrightarrow 1/L \rightarrow 0$, where $L$ is the characteristic length and then neglect the influence of the number of particles $N$ on the thermodynamic quantities describing the system. % Moreover, in a renormalisation group picture, we will assume that $\delta\phi$ is a relevant variable while $\dot{\gamma}$ is a non-dangereous irrelevant variable.\\
 
-Renormalisation group theory suggests that, close to $(\delta\phi\rightarrow0,\dot{\gamma}\rightarrow0)$, there exists $y_{\delta\phi} > 0$ and $y_{\dot{\gamma}} < 0$ such that the correlation length transforms under a change of length scale with a factor $l$ as
+Renormalisation group theory suggests that, close to $(\delta\phi\rightarrow0,\dot{\gamma}\rightarrow0)$, there exists $y_{\delta\phi}$ and $y_{\dot{\gamma}}$ such that the correlation length transforms under a change of length scale with a factor $l$ as
 \begin{align*}
 \xi(\delta\phi,\dot{\gamma}) = l\xi(l^{y_{\delta\phi}}\delta\phi,l^{y_{\dot{\gamma}}}\dot{\gamma})
 \end{align*}
-which, when choosing $l$ such that $l^{y_{\delta\phi}}\delta\phi=b \Leftrightarrow l=\left(\frac{\delta\phi}{b}\right)^{-1/y_{\delta\phi}} \ge 1$, gives
+which, when choosing $l$ such that $l^{y_{\delta\phi}}\delta\phi=-b \Leftrightarrow l=\left(-\frac{\delta\phi}{b}\right)^{-1/y_{\delta\phi}} \ge 1$, gives
 \begin{align*}
-\xi(\delta\phi,\dot{\gamma}) = \left(\frac{\delta\phi}{b}\right)^{-1/y_{\delta\phi}} \xi\left(b,\left(\frac{\delta\phi}{b}\right)^{-y_{\dot{\gamma}}/y_{\delta\phi}}\dot{\gamma}\right) \isEquivTo{\delta\phi\rightarrow0} \delta\phi^{-1/y_{\delta\phi}}
+\xi(\delta\phi,\dot{\gamma}) = \left(-\frac{\delta\phi}{b}\right)^{-1/y_{\delta\phi}} \xi\left(b,\left(-\frac{\delta\phi}{b}\right)^{-y_{\dot{\gamma}}/y_{\delta\phi}}\dot{\gamma}\right) \isEquivTo{\delta\phi\rightarrow0} (-\delta\phi)^{-1/y_{\delta\phi}}
 \end{align*}
 where we recognise $\nu=1/y_{\delta\phi} > 0$ according to equation \ref{critical_exponents}.\\
 
-We have that the pressure in the system is linked to a derivative of the free energy. Therefore, renormalisation group theory here suggests the following assumption on the scaling of the pressure close to $(\delta\phi\rightarrow0,\dot{\gamma}\rightarrow0)$ for a change of length scale with a factor $l$ 
+We will assume that variables which vanish at jamming are somehow linked to the free energy density of the system. Therefore, renormalisation group theory here suggests the following assumption on the scaling of a vanishing variable $\mathcal{O}$ close to the jamming point, \textit{i.e.} $(\delta\phi\rightarrow0,\dot{\gamma}\rightarrow0)$, for a change of length scale with a factor $l$ 
 \begin{equation}
-p(\delta\phi,\dot{\gamma}) \sim l^y g_0(\delta\phi l^{1/\nu},\dot{\gamma}l^z)
-\label{scaling_assumption_pressure}
+\mathcal{O}(\delta\phi,\dot{\gamma}) \sim l^{y_{\mathcal{O}}/\nu} g_0(\delta\phi l^{1/\nu},\dot{\gamma}l^z)
+\label{scaling_assumption_general}
 \end{equation}
-where $z<0$.\\
+where we can choose $\delta\phi l^{1/\nu}=-b \Leftrightarrow l=\left(-\frac{\delta\phi}{b}\right)^{-\nu} \ge 1$ and deduce
+\begin{align*}
+p(\delta\phi,\dot{\gamma}) \sim \left(\frac{\delta\phi}{b}\right)^{-y_{\mathcal{O}}} g_0\left(b,\dot{\gamma}\left(\frac{\delta\phi}{b}\right)^{-\nu z}\right)
+\end{align*}
+where we take the $\delta\phi\rightarrow0$ limit, which gives
+\begin{equation}
+\mathcal{O}(\delta\phi,\dot{\gamma}) \isEquivTo{\delta\phi\rightarrow0} (-\delta\phi)^{-y_{\mathcal{O}}}
+\end{equation}
+with $y_{\mathcal{O}}$ being then the critical exponent associated to the vanishing of the variable $\mathcal{O}$ at jamming.
 
-We introduce the function $g_1$ such that
+\subsection{Pressure}
+
+We introduce the function $g_1$ such that equation \ref{scaling_assumption_general} applied to the pressure $p$ can be written
 \begin{align*}
 p(\delta\phi,\dot{\gamma}) \sim \dot{\gamma} l^z l^y g_1(\delta\phi l^{1/\nu},\dot{\gamma}l^z)
 \end{align*}
@@ -711,7 +719,7 @@ and therefore
 \end{equation}
 where we recognise $\beta=-\nu(y+z)$ according to equation \ref{critical_exponents}.\\
 
-We now choose $l$ such that $\dot{\gamma}l^z = b \Leftrightarrow l = \left(\frac{\dot{\gamma}}{b}\right)^{-1/z} \ge 1$, which put in equation \ref{scaling_assumption_pressure} leads to
+We now choose $l$ such that $\dot{\gamma}l^z = b \Leftrightarrow l = \left(\frac{\dot{\gamma}}{b}\right)^{-1/z} \ge 1$, which put in equation \ref{scaling_assumption_general} for $p$ leads to
 \begin{align*}
 p(\delta\phi,\dot{\gamma}) \sim \dot{\gamma}^{-y/z} g_0\left(\delta\phi \left(\frac{\dot{\gamma}}{b}\right)^{-1/\nu z},b\right)
 \end{align*}
@@ -724,10 +732,10 @@ in which we will denote $q\equiv-y/z$ and $h\equiv-1/\nu z$, thus leading to $\b
 
 A graphical method to determine the values of $\phi_J$ and $q$, based on the study of equation \ref{fitting_function_form}, is described in \cite{PRE83.030302}, we will however use a different method that allows us to determine these parameters and $h$, and therefore find the critical exponent $\beta$.
 
-\subsubsection{Method}
+\subsection{Method}
 \label{levenberg_marquadt}
 
-\myparagraph{Fitting}
+\subsubsection{Fitting}
 
 Equation \ref{fitting_function_form} suggests that it is possible to collapse the data from simulations at different packing fractions and shear strain rates on a single curve in the ($p\dot{\gamma}^{-q}$,$\delta\phi\dot{\gamma}^h$) plane. To perform this fitting, and thus find the values of $\beta$ and $\phi_J$, we choose arbitrarily the expression of $g_2$
 \begin{align*}
@@ -735,7 +743,7 @@ X\equiv\delta\phi\dot{\gamma}^h,~ g_2:X\mapsto\exp\left(\sum_{i=0}^5a_iX^i\right
 \end{align*}
 and use the Levenberg-Marquardt algorithm \cite{marquardt1963algorithm,press2015numerical} with $\phi_J$, $q$, $h$ and $a_0$ through $a_5$ as free parameters.
 
-\myparagraph{Error checking}
+\subsubsection{Error checking}
 
 Consider $n$ experimental points $(x_i,y_i)$, each associated with a standard deviation $\sigma_i$, which we fit with a function $y(x,a_1,\ldots,a_m)$ where $p_1,\ldots,p_m$ are free parameters. We define the \textit{chi-square} function
 \begin{align*}
@@ -751,7 +759,7 @@ To check the quality of the fit obtained with the Levenberg-Marquadt algorithm, 
 
 **** how error bars can be calculated from $\chi^2/\text{DOF}$? ****
 
-\subsubsection{Complement on soft- to hard-core mapping}
+\subsection{Complement on soft- to hard-core mapping}
 
 We can make use of our scaling assumption for the pressure to determine the coefficient $y_E$ in equation \ref{phieff_soft2hard}.\\
 
