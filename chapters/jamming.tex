@@ -772,13 +772,11 @@ Equation \ref{fitting_function_form} and \ref{fitting_function_contact_number} s
 \begin{align*}
 g_{\mathcal{O}}^{(\text{fit})}:X_{\mathcal{O}}\mapsto\exp\left(\sum_{i=0}^5a_{\mathcal{O},i}X_{\mathcal{O}}^i\right)
 \end{align*}
-and use the Levenberg-Marquardt algorithm \cite{marquardt1963algorithm,press2015numerical} with $\phi_J$, $z_c$, $q_{\mathcal{O}}$, $h_{\mahtcal{O}}$ and $a_{\mathcal{O},0}$ through $a_{\mathcal{O},5}$ as free parameters to the corresponding variable fitting.\\
+and use the Levenberg-Marquardt algorithm \cite{marquardt1963algorithm,press2015numerical} with $\phi_J$, $z_c$, $q_{\mathcal{O}}$, $h_{\mathcal{O}}$ and $a_{\mathcal{O},0}$ through $a_{\mathcal{O},5}$ as free parameters to the corresponding variable fitting. The goal of this algorithm is to minimise the deviation of the experimental data from the fitted curve with respect to the standard deviation for each experimental point. This is equivalent to the minimisation of the chi-square function, introduced in equation \ref{chi-square}.\\
 
 This then allows us to determine the relevant critical parameters at the jamming transition.\\
 
-We have shown that $z_c$ may be determined both by the observation of the relaxation process according to equation \ref{tau_dz_scaling} and by the analysis of shearing simulations according to equation \ref{fitting_function_contact_number}.\\
-
-However, **** impossible to use it in our simulations because of [???] ****
+We have shown that $z_c$ may be determined both by the observation of the relaxation process according to equation \ref{tau_dz_scaling} and by the analysis of shearing simulations according to equation \ref{fitting_function_contact_number}. However, the latter method is not as efficient as the former. Indeed, in shearing simulations involving soft-core particles, the contact number is not as relevant as the way particles overlap because all overlapping particles do not contribute to the stability of the system at the same level, contrarily to hard-core particles. Therefore, this method was not used to study the number of contacts.
 
 \subsubsection{Evaluation of errors}
 
@@ -799,9 +797,10 @@ Errors on the parameters returned by the Levenberg-Marquadt algorithm are determ
 \myparagraph{Quality of the fitting}
 
 Consider $n$ experimental points $(x_i,y_i)$, each associated with a standard deviation $\sigma_i$, which we fit with a function $y(x,a_1,\ldots,a_m)$ where $p_1,\ldots,p_m$ are free parameters. We define the \textit{chi-square} function
-\begin{align*}
+\begin{equation}
 \chi^2 \equiv \sum_{i=1}^n \left(\frac{y_i-y(x_i,a_1,\ldots,a_m)}{\sigma_i}\right)^2
-\end{align*}
+\label{chi-square}
+\end{equation}
 whose value should ideally be close to the number of degrees of freedom $n-m$ \cite{press1996numerical}.\\
 
 To check the quality of the fit obtained with the Levenberg-Marquadt algorithm, we will be very mindful to the following conditions as suggested by \cite{PRE83.030302}:
@@ -840,7 +839,9 @@ which has to be satisfied by the two aforementioned points, therefore
 \end{align*}
 which can be re-injected in the expression of $c$ evaluated in either point.\\
 
-We can thus graphically evaluate the efficiency of the mapping in a log-log plot of $\eta_p(\phi,\dot{\gamma})$ vs. $\phi_J-\phi_{\text{eff}}$.
+We can thus graphically evaluate the efficiency of the mapping in a log-log plot of $\eta_p(\phi,\dot{\gamma})$ vs. $\phi_J-\phi_{\text{eff}}$.\\
+
+Another, more time-consuming, solution is of course to apply the Levenberg-Marquadt algorithm (part \ref{levenberg_marquadt}) on equation \ref{phieff_soft2hard_check} with $A$ and $c$ as free parameters.
 
 \section{Rheology}
 
