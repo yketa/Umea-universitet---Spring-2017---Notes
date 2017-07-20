@@ -246,7 +246,7 @@ with $c$ a constant.
 
 \subsection{Interactions between spherical particles}
 
-Much work on jamming has focused on a model of athermal, frictionless and spherical soft-core particles with repulsive contact interaction proposed by D. J. Durian to describe foam mechanics \cite{durian1995foam}, in which the rotational motion of the particles does not play any role. For two spheres $\mathcal{S}_i$ and $\mathcal{S}_j$, this model gives the following elastic potential of interaction
+Much work on jamming has focused on a model of athermal, frictionless -- \textit{i.e.}, with no inter-particle Coulombic friction -- and spherical soft-core particles with repulsive contact interaction proposed by D. J. Durian to describe foam mechanics \cite{durian1995foam}, in which the rotational motion of the particles does not play any role. For two spheres $\mathcal{S}_i$ and $\mathcal{S}_j$, this model gives the following elastic potential of interaction
 \begin{equation}
 \boxed{
 \mathcal{V}_{ij}(r_{ij}) = \begin{cases} \frac{1}{2} k_e (1 - r_{ij}/d_{ij})^2 &\text{ if } r_{ij} \leq d_{ij} \Leftrightarrow \mathcal{S}_i \cap \mathcal{S}_j \neq \emptyset \\ 0 &\text{ if } r_{ij} > d_{ij} \Leftrightarrow \mathcal{S}_i \cap \mathcal{S}_j = \emptyset \end{cases}
@@ -776,7 +776,7 @@ and use the Levenberg-Marquardt algorithm \cite{marquardt1963algorithm,press2015
 
 This then allows us to determine the relevant critical parameters at the jamming transition.\\
 
-We have shown that $z_c$ may be determined both by the observation of the relaxation process according to equation \ref{tau_dz_scaling} and by the analysis of shearing simulations according to equation \ref{fitting_function_contact_number}. However, the latter method is not as efficient as the former. Indeed, in shearing simulations involving soft-core particles, the contact number is not as relevant as the way particles overlap because all overlapping particles do not contribute to the stability of the system at the same level, contrarily to hard-core particles. Therefore, this method was not used to study the number of contacts.
+We thus have shown that $z_c$ may be determined both by the observation of the relaxation process according to equation \ref{tau_dz_scaling} and by the analysis of shearing simulations according to equation \ref{fitting_function_contact_number}. However, the latter method is not as efficient as the former. Indeed, in shearing simulations involving soft-core particles, the contact number is not as relevant as the way particles overlap because all overlapping particles do not contribute to the stability of the system at the same level, contrarily to hard-core particles. Therefore, this method was not used to study the number of contacts.
 
 \subsubsection{Evaluation of errors}
 
@@ -849,11 +849,11 @@ The shearing rheology of athermal frictionless soft-core disks has been thorough
 
 Vågberg \textit{et al.} showed that upon increasing the packing fraction, disks transitionned from Bagnoldian rheology
 \begin{equation}
-p \sim \dot{\gamma}^2 \Leftrightarrow \frac{\partial}{\partial\dot{\gamma}} B_p = 0,~ B_p \equiv p/\dot{\gamma}^2
+\sigma,p \sim \dot{\gamma}^2 \Leftrightarrow \frac{\partial}{\partial\dot{\gamma}} B_{\sigma,p} = 0,~ B_{\sigma,p} \equiv \sigma,p/\dot{\gamma}^2
 \end{equation}
 to Newtonian rheology
 \begin{equation}
-p \sim \dot{\gamma} \Leftrightarrow \frac{\partial}{\partial\dot{\gamma}} \eta_p = 0,~ \eta_p \equiv p/\dot{\gamma}
+\sigma,p \sim \dot{\gamma} \Leftrightarrow \frac{\partial}{\partial\dot{\gamma}} \eta_{\sigma,p} = 0,~ \eta_{\sigma,p} \equiv \sigma,p/\dot{\gamma}
 \end{equation}
 at a precise packing fraction which depended on the inelasticity of collisions between particles, as measured by the parameter $Q \propto \sqrt{mk_e/k_d^2}$ with $m$, $k_e$ and $k_d$ introduced in equations \ref{elastic_spheres}, \ref{fdis_cd} and \ref{fdis_rd}.\\
 
