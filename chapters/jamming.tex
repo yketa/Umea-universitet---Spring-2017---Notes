@@ -55,9 +55,11 @@ In the vicinity of $J$, we have that the shear viscosity $\eta \equiv \sigma/\do
 \end{equation}
 for $\phi \lessgtr \phi_J$ for soft-core particles in the limit $\dot{\gamma}\rightarrow0$ \cite{PRL99.178001,PRE83.030302} and for $\phi < \phi_J$ for hard-core particles \cite{PRL109.108001}. We will always assume that these exponents have the same value for whatever sign of $\phi-\phi_J$.\\
 
-Using $\eta_p$ rather than $\eta$ has been proven to reduce errors due to necessary corrections to scaling \cite{PRE83.030302}. Moreover, we have to keep in mind that equation \ref{critical_exponents} holds only very close to $\phi_J$. Since the dimensionless friction $\mu \equiv \eta/\eta_p$ has a strong $\phi$-dependence, corrections may have to be added to the scaling for larger packing fractions intervals \cite{PRE83.030302,PRE91.062209}. Please refer to part \ref{scaling_analysis} for more details on the scaling methods.\\
+Using $\eta_p$ rather than $\eta$ has been proven to reduce errors due to necessary corrections to scaling \cite{PRE83.030302}. Moreover, we have to keep in mind that equation \ref{critical_exponents} holds only very close to $\phi_J$. Since the macroscopic friction coefficient $\mu \equiv \eta/\eta_p$ has a strong $\phi$-dependence, corrections may have to be added to the scaling for larger packing fractions intervals \cite{PRE83.030302,PRE91.062209}. Please refer to part \ref{scaling_analysis} for more details on the scaling methods.\\
 
 This power-law divergence of the transport coefficient and of a correlation length scale are reminiscent of the behaviour near a critical point \cite{PRE83.030302,plischke1994equilibrium,PRE83.030303} of a second-order continuous phase transition.\\
+
+For frictional particles, it has been shown that the jamming transition was discontinuous \cite{otsuki2011critical}. However, equation \ref{critical_exponents}, which has been well demonstrated for frictionless particles, can also be applied to frictional particles by introducing a fictitious critical density, somewhat higher than the density at which the system develops a yield stress.\\
 
 The original conjecture of the authors of \cite{PRE68.011306} was that $J$ was indeed a critical point which "may control the region around it and thereby govern the nature of the entire jamming surface in the phase diagram." This point would then be the athermal jamming point corresponding to the $T\rightarrow0$ limit of the equilibrium glass transition curve in the $(1/\phi,T)$ plane. However, it was later suggested that the equilibrium glass transition would be governed by a critical point distinct from $J$ \cite{PRE83.031307}.
 
@@ -845,17 +847,19 @@ Another, more time-consuming, solution is of course to apply the Levenberg-Marqu
 
 \section{Rheology}
 
-The shearing rheology of athermal frictionless soft-core disks has been thoroughly studied in \cite{vaagberg2017shear} and gives hints on what to expect of the shearing rheology of spheroids in our model near the jamming transition.\\
+The shearing rheology of athermal frictionless soft-core disks has been thoroughly studied in \cite{vaagberg2017shear,PRL112.208303} and gives hints on what to expect of the shearing rheology of spheroids in our model near the jamming transition.\\
 
-Vågberg \textit{et al.} showed that upon increasing the packing fraction, disks transitionned from Bagnoldian rheology
+Vågberg \textit{et al.} showed that upon increasing the packing fraction, disks discontinuously transitioned from Bagnoldian rheology
 \begin{equation}
 \sigma,p \sim \dot{\gamma}^2 \Leftrightarrow \frac{\partial}{\partial\dot{\gamma}} B_{\sigma,p} = 0,~ B_{\sigma,p} \equiv \sigma,p/\dot{\gamma}^2
 \end{equation}
 to Newtonian rheology
 \begin{equation}
-\sigma,p \sim \dot{\gamma} \Leftrightarrow \frac{\partial}{\partial\dot{\gamma}} \eta_{\sigma,p} = 0,~ \eta_{\sigma,p} \equiv \sigma,p/\dot{\gamma}
+\sigma,p \sim \dot{\gamma} \Leftrightarrow \frac{\partial}{\partial\dot{\gamma}^2} \eta_{\sigma,p} = 0,~ \eta_{\sigma,p} \equiv \sigma,p/\dot{\gamma}
 \end{equation}
 at a precise packing fraction which depended on the inelasticity of collisions between particles, as measured by the parameter $Q \propto \sqrt{mk_e/k_d^2}$ with $m$, $k_e$ and $k_d$ introduced in equations \ref{elastic_spheres}, \ref{fdis_cd} and \ref{fdis_rd}.\\
+
+These two phases differ in that the particles tend to cluster together in the Newtonian phase, with force chains that percolate throughout the system, while in the Bagnoldian phase particles have fewer instantaneous contacts. We must then expect a sharp increase in the number of contacts at the transition between these regimes.\\
 
 Furthermore, they showed that $\eta_p$ was independent of $Q$ in the Newtonian regime and that their system was always Newtonian at jamming. Therefore, they concluded that the value of $\phi_J$ as well as the exponent characterising the divergence of $\eta_p$ should be independent of the inelasticity of collisions, \textit{i.e.} of the parameters $m$, $k_e$ and $k_d$.
 
