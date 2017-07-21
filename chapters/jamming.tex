@@ -45,15 +45,16 @@ Defining what is exactly a "jammed system" is a problem of great mathematical an
 
 In the vicinity of $J$, we have that the shear viscosity $\eta \equiv \sigma/\dot{\gamma}$ -- with $\sigma$ the shear stress and $\dot{\gamma}$ the shear strain rate, -- or equivalently the pressure viscosity $\eta_p \equiv p/\dot{\gamma}$ -- with $p$ the pressure, -- and a correlation length scale $\xi$ diverge as
 \begin{equation}
-\boxed{
+% \boxed{
 \begin{aligned}
-\eta,\eta_p \isEquivTo{\phi\rightarrow\phi_J} \left|\phi - \phi_J\right|^{-\beta}\\
-\xi \isEquivTo{\phi\rightarrow\phi_J} \left|\phi - \phi_J\right|^{-\nu}
+\eta,\eta_p \isEquivTo{\phi\rightarrow\phi_J} \left(\phi_J - \phi\right)^{-\beta}\\
+\xi \isEquivTo{\phi\rightarrow\phi_J} \left(\phi_J - \phi\right)^{-\nu}
 \end{aligned}
-}
+% }
 \label{critical_exponents}
 \end{equation}
-for $\phi \lessgtr \phi_J$ for soft-core particles in the limit $\dot{\gamma}\rightarrow0$ \cite{PRL99.178001,PRE83.030302} and for $\phi < \phi_J$ for hard-core particles \cite{PRL109.108001}. We will always assume that these exponents have the same value for whatever sign of $\phi-\phi_J$.\\
+% for $\phi \lessgtr \phi_J$ for soft-core particles in the limit $\dot{\gamma}\rightarrow0$ \cite{PRL99.178001,PRE83.030302} and for $\phi < \phi_J$ for hard-core particles \cite{PRL109.108001}. We will always assume that these exponents have the same value for whatever sign of $\phi-\phi_J$.\\
+for soft-core particles in the limit $\dot{\gamma}\rightarrow0$ \cite{PRL99.178001,PRE83.030302} and for hard-core particles \cite{PRL109.108001}.\\
 
 Using $\eta_p$ rather than $\eta$ has been proven to reduce errors due to necessary corrections to scaling \cite{PRE83.030302}. Moreover, we have to keep in mind that equation \ref{critical_exponents} holds only very close to $\phi_J$. Since the macroscopic friction coefficient $\mu \equiv \eta/\eta_p$ has a strong $\phi$-dependence, corrections may have to be added to the scaling for larger packing fractions intervals \cite{PRE83.030302,PRE91.062209}. Please refer to part \ref{scaling_analysis} for more details on the scaling methods.\\
 
@@ -157,7 +158,7 @@ Nonetheless, it has been suggested that packings of ellipsoidal particles showed
 
 A frequent question in statistical physics is whether different critical phenomena -- observed in identical or different systems -- behave similarly, which is characterised by them having the same critical exponents. Such similar phenomena are said to belong to an unique \textit{universality class}. It was empirically found that the elements of an universality class were linked by their spatial dimensionality and the symmetry of their ordered phase \cite{plischke1994equilibrium}.\\
 
-It was showed that different models for the dissipation of the energy in packings of soft-core spheres did not influence the critical exponents characterising the jamming transition \cite{PRL113.148002,PRE91.062209}, while different models for the elastic interaction between particles did \cite{PRE68.011306}. Moreover, it was suggested that the critical exponent characterising the vanishing of the excess contact number to isostaticity was independent of both the spatial dimensionnality of the packing and the elastic interaction considered for soft-core spheres \cite{PRE68.011306}.\\
+It was showed that different models for the dissipation of the energy in packings of soft-core spheres did not influence the critical exponents characterising the jamming transition \cite{PRL113.148002,PRE91.062209}, while different models for the elastic interaction between particles did \cite{PRE68.011306}. Moreover, it was suggested that the critical exponent characterising the vanishing of the excess contact number to isostaticity was independent of both the spatial dimensionality of the packing and the elastic interaction considered for soft-core spheres \cite{PRE68.011306}.\\
 
 When considering ellipsoidal particles, it would be interesting to determine how the asphericity of the particles influences the critical exponents of the jamming transition and whether systems of oblate and prolate spheroids behave the same.
 
@@ -243,6 +244,180 @@ where the latter equivalence can be applied to $E(\phi,\dot{\gamma})$ in the vic
 \end{equation}
 with $c$ a constant.
 
+\section{Scaling analysis}
+\label{scaling_analysis}
+
+\subsection{Scaling assumption}
+
+\subsubsection{Principle}
+
+Please find in \hyperref[appendix:rg]{appendix \ref{appendix:rg}} a presentation of renomalisation group theory.\\
+
+According to the discussions of parts \ref{jamming_phenomenon} and \ref{methods_jamming_transition}, we can describe an athermal system of particles with the variables $\delta\phi=\phi-\phi_J$ and $\dot{\gamma}$. We will always assume that our system is in the thermodynamic limit $N\rightarrow+\infty \Leftrightarrow 1/L \rightarrow 0$, where $L$ is the characteristic length and then neglect any finite-size effect arising from the finite number of particles $N$ composing the system.\\ % Moreover, in a renormalisation group picture, we will assume that $\delta\phi$ is a relevant variable while $\dot{\gamma}$ is a non-dangereous irrelevant variable.\\
+
+Renormalisation group theory suggests that close to the jamming point, \textit{i.e.} $(\delta\phi\rightarrow0,\dot{\gamma}\rightarrow0)$, there exists $y_{\delta\phi}$ and $y_{\dot{\gamma}}$ such that the correlation length transforms under a change of length scale with a factor $l$ as
+\begin{align*}
+\xi(\delta\phi,\dot{\gamma}) = l\xi(\delta\phi l^{y_{\delta\phi}},\dot{\gamma}l^{y_{\dot{\gamma}}})
+\end{align*}
+which, when choosing $l$ such that $\delta\phi l^{y_{\delta\phi}}=-b \Leftrightarrow l=\left(-\frac{\delta\phi}{b}\right)^{-1/y_{\delta\phi}} \ge 1$, gives
+\begin{align*}
+\xi(\delta\phi,\dot{\gamma}) = \left(-\frac{\delta\phi}{b}\right)^{-1/y_{\delta\phi}} \xi\left(-b,\dot{\gamma}\left(-\frac{\delta\phi}{b}\right)^{-y_{\dot{\gamma}}/y_{\delta\phi}}\right) \isEquivTo{\delta\phi\rightarrow0} (-\delta\phi)^{-1/y_{\delta\phi}}
+\end{align*}
+where we recognise $\nu=1/y_{\delta\phi} > 0$ according to equation \ref{critical_exponents}.\\
+
+We will assume that variables which vanish at jamming are somehow linked to the free energy density of the system. Therefore, in accordance with renormalisation group theory, we here suggest the following assumption on the scaling of a vanishing variable $\mathcal{O}$ close to the jamming point for a change of length scale with a factor $l$ 
+\begin{equation}
+\mathcal{O}(\delta\phi,\dot{\gamma}) \sim l^{-y_{\mathcal{O}}/\nu} g_{\mathcal{O}}(\delta\phi l^{1/\nu},\dot{\gamma}l^z)
+\label{scaling_assumption_general}
+\end{equation}
+where we can choose $\delta\phi l^{1/\nu}=-b \Leftrightarrow l=\left(-\frac{\delta\phi}{b}\right)^{-\nu} \ge 1$ and deduce
+\begin{align*}
+p(\delta\phi,\dot{\gamma}) \sim \left(\frac{\delta\phi}{b}\right)^{y_{\mathcal{O}}} g_{\mathcal{O}}\left(-b,\dot{\gamma}\left(\frac{\delta\phi}{b}\right)^{-\nu z}\right)
+\end{align*}
+where we take the $\delta\phi\rightarrow0$ limit, which gives
+\begin{equation}
+\mathcal{O}(\delta\phi,\dot{\gamma}) \isEquivTo{\delta\phi\rightarrow0} (-\delta\phi)^{y_{\mathcal{O}}}
+\end{equation}
+with $y_{\mathcal{O}} > 0$ thus being the critical exponent associated to the vanishing of the variable $\mathcal{O}$ at jamming.
+
+\subsubsection{Pressure}
+
+We introduce the function $\tilde{g}_p$ such that equation \ref{scaling_assumption_general} applied to the pressure $p$ can be written
+\begin{align*}
+p(\delta\phi,\dot{\gamma}) \sim \dot{\gamma} l^z l^{-y_p/\nu} \tilde{g}_p(\delta\phi l^{1/\nu},\dot{\gamma}l^z)
+\end{align*}
+and then choose $l$ such that $\delta\phi l^{1/\nu} = -b \Leftrightarrow l = \left(-\frac{\delta\phi}{b}\right)^{-\nu} \ge 1$, which leads to
+\begin{align*}
+p(\delta\phi,\dot{\gamma}) \sim \dot{\gamma} \left(-\frac{\delta\phi}{b}\right)^{-(\nu z-y)} \tilde{g}_p\left(-b,\dot{\gamma}\left(-\frac{\delta\phi}{b}\right)^{-\nu z}\right)
+\end{align*}
+and therefore
+\begin{equation}
+\eta_p(\delta\phi,\dot{\gamma}) \equiv p(\delta\phi,\dot{\gamma})/\dot{\gamma} \isEquivTo{\delta\phi\rightarrow0} (-\delta\phi)^{-(\nu z-y)}
+\end{equation}
+where we recognise $\beta=\nu z-y$ according to equation \ref{critical_exponents}.\\
+
+We now choose $l$ such that $\dot{\gamma}l^z = b \Leftrightarrow l = \left(\frac{\dot{\gamma}}{b}\right)^{-1/z} \ge 1$, which put in equation \ref{scaling_assumption_general} for $p$ leads to
+\begin{align*}
+p(\delta\phi,\dot{\gamma}) \sim \dot{\gamma}^{y_p/\nu z} g_p\left(\delta\phi \left(\frac{\dot{\gamma}}{b}\right)^{-1/\nu z},b\right)
+\end{align*}
+and finally introduce the function $g_p^{(\text{fit})}$ in order to ignore the constant $b$ in this last equation, which becomes
+\begin{equation}
+p(\delta\phi,\dot{\gamma}) \sim \dot{\gamma}^{y_p/\nu z} g_p^{(\text{fit})}(\delta\phi\dot{\gamma}^{-1/\nu z})
+\label{fitting_function_form}
+\end{equation}
+and in which we will denote $q_p\equiv y_p/\nu z$ and $h_p\equiv -1/\nu z$, thus leading to $\beta=(q_p-1)/h_p$, in addition to $Y_p \equiv p(\delta\phi,\dot{\gamma})\dot{\gamma}^{-q_p}$ and $X_p \equiv \delta\phi\dot{\gamma}^{h_p}$.\\
+
+A graphical method to determine the values of $\phi_J$ and $q_p$, based on the study of equation \ref{fitting_function_form}, is described in \cite{PRE83.030302}, we will however use a different method that allows us to determine these parameters and $h_p$, and therefore find the critical exponent $\beta$.
+
+\subsubsection{Contact number}
+
+We have that the difference of the contact number to its isostatic value vanishes when the packing fraction approaches its jamming value $\phi_J$ for packings of 2D and 3D spherical particles, according to equation \ref{deltaz_vanish}.\\
+
+We will assume that, in the general case, it is the difference of the contact number and a critical value of this variable $z_c$ that vanishes at the jamming transition
+\begin{equation}
+\delta z \equiv z_c - z \isEquivTo{\phi\rightarrow\phi_J} (\phi_J - \phi)^{u_z}
+\label{deltaz_critical_vanish}
+\end{equation}
+with $z_c = z_{\text{iso}}$ for spherical particles then.\\
+
+Following equation \ref{scaling_assumption_general}, we formulate the following assumption on the scaling of the $\delta z$ close to the jamming point for a change of length scale with a factor $l$
+\begin{equation}
+\delta z(\delta\phi,\dot{\gamma}) \sim l^{-u_z/\nu} g_{\delta z}(\delta\phi l^{1/\nu},\dot{\gamma}l^z)
+\label{scaling_assumption_contact_number}
+\end{equation}
+where $\nu$ and $z$ are identical to equation \ref{scaling_assumption_general}.\\
+
+We can choose $l$ such that $\delta\phi l^{1/\nu} = -b \Leftrightarrow l = \left(-\frac{\delta\phi}{b}\right)^{-\nu} \ge 1$, which leads to
+\begin{align*}
+\delta z(\delta\phi,\dot{\gamma}) \sim \left(-\frac{\delta\phi}{b}\right)^{u_z} g_{\delta z}\left(-b,\dot{\gamma}\left(-\frac{\delta\phi}{b}\right)^{-\nu z}\right)
+\end{align*}
+and introduce the function $g_{\delta z}^{(\text{fit})}$ such that
+\begin{equation}
+\delta z(\delta\phi,\dot{\gamma}) \sim (-\delta\phi)^{u_z} g_{\delta z}^{(\text{fit})}\left(\dot{\gamma}(-\delta\phi)^{-\nu z}\right)
+\label{fitting_function_contact_number}
+\end{equation}
+in which we will denote $q_{\delta z} \equiv u_z$ and $h_{\delta z} \equiv -\nu z$, in addition to $Y_{\delta z} \equiv \delta z(\delta\phi,\dot{\gamma})(-\delta\phi)^{-q_{\delta z}}$ and $X_{\delta_z} \equiv \dot{\gamma}(-\delta\phi)^{h_{\delta z}}$.
+
+\subsection{Method}
+\label{levenberg_marquadt}
+
+\subsubsection{Fitting}
+
+Equation \ref{fitting_function_form} and \ref{fitting_function_contact_number} suggest that it is possible to collapse the data from simulations at different packing fractions and shear strain rates on a single curve in the ($X_{\mathcal{O}}$,$Y_{\mathcal{O}}$) plane. To perform this fitting, we choose arbitrarily the expression of $g_{\mathcal{O}}^{(\text{fit})}$
+\begin{align*}
+g_{\mathcal{O}}^{(\text{fit})}:X_{\mathcal{O}}\mapsto\exp\left(\sum_{i=0}^5a_{\mathcal{O},i}X_{\mathcal{O}}^i\right)
+\end{align*}
+and use the Levenberg-Marquardt algorithm \cite{marquardt1963algorithm,press2015numerical} with $\phi_J$, $z_c$, $q_{\mathcal{O}}$, $h_{\mathcal{O}}$ and $a_{\mathcal{O},0}$ through $a_{\mathcal{O},5}$ as free parameters to the corresponding variable fitting. The goal of this algorithm is to minimise the deviation of the experimental data from the fitted curve with respect to the standard deviation for each experimental point. This is equivalent to the minimisation of the chi-square function, introduced in equation \ref{chi-square}.\\
+
+This then allows us to determine the relevant critical parameters at the jamming transition.\\
+
+We thus have shown that $z_c$ may be determined both by the observation of the relaxation process according to equation \ref{tau_dz_scaling} and by the analysis of shearing simulations according to equation \ref{fitting_function_contact_number}. However, the latter method is not as efficient as the former. Indeed, in shearing simulations involving soft-core particles, the contact number is not as relevant as the way particles overlap because all overlapping particles do not contribute to the stability of the system at the same level, contrarily to hard-core particles. Therefore, this method was not used to study the number of contacts.
+
+\subsubsection{Evaluation of errors}
+
+\myparagraph{Measurements}
+
+Variables can be measured for each choice of external parameters by averaging their values over the configurations of the system during a single shearing simulation. However, for a given variable $x$, we have that its values are not exactly independent from configuration to configuration.\\
+
+Therefore one has to separate the different configurations of the system into blocks to which are associated an unique value of the variable $x$ denoted $X_j$, indexed over th blocks of configurations. We can then calculate the standard deviation $\sigma_x$ of the variable $x$ with
+\begin{equation}
+\sigma_x^2 = \sum_{j=1}^{N_b} \frac{\left<X_j^2\right>-\left<X_j\right>^2}{N_b-1}
+\end{equation}
+where $N_b$ is the number of blocks, determined empirically according to the shear rate.
+
+\myparagraph{Fitting parameters}
+
+Errors on the parameters returned by the Levenberg-Marquardt algorithm are determined by observing how these parameters vary when including noise in the input parameters.
+
+\myparagraph{Quality of the fitting}
+
+Consider $n$ experimental points $(x_i,y_i)$, each associated with a standard deviation $\sigma_i$, which we fit with a function $y(x,a_1,\ldots,a_m)$ where $p_1,\ldots,p_m$ are free parameters. We define the \textit{chi-square} function
+\begin{equation}
+\chi^2 \equiv \sum_{i=1}^n \left(\frac{y_i-y(x_i,a_1,\ldots,a_m)}{\sigma_i}\right)^2
+\label{chi-square}
+\end{equation}
+whose value should ideally be close to the number of degrees of freedom $n-m$ \cite{press1996numerical}.\\
+
+To check the quality of the fit obtained with the Levenberg-Marquardt algorithm, we will be very mindful to the following conditions as suggested by \cite{PRE83.030302}:
+\begin{itemize}
+\item[(i)] The agreement between data and the fitting model, as measured by the value of the quotient of the chi-square by the degrees of freedom $\chi^2/\text{DOF}$, is good, \textit{i.e.} $\chi^2/\text{DOF}$ is close to unity.
+\item[(ii)] The fitting parameters are reasonably independent of the precise range of the data included in the fit.\\
+\end{itemize}
+
+\subsection{Complement on soft- to hard-core mapping}
+
+We can make use of our scaling assumption for the pressure to determine the coefficient $y_E$ in equation \ref{phieff_soft2hard}.\\
+
+We can fist notice that in our model of harmonic elastic interactions, the pressure and the energy scale as $E \sim p^2$ as it has already been pointed out in part \ref{relaxation_time}. Therefore, we have that $y_E$ satifies the following relation
+\begin{equation}
+y_E = 2y_p \Leftrightarrow y_E = -2q_p/h_p
+\end{equation}
+where $q_p$ and $h_p$ are the exponents introduced in equation \ref{fitting_function_form}.\\
+
+Therefore, considering that $q_p$ and $h_p$ have been determined, $c$ remains the only unknown variable in equation \ref{phieff_soft2hard}. We then have a quick way to check the efficiency of this method.\\
+
+Equations \ref{phieff} and \ref{phieff_soft2hard} can be rewritten as
+\begin{equation}
+\eta_p^s(\phi,\dot{\gamma}) = A\left(\phi_J-\phi +cE(\phi,\dot{\gamma})^{-h_p/2q_p}\right)^{-\beta}
+\label{phieff_soft2hard_check}
+\end{equation}
+where $A$ is an additional parameter which can be determined if we take two points $\eta_{p,1} \equiv \eta_p(\phi_1,\dot{\gamma}_1)$ and $\eta_{p,2} \equiv \eta_p(\phi_2,\dot{\gamma}_2)$, whose corresponding energies are $E_1 \equiv E(\phi_1,\dot{\gamma}_1)$ and $E_2 \equiv E(\phi_2,\dot{\gamma}_2)$, which we hypothesise satisfy equation \ref{phieff_soft2hard_check}.\\
+
+We can isolate $c$ in equation \ref{phieff_soft2hard_check}, giving
+\begin{align*}
+c = E(\phi,\dot{\gamma})^{h_p/2q_p}\left(A^{1/\beta}\eta_p(\phi,\dot{\gamma})^{-1/\beta}-\phi_J+\phi\right)
+\end{align*}
+which has to be satisfied by the two aforementioned points, therefore
+\begin{align*}
+&E_1^{h_p/2q_p}\left(A^{1/\beta}\eta_{p,1}^{-1/\beta}-\phi_J+\phi_1\right) = E_2^{h_p/2q_p}\left(A^{1/\beta}\eta_{p,2}^{-1/\beta}-\phi_J+\phi_2\right)\\
+\Leftrightarrow &A=\left(\left(\eta_{p,1}^{-1/\beta}E_1^{h_p/2q_p} - \eta_{p,2}^{-1/\beta}E_2^{h_p/2q_p}\right)^{-1}\left(E_1^{h_p/2q_p}(\phi_J-\phi_1) + E_2^{h_p/2q_p}(\phi_2-\phi_J)\right)\right)^{\beta}
+\end{align*}
+which can be re-injected in the expression of $c$ evaluated in either point.\\
+
+We can thus graphically evaluate the efficiency of the mapping in a log-log plot of $\eta_p(\phi,\dot{\gamma})$ vs. $\phi_J-\phi_{\text{eff}}$.\\
+
+Another, more time-consuming, solution is of course to apply the Levenberg-Marquardt algorithm (part \ref{levenberg_marquadt}) on equation \ref{phieff_soft2hard_check} with $A$ and $c$ as free parameters.
+
 \section{Model of frictionless soft-core particles}
 \label{model_soft_core}
 
@@ -271,7 +446,7 @@ The original idea of Durian was to model the interaction between two bubbles in 
 
 Because of the finite range of the interactions, the potential energies vanish at a fixed finite radius, therefore this system is a good starting point to study macroscopic granular or colloidal systems, suspensions, foams, emulsions and liquids \cite{PRE68.011306,PRL113.148002}.\\
 
-When simulating the shearing dynamics of such a system, one has to introduce a way to dissipate the energy. This can be done with either one of these 2 manners, also proposed by Durian \cite{durian1995foam,PRL113.148002} :
+When simulating the shearing dynamics of such a system, one has to introduce a way to dissipate the energy. This can be done with either one of these two manners, also proposed by Durian \cite{durian1995foam,PRL113.148002} :
 \begin{itemize}
 \item A contact dissipation (CD) which is a pairwise interaction, additive and proportional to the difference of the velocities of the moving particles in contact,
 \begin{equation}
@@ -293,8 +468,9 @@ where $\vec{v_i}$ and $y_i$ denote the velocity and ordinate of the particle $i$
 Therefore the translational motion of the particles is described by
 \begin{equation}
 m_i \dot{\vec{v_i}} = \vec{f}_i^{\text{el}} + \vec{f}_i^{\text{dis}}
+\label{pfd_model}
 \end{equation}
-To neglect the effects of inertia, we have to consider the overdamped limit $m_i \rightarrow 0$, which is easily done in the RD model. For the CD model, it is numerically necessary to take a finite value of the mass, therefore the overdamped limit has to be verified \textit{a posteriori} \cite{PRL113.148002}.
+To neglect the effects of inertia, we have to consider the overdamped limit $m_i \rightarrow 0$, which is easily done in the RD model. For the CD model, it is numerically necessary to take a finite value of the mass, therefore the overdamped limit has to be verified \textit{a posteriori} \cite{PRL113.148002}. However, it has been verified for sheared disks that the effect of finite mass were negligible in the CD model for shear rates $\dot{\gamma} \le 10^{-3}$ \cite{PRL113.148002supp}.
 
 \subsection{Elastic force between ellipsoids}
 \label{elastic_force_part}
@@ -567,7 +743,7 @@ which is correct.
 % \end{equation}
 % For computational efficiency, the belonging function of $\mathcal{A}$, $\mathcal{F}_{\mathcal{A}}$, is evaluated with equation \ref{belonging_function_reduced}.
 
-\subsection{Dissipative force between ellispoids}
+\subsection{Dissipative force between ellipsoids}
 \label{dissipative_force_part}
 
 The expressions proposed for the dissipative force exerted on a particle $i$ by a particle $j$ in equations \ref{fdis_cd} and \ref{fdis_rd} remain relevant for ellipsoids.\\
@@ -600,13 +776,48 @@ According to equation \ref{omega}, we have $\vec{\omega} = 2\dot{q}q^*$, therefo
 \end{equation}
 
 \mbox{}\\
-Nonetheless, we finally decided to tak $\vec{r_{C,\mathcal{A}}} = \vec{r_{C,\mathcal{B}}} = \vec{r_C}$ for the computation of the dissipative force.
+Nonetheless, we finally decided to take $\vec{r_{C,\mathcal{A}}} = \vec{r_{C,\mathcal{B}}} = \vec{r_C}$ for the computation of the dissipative force.
+
+\subsection{Pressure in a sheared packing of ellipsoids}
+
+To determine the pressure in the system, we have to determine its pressure tensor $P$ which consists of three pieces \cite{vaagberg2017shear,schreck2010comparison}
+\begin{itemize}
+\item[(i)] the kinetic part
+\begin{equation}
+P_{\text{kin}}=\frac{1}{L^2}\sum_{i<j} m_i \vec{\delta v_i}\vec{\delta v_i}^T
+\end{equation}
+with $m_i$ the mass of particle $i$ and $\vec{\delta v_i}$ the fluctuation of the velocity of particl $i$ away from the average velocity profile which caracterises the flow,
+\item[(ii)] the dissipative part
+\begin{equation}
+P_{\text{dis}} = \frac{1}{L^2} \sum_{i<j} \left( \vec{f}_{ij}^{\text{dis}} \left( \vec{r_{C,i}} - \vec{r_i} \right)^T + \vec{f}_{ji}^{\text{dis}} \left( \vec{r_{C,j}} - \vec{r_j} \right)^T \right)
+\end{equation}
+with $\vec{f}_{ij}^{\text{dis}}$ the dissipative force exerted on particle $i$ by particle $j$ (equation \ref{dissipative_force}), $\vec{r_{C,i}}$ the point of contact on particle $i$ and $\vec{r_i}$ the centre of particle $i$,
+\item[(iii)] and the elastic part \cite{schreck2010comparison}
+\begin{equation}
+P_{\text{el}} = \frac{1}{L^2} \sum_{i<j} \left( \vec{f}_{ij}^{\text{el}} \left( \vec{r_{C,i}} - \vec{r_i} \right)^T + \vec{f}_{ji}^{\text{el}} \left( \vec{r_{C,j}} - \vec{r_j} \right)^T \right)
+\end{equation}
+with $\vec{f}_{ij}^{\text{dis}}$ the dissipative force exerted on particle $i$ by particle $j$ (equation \ref{fel_ellipsoids}), leading to\\
+\end{itemize}
+\begin{equation}
+P = P_{\text{kin}}+P_{\text{dis}}+P_{\text{el}}
+\end{equation}
+from which we define the average pressure of the system as
+\begin{equation}
+p = \frac{1}{D} \text{Tr}(P)
+\end{equation}
+where $D=3$ is the dimension of the system.\\
+
+Most often in shearing simulations, for small enough shear strain rates $\dot{\gamma}$, the elastic part of the pressure
+\begin{equation}
+p_{\text{el}} = \frac{1}{D} \text{Tr}(P_{\text{el}})
+\end{equation}
+dominates over the kinetic and dissipative parts \cite{PRL112.208303}. We will then identify the pressure and its elastic part without further notice.
 
 \subsection{Points of contact}
 
 \subsubsection{Determination}
 
-Consider two ellipsoids $\mathcal{A}$ and $\mathcal{B}$, whose centres are located in $\vec{v_A}$ and $\vec{v_B}$. The determination of their points of contact is determinant to the calculation of the dissipative force between them (equation \ref{dissipative_force}).\\
+Consider two ellipsoids $\mathcal{A}$ and $\mathcal{B}$, whose centres are located in $\vec{r_A}$ and $\vec{r_B}$. The determination of their points of contact is determinant to the calculation of the dissipative force between them (equation \ref{dissipative_force}).\\
 
 We have defined our elastic potential of interaction with the rescaling factor $\mu(\vec{r_{\mathcal{A}}},\vec{r_{\mathcal{B}}}) = \mu_{\mathcal{A}}(\vec{r_C}) = \mu_{\mathcal{B}}(\vec{r_C})$ that have to be applied to both ellipsoids for them to be externally tangent in $\vec{r_C}$.\\
 
@@ -619,12 +830,12 @@ The logical choice for the points of contact is then the equivalents of the poin
 \label{contact_points_fig}
 \end{figure}
 
-Therefore, we can find such equivalents by translating the centres of the ellipsoids to the origin, dilating the ellispoids, and translating them back
+Therefore, we can find such equivalents by translating the centres of the ellipsoids to the origin, dilating the ellipsoids, and translating them back
 \begin{equation}
 \boxed{
 \begin{aligned}
-\vec{r_{C,\mathcal{A}}} &= \vec{v_{\mathcal{A}}} + \underbrace{\nu(\vec{r_{\mathcal{A}}},\vec{r_{\mathcal{B}}}) (\vec{r_C} - \vec{v_{\mathcal{A}}})}_{\vec{a}} &= \nu(\vec{r_{\mathcal{A}}},\vec{r_{\mathcal{B}}})\vec{r_C} + (1 - \nu(\vec{r_{\mathcal{A}}},\vec{r_{\mathcal{B}}}))\vec{v_{\mathcal{A}}}\\
-\vec{r_{C,\mathcal{B}}} &= \vec{v_{\mathcal{B}}} + \underbrace{\nu(\vec{r_{\mathcal{A}}},\vec{r_{\mathcal{B}}}) (\vec{r_C} - \vec{v_{\mathcal{B}}})}_{\vec{b}} &= \nu(\vec{r_{\mathcal{A}}},\vec{r_{\mathcal{B}}})\vec{r_C} + (1 - \nu(\vec{r_{\mathcal{A}}},\vec{r_{\mathcal{B}}}))\vec{v_{\mathcal{B}}}
+\vec{r_{C,\mathcal{A}}} &= \vec{r_{\mathcal{A}}} + \underbrace{\nu(\vec{r_{\mathcal{A}}},\vec{r_{\mathcal{B}}}) (\vec{r_C} - \vec{r_{\mathcal{A}}})}_{\vec{a}} &= \nu(\vec{r_{\mathcal{A}}},\vec{r_{\mathcal{B}}})\vec{r_C} + (1 - \nu(\vec{r_{\mathcal{A}}},\vec{r_{\mathcal{B}}}))\vec{r_{\mathcal{A}}}\\
+\vec{r_{C,\mathcal{B}}} &= \vec{r_{\mathcal{B}}} + \underbrace{\nu(\vec{r_{\mathcal{A}}},\vec{r_{\mathcal{B}}}) (\vec{r_C} - \vec{r_{\mathcal{B}}})}_{\vec{b}} &= \nu(\vec{r_{\mathcal{A}}},\vec{r_{\mathcal{B}}})\vec{r_C} + (1 - \nu(\vec{r_{\mathcal{A}}},\vec{r_{\mathcal{B}}}))\vec{r_{\mathcal{B}}}
 \end{aligned}
 }
 \label{contact_points}
@@ -633,8 +844,8 @@ with $\nu(\vec{r_{\mathcal{A}}},\vec{r_{\mathcal{B}}}) \equiv 1/\mu(\vec{r_{\mat
 
 We can notice that since
 \begin{align*}
-\vec{r_{C,\mathcal{A}}} - \vec{v_{\mathcal{A}}} &= \nu(\vec{r_{\mathcal{A}}},\vec{r_{\mathcal{B}}})(\vec{r_C} - \vec{v_{\mathcal{A}}})\\
-\vec{r_{C,\mathcal{B}}} - \vec{v_{\mathcal{B}}} &= \nu(\vec{r_{\mathcal{A}}},\vec{r_{\mathcal{B}}})(\vec{r_C} - \vec{v_{\mathcal{B}}})
+\vec{r_{C,\mathcal{A}}} - \vec{r_{\mathcal{A}}} &= \nu(\vec{r_{\mathcal{A}}},\vec{r_{\mathcal{B}}})(\vec{r_C} - \vec{r_{\mathcal{A}}})\\
+\vec{r_{C,\mathcal{B}}} - \vec{r_{\mathcal{B}}} &= \nu(\vec{r_{\mathcal{A}}},\vec{r_{\mathcal{B}}})(\vec{r_C} - \vec{r_{\mathcal{B}}})
 \end{align*}
 we have
 \begin{equation}
@@ -649,7 +860,7 @@ according to equation \ref{surface_vec_reduced}. Therefore, according to equatio
 
 \subsubsection{Relative positions}
 
-In order to evaluate if ellipsoidal particles are most often in contact in a certain configuration, we need to have coordinates of the points of contact which are relative to the position, the orientation and the semi-axes of the corresponding ellipsoids.\\
+In order to evaluate if ellipsoidal particles are more often in contact in a certain configuration, we need to have coordinates of the points of contact which are relative to the position, the orientation and the semi-axes of the corresponding ellipsoids.\\
 
 Consider an ellipsoid $\mathcal{A}$, of semi-axes $(R_i)_{i=1:3}$, whose centre is located in $\vec{r_{\mathcal{A}}}$ and whose orientation is described by the quaternion $q_{\mathcal{A}}$, then we will denote
 \begin{equation}
@@ -671,185 +882,15 @@ All this information can be accessed by using the Perram and Wertheim method des
 
 % To do so, a dichotomic search on the rescaling factor to apply to the ellipsoids has been implemented. The method described in part \ref{distance} is used in this search in order to determine how close the rescaled ellipsoids are.
 
-\section{Scaling analysis}
-\label{scaling_analysis}
+\subsection{Dispersity}
 
-\subsection{Scaling assumption}
-
-\subsubsection{Principle}
-
-Please find in \hyperref[appendix:rg]{appendix \ref{appendix:rg}} a presentation of renomalisation group theory.\\
-
-According to the discussions of parts \ref{jamming_phenomenon} and \ref{methods_jamming_transition}, we can describe an athermal system of particles with the variables $\delta\phi=\phi-\phi_J$ and $\dot{\gamma}$. We will always assume that our system is in the thermodynamic limit $N\rightarrow+\infty \Leftrightarrow 1/L \rightarrow 0$, where $L$ is the characteristic length and then neglect any finite-size effect arising from the finite number of particles $N$ composing the system.\\ % Moreover, in a renormalisation group picture, we will assume that $\delta\phi$ is a relevant variable while $\dot{\gamma}$ is a non-dangereous irrelevant variable.\\
-
-Renormalisation group theory suggests that close to the jamming point, \textit{i.e.} $(\delta\phi\rightarrow0,\dot{\gamma}\rightarrow0)$, there exists $y_{\delta\phi}$ and $y_{\dot{\gamma}}$ such that the correlation length transforms under a change of length scale with a factor $l$ as
-\begin{align*}
-\xi(\delta\phi,\dot{\gamma}) = l\xi(\delta\phi l^{y_{\delta\phi}},\dot{\gamma}l^{y_{\dot{\gamma}}})
-\end{align*}
-which, when choosing $l$ such that $\delta\phi l^{y_{\delta\phi}}=-b \Leftrightarrow l=\left(-\frac{\delta\phi}{b}\right)^{-1/y_{\delta\phi}} \ge 1$, gives
-\begin{align*}
-\xi(\delta\phi,\dot{\gamma}) = \left(-\frac{\delta\phi}{b}\right)^{-1/y_{\delta\phi}} \xi\left(-b,\dot{\gamma}\left(-\frac{\delta\phi}{b}\right)^{-y_{\dot{\gamma}}/y_{\delta\phi}}\right) \isEquivTo{\delta\phi\rightarrow0} (-\delta\phi)^{-1/y_{\delta\phi}}
-\end{align*}
-where we recognise $\nu=1/y_{\delta\phi} > 0$ according to equation \ref{critical_exponents}.\\
-
-We will assume that variables which vanish at jamming are somehow linked to the free energy density of the system. Therefore, in accordance with renormalisation group theory, we here suggest the following assumption on the scaling of a vanishing variable $\mathcal{O}$ close to the jamming point for a change of length scale with a factor $l$ 
-\begin{equation}
-\mathcal{O}(\delta\phi,\dot{\gamma}) \sim l^{-y_{\mathcal{O}}/\nu} g_{\mathcal{O}}(\delta\phi l^{1/\nu},\dot{\gamma}l^z)
-\label{scaling_assumption_general}
-\end{equation}
-where we can choose $\delta\phi l^{1/\nu}=-b \Leftrightarrow l=\left(-\frac{\delta\phi}{b}\right)^{-\nu} \ge 1$ and deduce
-\begin{align*}
-p(\delta\phi,\dot{\gamma}) \sim \left(\frac{\delta\phi}{b}\right)^{y_{\mathcal{O}}} g_{\mathcal{O}}\left(-b,\dot{\gamma}\left(\frac{\delta\phi}{b}\right)^{-\nu z}\right)
-\end{align*}
-where we take the $\delta\phi\rightarrow0$ limit, which gives
-\begin{equation}
-\mathcal{O}(\delta\phi,\dot{\gamma}) \isEquivTo{\delta\phi\rightarrow0} (-\delta\phi)^{y_{\mathcal{O}}}
-\end{equation}
-with $y_{\mathcal{O}} > 0$ thus being the critical exponent associated to the vanishing of the variable $\mathcal{O}$ at jamming.
-
-\subsubsection{Pressure}
-
-We introduce the function $\tilde{g}_p$ such that equation \ref{scaling_assumption_general} applied to the pressure $p$ can be written
-\begin{align*}
-p(\delta\phi,\dot{\gamma}) \sim \dot{\gamma} l^z l^{-y_p/\nu} \tilde{g}_p(\delta\phi l^{1/\nu},\dot{\gamma}l^z)
-\end{align*}
-and then choose $l$ such that $\delta\phi l^{1/\nu} = -b \Leftrightarrow l = \left(-\frac{\delta\phi}{b}\right)^{-\nu} \ge 1$, which leads to
-\begin{align*}
-p(\delta\phi,\dot{\gamma}) \sim \dot{\gamma} \left(-\frac{\delta\phi}{b}\right)^{-(\nu z-y)} \tilde{g}_p\left(-b,\dot{\gamma}\left(-\frac{\delta\phi}{b}\right)^{-\nu z}\right)
-\end{align*}
-and therefore
-\begin{equation}
-\eta_p(\delta\phi,\dot{\gamma}) \equiv p(\delta\phi,\dot{\gamma})/\dot{\gamma} \isEquivTo{\delta\phi\rightarrow0} (-\delta\phi)^{-(\nu z-y)}
-\end{equation}
-where we recognise $\beta=\nu z-y$ according to equation \ref{critical_exponents}.\\
-
-We now choose $l$ such that $\dot{\gamma}l^z = b \Leftrightarrow l = \left(\frac{\dot{\gamma}}{b}\right)^{-1/z} \ge 1$, which put in equation \ref{scaling_assumption_general} for $p$ leads to
-\begin{align*}
-p(\delta\phi,\dot{\gamma}) \sim \dot{\gamma}^{y_p/\nu z} g_p\left(\delta\phi \left(\frac{\dot{\gamma}}{b}\right)^{-1/\nu z},b\right)
-\end{align*}
-and finally introduce the function $g_p^{(\text{fit})}$ in order to ignore the constant $b$ in this last equation, which becomes
-\begin{equation}
-p(\delta\phi,\dot{\gamma}) \sim \dot{\gamma}^{y_p/\nu z} g_p^{(\text{fit})}(\delta\phi\dot{\gamma}^{-1/\nu z})
-\label{fitting_function_form}
-\end{equation}
-and in which we will denote $q_p\equiv y_p/\nu z$ and $h_p\equiv -1/\nu z$, thus leading to $\beta=(q_p-1)/h_p$, in addition to $Y_p \equiv p(\delta\phi,\dot{\gamma})\dot{\gamma}^{-q_p}$ and $X_p \equiv \delta\phi\dot{\gamma}^{h_p}$.\\
-
-A graphical method to determine the values of $\phi_J$ and $q_p$, based on the study of equation \ref{fitting_function_form}, is described in \cite{PRE83.030302}, we will however use a different method that allows us to determine these parameters and $h_p$, and therefore find the critical exponent $\beta$.
-
-\subsubsection{Contact number}
-
-We have that the difference of the contact number to its isostatic value vanishes when the packing fraction approaches its jamming value $\phi_J$ for packings of 2D and 3D spherical particles, according to equation \ref{deltaz_vanish}.\\
-
-We will assume that, in the general case, it is the difference of the contact number and a critical value of this variable $z_c$ that vanishes at the jamming transition
-\begin{equation}
-\delta z \equiv z_c - z \isEquivTo{\phi\rightarrow\phi_J} (\phi_J - \phi)^{u_z}
-\label{deltaz_critical_vanish}
-\end{equation}
-with $z_c = z_{\text{iso}}$ for spherical particles then.\\
-
-Following equation \ref{scaling_assumption_general}, we formulate the following assumption on the scaling of the $\delta z$ close to the jamming point for a change of length scale with a factor $l$
-\begin{equation}
-\delta z(\delta\phi,\dot{\gamma}) \sim l^{-u_z/\nu} g_{\delta z}(\delta\phi l^{1/\nu},\dot{\gamma}l^z)
-\label{scaling_assumption_contact_number}
-\end{equation}
-where $\nu$ and $z$ are identical to equation \ref{scaling_assumption_general}.\\
-
-We can choose $l$ such that $\delta\phi l^{1/\nu} = -b \Leftrightarrow l = \left(-\frac{\delta\phi}{b}\right)^{-\nu} \ge 1$, which leads to
-\begin{align*}
-\delta z(\delta\phi,\dot{\gamma}) \sim \left(-\frac{\delta\phi}{b}\right)^{u_z} g_{\delta z}\left(-b,\dot{\gamma}\left(-\frac{\delta\phi}{b}\right)^{-\nu z}\right)
-\end{align*}
-and introduce the function $g_{\delta z}^{(\text{fit})}$ such that
-\begin{equation}
-\delta z(\delta\phi,\dot{\gamma}) \sim (-\delta\phi)^{u_z} g_{\delta z}^{(\text{fit})}\left(\dot{\gamma}(-\delta\phi)^{-\nu z}\right)
-\label{fitting_function_contact_number}
-\end{equation}
-in which we will denote $q_{\delta z} \equiv u_z$ and $h_{\delta z} \equiv -\nu z$, in addition to $Y_{\delta z} \equiv \delta z(\delta\phi,\dot{\gamma})(-\delta\phi)^{-q_{\delta z}}$ and $X_{\delta_z} \equiv \dot{\gamma}(-\delta\phi)^{h_{\delta z}}$.
-
-\subsection{Method}
-\label{levenberg_marquadt}
-
-\subsubsection{Fitting}
-
-Equation \ref{fitting_function_form} and \ref{fitting_function_contact_number} suggest that it is possible to collapse the data from simulations at different packing fractions and shear strain rates on a single curve in the ($X_{\mathcal{O}}$,$Y_{\mathcal{O}}$) plane. To perform this fitting, we choose arbitrarily the expression of $g_{\mathcal{O}}^{(\text{fit})}$
-\begin{align*}
-g_{\mathcal{O}}^{(\text{fit})}:X_{\mathcal{O}}\mapsto\exp\left(\sum_{i=0}^5a_{\mathcal{O},i}X_{\mathcal{O}}^i\right)
-\end{align*}
-and use the Levenberg-Marquardt algorithm \cite{marquardt1963algorithm,press2015numerical} with $\phi_J$, $z_c$, $q_{\mathcal{O}}$, $h_{\mathcal{O}}$ and $a_{\mathcal{O},0}$ through $a_{\mathcal{O},5}$ as free parameters to the corresponding variable fitting. The goal of this algorithm is to minimise the deviation of the experimental data from the fitted curve with respect to the standard deviation for each experimental point. This is equivalent to the minimisation of the chi-square function, introduced in equation \ref{chi-square}.\\
-
-This then allows us to determine the relevant critical parameters at the jamming transition.\\
-
-We thus have shown that $z_c$ may be determined both by the observation of the relaxation process according to equation \ref{tau_dz_scaling} and by the analysis of shearing simulations according to equation \ref{fitting_function_contact_number}. However, the latter method is not as efficient as the former. Indeed, in shearing simulations involving soft-core particles, the contact number is not as relevant as the way particles overlap because all overlapping particles do not contribute to the stability of the system at the same level, contrarily to hard-core particles. Therefore, this method was not used to study the number of contacts.
-
-\subsubsection{Evaluation of errors}
-
-\myparagraph{Measurements}
-
-Variables can be measured for each choice of external parameters by averaging their values over the configurations of the system during a single shearing simulation. However, for a given variable $x$, we have that its values are not exactly independent from configuration to configuration.\\
-
-Therefore one has to separate the different configurations of the system into blocks to which are associated an unique value of the variable $x$ denoted $X_j$, indexed over th blocks of configurations. We can then calculate the standard deviation $\sigma_x$ of the variable $x$ with
-\begin{equation}
-\sigma_x^2 = \sum_{j=1}^{N_b} \frac{<X_j^2>-<X_j>^2}{N_b-1}
-\end{equation}
-where $N_b$ is the number of blocks, determined empirically according to the shear rate.
-
-\myparagraph{Fitting parameters}
-
-Errors on the parameters returned by the Levenberg-Marquadt algorithm are determined by observing how these parameters vary when including noise in the input parameters.
-
-\myparagraph{Quality of the fitting}
-
-Consider $n$ experimental points $(x_i,y_i)$, each associated with a standard deviation $\sigma_i$, which we fit with a function $y(x,a_1,\ldots,a_m)$ where $p_1,\ldots,p_m$ are free parameters. We define the \textit{chi-square} function
-\begin{equation}
-\chi^2 \equiv \sum_{i=1}^n \left(\frac{y_i-y(x_i,a_1,\ldots,a_m)}{\sigma_i}\right)^2
-\label{chi-square}
-\end{equation}
-whose value should ideally be close to the number of degrees of freedom $n-m$ \cite{press1996numerical}.\\
-
-To check the quality of the fit obtained with the Levenberg-Marquadt algorithm, we will be very mindful to the following conditions as suggested by \cite{PRE83.030302}:
-\begin{itemize}
-\item[(i)] The agreement between data and the fitting model, as measured by the value of the quotient of the chi-square by the degrees of freedom $\chi^2/\text{DOF}$, is good, \textit{i.e.} $\chi^2/\text{DOF}$ is close to unity.
-\item[(ii)] The fitting parameters are reasonably independent of the precise range of the data included in the fit.\\
-\end{itemize}
-
-\subsection{Complement on soft- to hard-core mapping}
-
-We can make use of our scaling assumption for the pressure to determine the coefficient $y_E$ in equation \ref{phieff_soft2hard}.\\
-
-We can fist notice that in our model of harmonic elastic interactions, the pressure and the energy scale as $E \sim p^2$ as it has already been pointed out in part \ref{relaxation_time}. Therefore, we have that $y_E$ satifies the following relation
-\begin{equation}
-y_E = 2y_p \Leftrightarrow y_E = -2q_p/h_p
-\end{equation}
-where $q_p$ and $h_p$ are the exponents introduced in equation \ref{fitting_function_form}.\\
-
-Therefore, considering that $q_p$ and $h_p$ have been determined, $c$ remains the only unknown variable in equation \ref{phieff_soft2hard}. We then have a quick way to check the efficiency of this method.\\
-
-Equations \ref{phieff} and \ref{phieff_soft2hard} can be rewritten as
-\begin{equation}
-\eta_p^s(\phi,\dot{\gamma}) = A(\phi_J-\phi +cE(\phi,\dot{\gamma})^{-h_p/2q_p})^{-\beta}
-\label{phieff_soft2hard_check}
-\end{equation}
-where $A$ is an additional parameter which can be determined if we take two points $\eta_{p,1} \equiv \eta_p(\phi_1,\dot{\gamma}_1)$ and $\eta_{p,2} \equiv \eta_p(\phi_2,\dot{\gamma}_2)$, whose corresponding energies are $E_1 \equiv E(\phi_1,\dot{\gamma}_1)$ and $E_2 \equiv E(\phi_2,\dot{\gamma}_2)$, which we hypothesise satisfy equation \ref{phieff_soft2hard_check}.\\
-
-We can isolate $c$ in equation \ref{phieff_soft2hard_check}, giving
-\begin{align*}
-c = E(\phi,\dot{\gamma})^{h_p/2q_p}\left(A^{1/\beta}\eta_p(\phi,\dot{\gamma})^{-1/\beta}-\phi_J+\phi\right)
-\end{align*}
-which has to be satisfied by the two aforementioned points, therefore
-\begin{align*}
-&E_1^{h_p/2q_p}\left(A^{1/\beta}\eta_{p,1}^{-1/\beta}-\phi_J+\phi_1\right) = E_2^{h_p/2q_p}\left(A^{1/\beta}\eta_{p,2}^{-1/\beta}-\phi_J+\phi_2\right)\\
-\Leftrightarrow &A=\left(\left(\eta_{p,1}^{-1/\beta}E_1^{h_p/2q_p} - \eta_{p,2}^{-1/\beta}E_2^{h_p/2q_p}\right)^{-1}\left(E_1^{h_p/2q_p}(\phi_J-\phi_1) + E_2^{h_p/2q_p}(\phi_2-\phi_J)\right)\right)^{\beta}
-\end{align*}
-which can be re-injected in the expression of $c$ evaluated in either point.\\
-
-We can thus graphically evaluate the efficiency of the mapping in a log-log plot of $\eta_p(\phi,\dot{\gamma})$ vs. $\phi_J-\phi_{\text{eff}}$.\\
-
-Another, more time-consuming, solution is of course to apply the Levenberg-Marquadt algorithm (part \ref{levenberg_marquadt}) on equation \ref{phieff_soft2hard_check} with $A$ and $c$ as free parameters.
+As we have pointed out in part \ref{methods_jamming_transition}, polydispersity is necessary to prevent crystallisation. In our simulations we use two sizes of ellipsoids in equal number, with a corresponding axis ratio of 1.4 between these sizes. We chose the masses of the ellipsoids to be $m=1$ and $m=1.4^3$ to ensure that ellipsoids of both sizes have the same density.
 
 \section{Rheology}
 
-The shearing rheology of athermal frictionless soft-core disks has been thoroughly studied in \cite{vaagberg2017shear,PRL112.208303} and gives hints on what to expect of the shearing rheology of spheroids in our model near the jamming transition.\\
+The shearing rheology of athermal frictionless soft-core disks has been thoroughly studied in \cite{vaagberg2017shear,PRL112.208303} and gives hints on what to expect of the shearing rheology of spheroids in our model near the jamming transition. Authors of these papers stressed that the model chosen for the dissipation was determinant to the behaviours observed. In this part we will only focus on the contact dissipation model which takes into account the rotation of the particles (equation \ref{dissipative_force}).\\
 
-Vågberg \textit{et al.} showed that upon increasing the packing fraction, disks discontinuously transitioned from Bagnoldian rheology
+Vågberg \textit{et al.} showed that upon increasing the packing fraction, disks sharply transitioned from Bagnoldian rheology
 \begin{equation}
 \sigma,p \sim \dot{\gamma}^2 \Leftrightarrow \frac{\partial}{\partial\dot{\gamma}} B_{\sigma,p} = 0,~ B_{\sigma,p} \equiv \sigma,p/\dot{\gamma}^2
 \end{equation}
@@ -859,9 +900,11 @@ to Newtonian rheology
 \end{equation}
 at a precise packing fraction which depended on the inelasticity of collisions between particles, as measured by the parameter $Q \propto \sqrt{mk_e/k_d^2}$ with $m$, $k_e$ and $k_d$ introduced in equations \ref{elastic_spheres}, \ref{fdis_cd} and \ref{fdis_rd}.\\
 
-These two phases differ in that the particles tend to cluster together in the Newtonian phase, with force chains that percolate throughout the system, while in the Bagnoldian phase particles have fewer instantaneous contacts. We must then expect a sharp increase in the number of contacts at the transition between these regimes.\\
+At low packing fractions, \texit{i.e.} for dilute systems, particles separate if the contact velocity is not damped to zero during the collision, which is possible for elastic enough interactions. Particles in such systems have few instantaneous contacts; In this case, the system is in an "inertial" regime: the dissipation term in equation \ref{pfd_model} is negligible and the trajectories are determined by the balance of elastic and kinetic terms, hence the Bagnoldian rheology at small $\dot{\gamma}$ \cite{PRL112.208303}. Shearing simulations showed that disks are able to adjust their rotation to cancel out the relative motion of particles, so that the tangential component of the contact velocity difference is as small as the normal component, hence the small dissipative force \cite{vaagberg2017shear}.\\
 
-Furthermore, they showed that $\eta_p$ was independent of $Q$ in the Newtonian regime and that their system was always Newtonian at jamming. Therefore, they concluded that the value of $\phi_J$ as well as the exponent characterising the divergence of $\eta_p$ should be independent of the inelasticity of collisions, \textit{i.e.} of the parameters $m$, $k_e$ and $k_d$.
+At high packing fractions, \textit{i.e.} for dense systems, compressive motion which would induce particle overlaps is energetically prohibitive. Normally directed relative motion is thus greatly suppressed and the collisions are primarily tangential. Shearing simulations have showed that, in this case, disks fluctuate in their rotational motion but that these fluctuations are uncorrelated with the tangential component of the velocity difference, thus leading to a large tangential component of the dissipative force compared to its normal component. This lack of correlations of the rotation is thought to result from the increasing constraint on rotational motion due to the higher number of contacts at higher densities \cite{vaagberg2017shear}. The system is then in an "overdamped" regime: the kinetic term in equation \ref{pfd_model} is negligible and the trajectories are determined by the balance of elastic and dissipative terms, hence the Newtonian rheology at small $\dot{\gamma}$ \cite{PRL112.208303}. Because of the tangential dissipation, particles tend to cluster together, with force chains percolationg throughout the systems, and have more instantaneous contacts.\\
+
+Furthermore, authors showed that $\eta_p$ was independent of $Q$ in the Newtonian regime and that their system was always Newtonian at jamming. Therefore, they concluded that the value of $\phi_J$ as well as the exponent characterising the divergence of $\eta_p$ should be independent of the inelasticity of collisions, \textit{i.e.} of the parameters $m$, $k_e$ and $k_d$ \cite{vaagberg2017shear}.
 
 % \input{references/biblio}
 
