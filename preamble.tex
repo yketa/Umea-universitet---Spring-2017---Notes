@@ -9,6 +9,7 @@
 \usepackage{adjmulticol}
 \usepackage{caption}
 \usepackage{graphicx}
+\usepackage{subcaption}
 \usepackage{fancyhdr}
 \usepackage{url}
 \usepackage{amsmath} % collection de symboles mathématiques
@@ -30,6 +31,7 @@
 % \usepackage{biblatex}
 \usepackage{tabularx}
 \usepackage{titlesec, blindtext, color}
+% \usepackage{auto-pst-pdf}
 
 %%%% TIKZ
 
@@ -90,6 +92,9 @@ hyperfigures=false]
 \makeatletter
 \patchcmd{\@chap@pppage}{\thispagestyle{plain}}{\thispagestyle{empty}}{}{}
 \makeatother
+
+\captionsetup{font=normalsize}
+\captionsetup[sub]{font=scriptsize}
 
 %%%% COMMANDS
 

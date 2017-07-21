@@ -64,12 +64,6 @@ For frictional particles, it has been shown that the jamming transition was disc
 
 The original conjecture of the authors of \cite{PRE68.011306} was that $J$ was indeed a critical point which "may control the region around it and thereby govern the nature of the entire jamming surface in the phase diagram." This point would then be the athermal jamming point corresponding to the $T\rightarrow0$ limit of the equilibrium glass transition curve in the $(1/\phi,T)$ plane. However, it was later suggested that the equilibrium glass transition would be governed by a critical point distinct from $J$ \cite{PRE83.031307}.
 
-\subsection{Finite-size effects}
-
-For a finite number $N$ of particles, the system will jam at a packing fraction $\phi$ somewhat below $\phi_J$ because there is always a finite probability to find a configuration with a force chain spanning the width of the system, causing the system to jam.\\
-
-When shearing a packing of particles the system explores an increasing region of configuration space, it will thus eventually find a configuration causing it to jam. The statistical weight of these configurations, associated with the time required for the system to jam, decreases as one decreases the packing fraction $\phi$ or increases the number of particle $N$. Therefore, in the limit of a infinite system $N\rightarrow+\infty$, it is expected that the system jam in a finite time only for $\phi\geq\phi_J$ \cite{PRL99.178001}.
-
 \subsection{Relaxation time}
 \label{relaxation_time}
 
@@ -161,6 +155,13 @@ A frequent question in statistical physics is whether different critical phenome
 It was showed that different models for the dissipation of the energy in packings of soft-core spheres did not influence the critical exponents characterising the jamming transition \cite{PRL113.148002,PRE91.062209}, while different models for the elastic interaction between particles did \cite{PRE68.011306}. Moreover, it was suggested that the critical exponent characterising the vanishing of the excess contact number to isostaticity was independent of both the spatial dimensionality of the packing and the elastic interaction considered for soft-core spheres \cite{PRE68.011306}.\\
 
 When considering ellipsoidal particles, it would be interesting to determine how the asphericity of the particles influences the critical exponents of the jamming transition and whether systems of oblate and prolate spheroids behave the same.
+
+\subsection{Finite-size effects}
+\label{finite-size_effects}
+
+For a finite number $N$ of particles, the system will jam at a packing fraction $\phi$ somewhat below $\phi_J$ because there is always a finite probability to find a configuration with a force chain spanning the width of the system, causing the system to jam.\\
+
+When shearing a packing of particles the system explores an increasing region of configuration space, it will thus eventually find a configuration causing it to jam. The statistical weight of these configurations, associated with the time required for the system to jam, decreases as one decreases the packing fraction $\phi$ or increases the number of particle $N$. Therefore, in the limit of a infinite system $N\rightarrow+\infty$, it is expected that the system jam in a finite time only for $\phi\geq\phi_J$ \cite{PRL99.178001}.
 
 \section{Methods}
 
@@ -887,6 +888,7 @@ All this information can be accessed by using the Perram and Wertheim method des
 As we have pointed out in part \ref{methods_jamming_transition}, polydispersity is necessary to prevent crystallisation. In our simulations we use two sizes of ellipsoids in equal number, with a corresponding axis ratio of 1.4 between these sizes. We chose the masses of the ellipsoids to be $m=1$ and $m=1.4^3$ to ensure that ellipsoids of both sizes have the same density.
 
 \section{Rheology}
+\label{rheology}
 
 The shearing rheology of athermal frictionless soft-core disks has been thoroughly studied in \cite{vaagberg2017shear,PRL112.208303} and gives hints on what to expect of the shearing rheology of spheroids in our model near the jamming transition. Authors of these papers stressed that the model chosen for the dissipation was determinant to the behaviours observed. In this part we will only focus on the contact dissipation model which takes into account the rotation of the particles (equation \ref{dissipative_force}).\\
 
@@ -899,6 +901,8 @@ to Newtonian rheology
 \sigma,p \sim \dot{\gamma} \Leftrightarrow \frac{\partial}{\partial\dot{\gamma}^2} \eta_{\sigma,p} = 0,~ \eta_{\sigma,p} \equiv \sigma,p/\dot{\gamma}
 \end{equation}
 at a precise packing fraction which depended on the inelasticity of collisions between particles, as measured by the parameter $Q \propto \sqrt{mk_e/k_d^2}$ with $m$, $k_e$ and $k_d$ introduced in equations \ref{elastic_spheres}, \ref{fdis_cd} and \ref{fdis_rd}.\\
+
+We will call $B_{\sigma,p}$ the \textit{Bagnoldian transport coefficient} associated to shear strain or pressure and $\eta_{\sigma,p}$ the \textit{Newtonian transport coefficient} associated to shear strain or pressure.\\
 
 At low packing fractions, \texit{i.e.} for dilute systems, particles separate if the contact velocity is not damped to zero during the collision, which is possible for elastic enough interactions. Particles in such systems have few instantaneous contacts; In this case, the system is in an "inertial" regime: the dissipation term in equation \ref{pfd_model} is negligible and the trajectories are determined by the balance of elastic and kinetic terms, hence the Bagnoldian rheology at small $\dot{\gamma}$ \cite{PRL112.208303}. Shearing simulations showed that disks are able to adjust their rotation to cancel out the relative motion of particles, so that the tangential component of the contact velocity difference is as small as the normal component, hence the small dissipative force \cite{vaagberg2017shear}.\\
 
