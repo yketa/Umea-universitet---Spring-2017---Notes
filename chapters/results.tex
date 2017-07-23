@@ -14,7 +14,7 @@
 
 \section{Preliminary results}
 
-Preliminary simulations were performed with only 64 particles, first to ensure that the our models and methods gave realistic results, then to determine what phenomena were different with ellipsoids than with spheres. Simulations performed with this few particles have the advantage to quickly give results to analyse, however finite-size effects are not negligible and can affect the jamming transition (see part \ref{finite-size_effects}).
+Preliminary simulations were performed with only 64 particles, first to ensure that our models and methods were effective and gave realistic results, then to determine what phenomena were different with ellipsoids than with spheres. Simulations performed with this few particles have the advantage to quickly give results to analyse, however finite-size effects are not negligible and can affect the jamming transition (see part \ref{finite-size_effects}).
 
 \subsection{Rheological transition}
 
@@ -75,23 +75,132 @@ Preliminary simulations were performed with only 64 particles, first to ensure t
 
 We observe in figure \ref{z_phi_0064_KDk500_Ml100_GDg500} a sharp increase in the average contact number per particle upon increasing the packing fraction. According to the development of part \ref{rheology}, this increase is the sign of a transition from Bagnoldian rheology to Newtonian rheology. We confirm this by determining the Bagnoldian and Newtonian transport coefficients associated to pressure as functions of the packing fraction, and verifying the transitions from a regime to the other occurs at the same packing fractions as the increase of contact number (figure \ref{rheo_0064}).\\
 
-We also observe that the Newtonian transport coefficients become $\dot{\gamma}$-dependent for high enough packing fractions, we will see further that this is due to a deviation from the hard-core limit near the jamming transition.\\
+We also observe that the Newtonian transport coefficients become $\dot{\gamma}$-dependent for high enough packing fractions, we will see in part \ref{deviation_hard-core_limit} that this is due to a deviation from the hard-core limit near the jamming transition.\\
 
 Moreover, we can notice that for $1\le\alpha<1.3$ (sphere and prolate spheroids) the transition from the Bagnoldian to the Newtonian regime occurs approximately at the same packing fraction, while for $\alpha=0.8,0.9$ (oblate spheroids) the transition packing fraction $\phi_C$ varies with the aspect ratio and is higher than the value obtained for the former particles.
 
 \subsection{Critical behaviour}
 
+\subsubsection{Deviation from the hard-core limit close to jamming}
+\label{deviation_hard-core_limit}
+
+We expect from the development of part \ref{rheology} that the system would display Newtonian rheology sufficiently close to the jamming transition, \textit{i.e.} the Newtonian transport coefficients would be independent of the shear rates at which they are determined. However, this holds only in the hard-core limit.\\
+
+Close to the jamming transition, the overlapping of the particles is non-negligible, hence the deviation from the hard-core limit. This deviation being even more important for higher shear strain rates (figure \ref{etap-phi_0064_KDk500_Ml100_EL130}).
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.6\textwidth]{figures/figs/etap-phi_0064_KDk500_Ml100_EL130}
+\caption{Newtonian coefficient of transport associated to pressure as a function of the packing fraction for $\alpha=1.3$.}
+\label{etap-phi_0064_KDk500_Ml100_EL130}
+\end{figure}
+
 \subsubsection{Effectiveness of scaling}
+
+Figure \ref{p-dphi-scale_0064_KDk500_Ml100_EL130} shows that we have successfully made experimental data from simulations at different density and shear strain rates collapse on a single curve with the method described in part \ref{scaling_analysis}, thus confirming its effectiveness. Scaling exponents from this graph then allowed us to make Newtonian transport coefficients associated to pressure inferred from simulations at different shear rates collapse on a single straight line characterising the critical behaviour described by equation \ref{critical_exponents} for hard-core particles with satisfactory visual precision in figure \ref{etap-phieff_graph_0064_KDk500_Ml100_EL130}.\\
+
+Moreover, we can notice that the mapping parameters determined graphically in figure \ref{etap-phieff_graph_0064_KDk500_Ml100_EL130} ($A=1.9$, $c=0.48$) are close to the values found in \cite{PRL109.108001} for disks ($A=1.53$, $c=0.458$).
+
+\vspace{50pt} % to force the text next subsubsection to display after the figure
+
+\begin{figure}[h!]
+\centering
+    \begin{subfigure}[t]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/figs/p-dphi-scale_0064_KDk500_Ml100_EL130}
+        \caption{Pressure scaling plot, as described in part \ref{pressure_scaling_method}.}
+        \label{p-dphi-scale_0064_KDk500_Ml100_EL130}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/figs/etap-phieff_graph_0064_KDk500_Ml100_EL130}
+        \caption{Newtonian transport coefficient associated to pressure scaling plot, obtained with the soft- to hard-core mapping method described in parts \ref{softtohard} and \ref{softtohardcomplement}. We privileged here the graphical determination of the mapping parameters.}
+        \label{etap-phieff_graph_0064_KDk500_Ml100_EL130}
+    \end{subfigure}
+    \caption{Scaling plots for $\alpha=1.3$.}
+    \label{scaling_effectiveness_0064}
+\end{figure}
 
 \subsubsection{Jamming density and critical exponent}
 
-\subsection{Orientation correlation}
+From plots such as figure \ref{p-dphi-scale_0064_KDk500_Ml100_EL130} we were able to determine the jamming density and critical exponents for different aspect ratios (see figure \ref{phij_beta_0064}).
 
-\subsection{Rotation velocity}
+\begin{figure}[h!]
+\centering
+    \begin{subfigure}[t]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/figs/phij_alpha_0064_KDk500_Ml100}
+        \caption{Jamming packing fraction as a function of the aspect ratio.}
+        \label{phij_alpha_0064_KDk500_Ml100}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/figs/beta_alpha_0064_KDk500_Ml100}
+        \caption{Critical exponent associated to the divergence of the Newtonian transport coefficients as a function of the aspect ratio.}
+        \label{beta_alpha_0064_KDk500_Ml100}
+    \end{subfigure}
+    \caption{Jamming parameters for spheres and prolate spheroids.}
+    \label{phij_beta_0064}
+\end{figure}
+
+We can first notice that for $\alpha=1$, \textit{i.e.} for spheres, we have $\beta\sim2.5$ which is close to the result of \cite{PRL109.108001} for disks ($\beta=2.58$). Moreover, we have the jamming packing fraction $\phi_J\sim0.64$ close to the random close packing fraction for spheres \cite{donev2004improving}.\\
+
+For the set of aspect ratios considered ($1\le\alpha\le1.3$), we have that the jamming packing fraction is an increasing function of the aspect ratio (figure \ref{phij_alpha_0064_KDk500_Ml100}) -- if we exclude $\alpha=1.04$. This is in accordance with \cite{donev2004improving} which found that $\phi_J$ was an increasing function of the aspect ratio for $1\le\alpha\lesssim1.6$. Simulations with $64$ particles were performed for oblate particles but not close enough to the jamming transition to give $\phi_J$ and $\beta$ with good precision. Nonetheless, we also observed for these particles that the jamming packing fraction would be greater than its value for packings of spheres. More specifically, we estimated $0.7 < \phi_J(\alpha=0.9) < \phi_J(\alpha=0.8)$.\\
+
+It is more difficult to predict the behaviour of the critical exponent $\beta$ from figure \ref{beta_alpha_0064_KDk500_Ml100}. However -- if we exclude $\alpha=1.04$ once again -- we can assume that the critical exponent associated to the divergence of the Newtonian transport coefficients is higher, and has a value close to $\sim 4$, for prolate spheroids than for spheres.
+
+\subsection{Orientation}
+
+Following the claim that shearing breaks the isotropy of space in part \ref{orientational_ordering}, we wished to check if
+\begin{itemize}
+\item[(i)] spheroids tend to angle themselves in a particular direction,
+\item[(ii)] the orientation of the spheroids is correlated.
+\end{itemize}
+
+\subsubsection{Direction of orientation}
+
+We denote $O_i$ the projection of the axis of symmetry of the spheroid on the $i^{\text{th}}$ axis, with $\sum_{i=1}^3 O_i^2 = 1$ and the $0^{\text{th}}$ and $1^{\text{st}}$ axis corresponding the directions of the shear rate and the gradient of shear velocity respectively.
+
+\begin{figure}[h!]
+\centering
+    \begin{subfigure}[t]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/figs/ori_phi_0064_KDk500_Ml100_GDh100_EL100}
+        \caption{$\alpha=1$. Straight line corresponds to $O_i=1/3$.}
+        \label{ori_phi_0064_KDk500_Ml100_GDh100_EL100}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/figs/ori_phi_0064_KDk500_Ml100_GDh100_EL130}
+        \caption{$\alpha=1.3$}
+        \label{ori_phi_0064_KDk500_Ml100_GDh100_EL130}
+    \end{subfigure}
+    \caption{Mean orientation of the axis of symmetry of the particles.}
+    \label{ori_phi_0064}
+\end{figure}
+
+We expect for spheres that every orientation are equivalent, which is confirmed by figure \ref{ori_phi_0064_KDk500_Ml100_GDh100_EL100}. However, for spheroids we clearly see that the direction $0^{\text{th}}$ is privileged 
 
 \section{Dominance of elastic pressure}
 
 **** SHOW THAT THE MAIN CONTRIBUTION TO PRESSURE IS THE ELASTIC PRESSURE ****
+
+\section{Relaxation time}
+
+\section{Contact number}
+
+\section{Critical behaviour}
+
+**** MAYBE TELL HOW THE OBSERVATIONS FOR THE RHEOLOGICAL TRANSITION GIVE HINTS ON WHAT'S HAPPENING AT JAMMING (ESPECIALLY WHY JAMMING MIGHT BE GOVERNED BY DIFFERENT MECHANISMS FOR OBLATE AND PROLATE SPHEROIDS) ****
+
+\section{Orientation}
+
+**** PRECISE THAT IT WOULD BE INTERESTING TO CHECK FOR PERIODICITY IN THE ORIENTATION ****
+
+\section{Rotation velocity}
 
 % \input{references/biblio}
 
