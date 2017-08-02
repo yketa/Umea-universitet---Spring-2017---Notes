@@ -162,7 +162,7 @@ Following the claim that shearing breaks the isotropy of space in part \ref{orie
 
 \subsubsection{Direction of orientation}
 
-We denote $O_i$ the mean over configurations of the system of the square of the projection of the axis of symmetry of the spheroid on the $i^{\text{th}}$ axis, with $\sum_{i=1}^3 O_i^2 = 1$ and the $0^{\text{th}}$ and $1^{\text{st}}$ axis corresponding the directions of the shear rate and the gradient of shear velocity respectively.
+We denote $O_i$ the mean over configurations of the system of the square of the projection of the axis of symmetry of the spheroid on the $i^{\text{th}}$ axis, with then $\sum_{i=1}^3 O_i^2 = 1$ and the $0^{\text{th}}$ and $1^{\text{st}}$ axis corresponding the directions of the shear and the gradient of shear velocity respectively.
 
 \begin{figure}[h!]
 \centering
@@ -179,13 +179,15 @@ We denote $O_i$ the mean over configurations of the system of the square of the 
         \caption{$\alpha=1.3$}
         \label{ori_phi_0064_KDk500_Ml100_GDh100_EL130}
     \end{subfigure}
-    \caption{Mean orientation of the axis of symmetry of the particles.}
+    \caption{Mean squared orientation of the axis of symmetry of the particles.}
     \label{ori_phi_0064}
 \end{figure}
 
 We expect that all orientations are equivalent for spheres, which is confirmed by figure \ref{ori_phi_0064_KDk500_Ml100_GDh100_EL100} in which the projections do not show any particular behaviours.\\
 
-For spheroids we see that the $0^{\text{th}}$ direction may be privileged since the mean squared projection of the major axis on this direction describes a well-defined peak around a given packing fraction while the projections on the other directions reach their minimum around the same packing fraction (figure \ref{ori_phi_0064_KDk500_Ml100_GDh100_EL130}). Moreover, since the projection curves on the $1^{\text{st}}$ and $2^{\text{nd}}$ directions are well-defined -- contrarily to the curves in figure \ref{ori_phi_0064_KDk500_Ml100_GDh100_EL100} -- we cannot say that the shear rate direction is the only relevant direction in our system.
+For spheroids we see that the $0^{\text{th}}$ direction may be privileged since the mean squared projection of the axis of symmetry on this direction describes a well-defined peak around a given packing fraction while the projections on the other directions reach their minimum around this same packing fraction but both at different densities though (figure \ref{ori_phi_0064_KDk500_Ml100_GDh100_EL130}).\\
+
+Moreover, since the projection curves on the $1^{\text{st}}$ and $2^{\text{nd}}$ directions are well-defined -- contrarily to the curves in figure \ref{ori_phi_0064_KDk500_Ml100_GDh100_EL100} -- we cannot say that the shear direction is the only relevant direction in our system.
 
 \myparagraph{Prolate spheroids}
 
@@ -204,11 +206,11 @@ For spheroids we see that the $0^{\text{th}}$ direction may be privileged since 
         \caption{Projections ratioed with the aspect ratio.}
         \label{ori0al_phi_prolate_0064_KDk500_Ml100_GDh100}
     \end{subfigure}
-    \caption{Mean projection of the axis of symmetry of the particles on the direction of the shear rate as a function of the packing fraction.}
+    \caption{Mean of the squared projection of the axis of symmetry of the particles on shear direction as a function of the packing fraction.}
     \label{ori_phi_0064}
 \end{figure}
 
-For all the aspect ratios greater than one we have tested, the mean projection of the axis of symmetry of the particles on the shear rate direction reaches a well-defined peak (figure \ref{ori0_phi_prolate_0064_KDk500_Ml100_GDh100}). We have that the height of this peak is approximately proportional to the aspect ratio $\alpha$ (figure \ref{ori0al_phi_prolate_0064_KDk500_Ml100_GDh100}).\\
+For all the aspect ratios greater than one we have tested, the mean projection of the axis of symmetry of the particles on the shear direction reaches a well-defined peak (figure \ref{ori0_phi_prolate_0064_KDk500_Ml100_GDh100}). We have that the height of this peak is approximately proportional to the aspect ratio $\alpha$ (figure \ref{ori0al_phi_prolate_0064_KDk500_Ml100_GDh100}).\\
 
 We can notice that the packing fractions at which these peaks appear are somewhat lower than the jamming densities corresponding to the aspect ratios. Indeed, we can read $\phi_J(\alpha>1) \gtrsim 0.65$ from figure \ref{phij_alpha_0064_KDk500_Ml100}. They are also undoubtedly higher than the rheological transition packing fractions (figure \ref{z_phi_0064_KDk500_Ml100_GDg500}) and therefore these peaks do not correspond to any transition or phenomenon we have already described or expected.\\
 
@@ -233,7 +235,34 @@ Furthermore, what figure \ref{ori0al_phi_prolate_0064_KDk500_Ml100_GDh100} also 
     \label{ori_phieff_0064}
 \end{figure}
 
-A quick visual analysis of figure \ref{ori_phieff_0064} shows that the effective packing fraction at which the projection of the axis of symmetry of prolate spheroids on the shear rate direction reaches its peak is also much less dependent of the aspect ratio than the jamming packing fraction is.
+A quick visual analysis of figure \ref{ori_phieff_0064} shows that the effective packing fraction at which the projection of the axis of symmetry of prolate spheroids on the shear direction reaches its peak is also much less dependent of the aspect ratio than the jamming packing fraction is.\\
+
+We can also be interested in knowing if the observations on the projection of the axis of symmetry on the shear direction (figure \ref{ori_phi_0064}) hold for the two other projections (figure \ref{ori12_phi_0064}).
+
+\begin{figure}[h!]
+\centering
+    \begin{subfigure}[t]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/figs/ori1al_phi_0064_KDk500_Ml100_GDh100}
+        \caption{Projection on the direction of the gradient of shear rate.}
+        \label{ori1al_phi_0064_KDk500_Ml100_GDh100}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/figs/ori2al_phi_0064_KDk500_Ml100_GDh100}
+        \caption{Projection on the $2^{\text{nd}}$ direction.}
+        \label{ori2al_phi_0064_KDk500_Ml100_GDh100}
+    \end{subfigure}
+    \caption{Mean of the squared projections of the axis of symmetry of the particles as functions of the packing fraction.}
+    \label{ori12_phi_0064}
+\end{figure}
+
+As expected from figure \ref{ori_phi_0064_KDk500_Ml100_GDh100_EL130}, both projections reach a minimum which position, for a given aspect ratio, depends on the axis of projection. Visually, we can claim that the packing fraction at which $O_0$ reaches its maximum (see figure \ref{ori_phi_0064}) is higher than the packing fraction at which $O_1$ reaches its minimum and lower than than the packing fraction at which $O_2$ reaches its minimum, in accordance with figure \ref{ori_phi_0064_KDk500_Ml100_GDh100_EL130}.\\
+
+There is no relation of proportionality between the depths of the minimums and the aspect ratio for these projections, contrarily to what we would have expected from figure \ref{ori0al_phi_prolate_0064_KDk500_Ml100_GDh100}. Moreover, we observe that for $1<\alpha<1.3$, \textit{i.e.} for not too elongated prolate spheroids, the minimum reached by $O_1$ is lower than the minimum reached by $O_2$.\\
+
+We still observe that the positions of the minimums are much less dependent of the aspect ratio than the jamming density, as we observed for the projection on the shear direction.
 
 \myparagraph{Oblate spheroids}
 
@@ -256,13 +285,22 @@ A quick visual analysis of figure \ref{ori_phieff_0064} shows that the effective
     \label{ori_phi_oblate_0064}
 \end{figure}
 
-We do not have data at sufficiently high packing fraction to observe the peak of the projection of the axis of symmetry for $\alpha=0.8$, however the data presented in figure \ref{ori_phi_oblate_0064} clearly shows that we should expect for oblate spheroids that the position of the peak strongly depends on the aspect ratio and moreover that its height is not proportional to the aspect ratio, contrarily to prolate spheroids.\\
+We do not have data at sufficiently high packing fraction to observe the peak of the projection of the axis of symmetry on the shear direction for $\alpha=0.8$, however the data presented in figure \ref{ori_phi_oblate_0064} clearly shows that we should expect for oblate spheroids that the position of the peak strongly depends on the aspect ratio and moreover that its height is not proportional to the aspect ratio, contrarily to prolate spheroids.\\
 
 This, in addition to the fact that the rheological transition also does not appear at the same packing fractions for oblate spheroids contrarily to prolate spheroids (part \ref{preliminary_rheological_transition}), shows that the behaviour of packings of prolate and oblate spheroids is very different, and suggest we may expect the mechanisms governing the jamming transition for these types of particles to be different.
 
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.6\textwidth]{figures/figs/ori_phi_0064_KDk500_Ml100_GDh100_EL090}
+\caption{Mean squared orientation of the axis of symmetry of the particles for $\alpha=0.8$.}
+\label{ori_phi_0064_KDk500_Ml100_GDh100_EL090}
+\end{figure}
+
+Otherwise, we expect the observations we have made about the projections on all axis as functions of the packing fraction for a given aspect ration (see figure \ref{ori_phi_0064_KDk500_Ml100_GDh100_EL130}) to remain valid for oblate spheroids (see figure \ref{ori_phi_0064_KDk500_Ml100_GDh100_EL090}).
+
 \subsubsection{Correlation}
 
-We denoted $\mathcal{C}_{ij}$ the correlation function of the orientation of the axis of symmetry of particles.
+$\mathcal{C}_{ij}$ is a function which increases with increasing correlation between the orientations of the spheroids.
 
 \myparagraph{Prolate spheroids}
 
@@ -282,16 +320,60 @@ We denoted $\mathcal{C}_{ij}$ the correlation function of the orientation of the
         \label{orijal_phi_prolate_0064_KDk500_Ml100_GDh100}
     \end{subfigure}
     \caption{Orientation correlation as a function of the packing fraction.}
-    \label{ori_phi_0064}
+    \label{orij_phi_0064}
 \end{figure}
+
+As the mean squared projection of the axis of symmetry on the shear direction (see figure \ref{ori_phi_0064}), the correlation function $\mathcal{C}_{ij}$ reaches a peak which height is proportional to the aspect ratio if we let aside $\alpha=1.3$, \textit{i.e.} if we only consider not too elongated prolate spheroids. Moreover, the position of this peak is much less dependent of the aspect ratio than the jamming density (see figure \ref{orij_phi_0064}).\\
+
+However, despite the striking resemblance of the aforementioned figures, we have that $\mathcal{C}_{ij}$ reaches its maximum at a packing fraction slightly higher than the packing fraction at which $O_0$ reaches its. Indeed, it rather seems to correspond to the packing fraction rather at which $O_2$ reaches its minimum (see figure \ref{ori2al_phi_0064_KDk500_Ml100_GDh100}).
 
 \myparagraph{Oblate spheroids}
 
-\section{Dominance of elastic pressure}
+\begin{figure}[h!]
+\centering
+    \begin{subfigure}[t]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/figs/orij_phi_oblate_0064_KDk500_Ml100_GDh100}
+        \caption{Raw correlation function.}
+        \label{orij_phi_oblate_0064_KDk500_Ml100_GDh100}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/figs/orijal_phi_oblate_0064_KDk500_Ml100_GDh100}
+        \caption{Correlation function ratioed with the aspect ratio.}
+        \label{orijal_phi_oblate_0064_KDk500_Ml100_GDh100}
+    \end{subfigure}
+    \caption{Orientation correlation as a function of the packing fraction.}
+    \label{orij_phi_ob_0064}
+\end{figure}
 
-**** SHOW THAT THE MAIN CONTRIBUTION TO PRESSURE IS THE ELASTIC PRESSURE ****
+As for the projection of the axis of symmetry on the shear direction for oblate particles (see figure \ref{ori_phi_oblate_0064}), we observe here that the position of the peak of correlation function strongly depends on the aspect ratio for oblate particles (see figure \ref{orij_phi_ob_0064}), contrarily to prolate particles (see figure \ref{orij_phi_0064}) -- even though data at higher packing fractions and for more aspect ratios would be needed.\\
+
+Moreover, and still in accordance to what we have observed for the aforementioned projection, there is relation of proportionality between the value of the maximum of the correlation function and the aspect ratio for oblate particles.
+
+\section{Dominance of the elastic pressure}
+
+We claimed in part \ref{pressure_sheared_packing} that the elastic part of the pressure, $p_{\text{el}}$, was the main contribution to the total pressure, $p$.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.6\textwidth]{figures/figs/pe_ptot-zoom-phi}
+\caption{Ratio of the elastic pressure $p_{\text{el}}$ and the total pressure $p$.}
+\label{pe_ptot-zoom-phi}
+\end{figure}
+
+Figure \ref{pe_ptot-zoom-phi} shows that, for $0.59\le\phi\le0.74$, approximating the total pressure by its elastic part gives an error lesser than 0.01\%, thus justifying our claim. We will then use the notation $p$ to designate $p_{\text{el}}$.
 
 \section{Relaxation time}
+
+Relaxation simulations, of which the method is described in part \ref{method_relaxation}, were performed with 16384 particles.\\
+
+
+
+\subsection{Exponential decay of the pressure}
+
+\subsection{Scaling of the relaxation time with the packing fraction}
 
 \section{Contact number}
 
