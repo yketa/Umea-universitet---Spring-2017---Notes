@@ -325,7 +325,7 @@ $\mathcal{C}_{ij}$ is a function which increases with increasing correlation bet
 
 As the mean squared projection of the axis of symmetry on the shear direction (see figure \ref{ori_phi_0064}), the correlation function $\mathcal{C}_{ij}$ reaches a peak which height is proportional to the aspect ratio if we let aside $\alpha=1.3$, \textit{i.e.} if we only consider not too elongated prolate spheroids. Moreover, the position of this peak is much less dependent of the aspect ratio than the jamming density (see figure \ref{orij_phi_0064}).\\
 
-However, despite the striking resemblance of the aforementioned figures, we have that $\mathcal{C}_{ij}$ reaches its maximum at a packing fraction slightly higher than the packing fraction at which $O_0$ reaches its. Indeed, it rather seems to correspond to the packing fraction rather at which $O_2$ reaches its minimum (see figure \ref{ori2al_phi_0064_KDk500_Ml100_GDh100}).
+However, despite the striking resemblance of the aforementioned figures, we have that $\mathcal{C}_{ij}$ reaches its maximum at a packing fraction slightly higher than the packing fraction at which $O_0$ reaches its. Indeed, it rather seems to correspond to the packing fraction at which $O_2$ reaches its minimum (see figure \ref{ori2al_phi_0064_KDk500_Ml100_GDh100}).
 
 \myparagraph{Oblate spheroids}
 
@@ -350,7 +350,7 @@ However, despite the striking resemblance of the aforementioned figures, we have
 
 As for the projection of the axis of symmetry on the shear direction for oblate particles (see figure \ref{ori_phi_oblate_0064}), we observe here that the position of the peak of correlation function strongly depends on the aspect ratio for oblate particles (see figure \ref{orij_phi_ob_0064}), contrarily to prolate particles (see figure \ref{orij_phi_0064}) -- even though data at higher packing fractions and for more aspect ratios would be needed.\\
 
-Moreover, and still in accordance to what we have observed for the aforementioned projection, there is relation of proportionality between the value of the maximum of the correlation function and the aspect ratio for oblate particles.
+Moreover, and still in accordance to what we have observed for the aforementioned projection, there is a relation of proportionality between the value of the maximum of the correlation function and the aspect ratio for oblate particles.
 
 \section{Dominance of the elastic pressure}
 
@@ -367,13 +367,45 @@ Figure \ref{pe_ptot-zoom-phi} shows that, for $0.59\le\phi\le0.74$, approximatin
 
 \section{Relaxation time}
 
-Relaxation simulations, of which the method is described in part \ref{method_relaxation}, were performed with 16384 particles.\\
-
-
+Relaxation simulations, of which the method is described in part \ref{method_relaxation}, were performed with 16384 particles.
 
 \subsection{Exponential decay of the pressure}
 
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.6\textwidth]{figures/figs/pe_t_16384_EL120_GDh100}
+\caption{Semi-log plot of the pressure versus the time, where $t=0$ corresponds to the time the shearing stopped.}
+\label{pe_t_16384_EL120_GDh100}
+\end{figure}
+
+We predicted that after a short transient time, the pressure would decay exponentially to zero with a characteristic time scale $\tau(\phi,\dot{\gamma})$ -- named the relaxation time -- where $\phi$ is the packing fraction and $\dot{\gamma}$ the shear strain rate before the relaxation phase (see part \ref{relaxation_time}, and especially equation \ref{exponential_decay_pressure}). We confirm these predictions with figure \ref{pe_t_16384_EL120_GDh100}.
+
 \subsection{Scaling of the relaxation time with the packing fraction}
+
+Figure \ref{pe_t_16384_EL120_GDh100} indicates that the relaxation time would increase with increasing packing fractions for systems below jamming, which is what suggested equations \ref{tdiss} and \ref{ttdiss}. By plotting the relaxation time versus the difference to the jamming packing fraction in a log-log plot, we should then be graphically able to determine both the critical exponent $\beta$ and the jamming transition $\phi_J$ (see figure \ref{tau_dphi}).
+
+\begin{figure}[h!]
+\centering
+    \begin{subfigure}[t]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/figs/tau_dphi_16384_GDh100_EL120}
+        \caption{Graphical determination of $\phi_J$.}
+        \label{tau_dphi_16384_GDh100_EL120}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/figs/tau_dphi_16384_PJ70500_EL120}
+        \caption{Linear regression to determine $\beta$.}
+        \label{tau_dphi_16384_PJ70500_EL120}
+    \end{subfigure}
+    \caption{Graphical determination of the critical exponent $\beta$ and the jamming packing fraction $\phi_J$.}
+    \label{tau_dphi}
+\end{figure}
+
+From figure \ref{tau_dphi_16384_GDh100_EL120} we can visually determine that the jamming packing fraction is $\phi_J\sim0.705$. We then plot the relaxation time $\tau$ versus $\phi_J-\phi$ to determine from the slope the critical exponent $\beta\sim4.16$. These results are consistent with those obtained from the shearing method with 64 particles (see figure \ref{phij_beta_0064}).\\
+
+Simulations for densities closer to the jamming packing fraction and for other aspect rations have not been performed yet, the relaxation process being too long to have precise enough data within a month. Still, figure \ref{tau_dphi} shows the efficiency of our method.
 
 \section{Contact number}
 
