@@ -1,0 +1,19 @@
+#! /bin/bash
+
+# Compiles notes in a separate directory.
+
+DIR=${DIRECTORY-${HOME}/umea_spring_2017_notes} # directory of compilation
+NAM=${FILENAME-umea_spring_2017_notes} # name of the .pdf file
+
+pdflatex main
+pdflatex main
+bibtex main
+pdflatex main
+pdflatex main
+
+mkdir -p $DIR
+mkdir -p ${DIR}/aux # directory of auxiliary files
+
+mv `ls -d ${PWD}/main.* | grep -Ev '.tex|.pdf'` ${DIR}/aux
+mv main.pdf ${DIR}/${NAM}.pdf
+
