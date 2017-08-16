@@ -72,15 +72,14 @@ cross/.default={0.25pt},
 \setcounter{tocdepth}{2}
 \setcounter{secnumdepth}{3}
 
-\definecolor{linkcolor}{rgb}{0,0,0.6} % définition de la couleur des liens pdf
-\usepackage[ pdftex,colorlinks=true,
-pdfstartview=FitV,
-linkcolor= linkcolor,
-citecolor= linkcolor,
-urlcolor= linkcolor,
+\definecolor{lcolor}{rgb}{0,0,0.6} % définition de la couleur des liens pdf
+\usepackage{hyperref}
+\hypersetup{pdftex,colorlinks=true,
+linkcolor=lcolor,
+citecolor=lcolor,
+urlcolor=lcolor,
 hyperindex=true,
-hyperfigures=false]
-{hyperref} % fichiers pdf 'intelligents', avec des liens entre les références, etc.
+hyperfigures=false} % fichiers pdf 'intelligents', avec des liens entre les références, etc.
 
 \definecolor{gray75}{gray}{0.75}
 
