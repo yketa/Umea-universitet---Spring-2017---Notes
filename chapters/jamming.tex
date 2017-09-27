@@ -392,6 +392,13 @@ To check the quality of the fit obtained with the Levenberg-Marquardt algorithm,
 \item[(ii)] The fitting parameters are reasonably independent of the precise range of the data included in the fit.\\
 \end{itemize}
 
+\myparagraph{Multi-variable functions}
+
+Consider a function $f$ of the experimental variables $X_1,\ldots,X_m$. We will either assume that the correlations between the $(X_i)_{1:m}$ are negligible or that these variables are independent -- both assumptions imply that the covariances between the $(X_i)_{1:m}$ are negligible. Then, at a given experimental point $(X_1=x_1,\ldots,X_m=x_m)$, where each $x_i$ is associated to a standard deviation $\sigma_i$, we can write the standard deviation of $f$ at this point, $\sigma_f(x_i,\ldots,x_m)$, as a function of the $(\sigma_i)_{1:m}$ \cite{ku1966notes}
+\begin{equation}
+\sigma_f(x_1,\ldots,x_m) = \sqrt{\sum_{i=1}^m \left(\left.\frac{\partial{f}}{\partial{X_i}}\right|_{X_i=x_i}\right)^2\sigma_i^2}
+\end{equation}
+
 \subsection{Complement on soft- to hard-core mapping}
 \label{softtohardcomplement}
 
