@@ -1,11 +1,3 @@
-.DS_Store
-appendices/.DS_Store
-cover/.DS_Store
-figures/.DS_Store
-figures/figs/.DS_Store
-figures/images/.DS_Store
-figures/tikz/.DS_Store
-chapters/.DS_Store
-introduction/.DS_Store
-references/.DS_Store
+*.DS_Store
 subfiles.sty
+aux
