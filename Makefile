@@ -7,5 +7,5 @@ all:
 	@mkdir -p aux
 	@mv `ls main.* | grep -v tex | grep -v pdf` aux
 clean:
-	@rm `ls main.* | grep -v tex | grep -v pdf`
+	@rm -f `ls main.* | grep -v tex | grep -v pdf`
 	@rm -rf aux
