@@ -18,3 +18,7 @@ open main.pdf      # on Mac OS X
 ```
 
 All the scripts developed specifically during this project, for simulation and analysis purposes, are available at the respository [yketa/shear_ellipsoids](https://github.com/yketa/shear_ellipsoids).
+
+## Associated publication
+
+_(preprint)_ Theodore Marschall, Yann-Edwin Keta, Peter Olsson, S. Teitel, __Orientational Ordering in Athermally Sheared, Aspherical, Frictionless Particles__, [arXiv:1806.01739](https://arxiv.org/abs/1806.01739)
