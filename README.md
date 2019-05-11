@@ -21,4 +21,4 @@ All the scripts developed specifically during this project, for simulation and a
 
 ## Associated publication
 
-_(preprint)_ Theodore Marschall, Yann-Edwin Keta, Peter Olsson, S. Teitel, __Orientational Ordering in Athermally Sheared, Aspherical, Frictionless Particles__, [arXiv:1806.01739](https://arxiv.org/abs/1806.01739)
+"Orientational Ordering in Athermally Sheared, Aspherical, Frictionless Particles", Theodore Marschall, Yann-Edwin Keta, Peter Olsson, and S. Teitel, _Physical Review Letters_, __122__ (2019) 188002. ([doi: 10.1103/PhysRevLett.122.188002](https://doi.org/10.1103/PhysRevLett.122.188002)) [[arXiv:1806.01739](https://arxiv.org/abs/1806.01739)]
