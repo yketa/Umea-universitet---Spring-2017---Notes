@@ -90,7 +90,7 @@ R_{q^*} &= A + B - C + D - E\\
 &= \begin{pmatrix} \vec{q} \times \bigcdot + q_0\mathbbm{1}_3 & -\vec{q} \\ \vec{q}^T & q_0 \end{pmatrix}
 \end{align*}
 
-Consequently, the matrix representing the action of the unit quaternion $q$ in $\mathbb{H}$ is 
+Consequently, the matrix representing the action of the unit quaternion $q$ in $\mathbb{H}$ is
 \begin{align*}
 Q_q = L_qR_{q^*} = R_{q^*}L_q = \begin{pmatrix} \mathcal{Q}_q & \vec{0} \\ \vec{0}^T & \underbrace{N^2(q)}_{=1} \end{pmatrix}
 \end{align*}
@@ -104,8 +104,51 @@ is the matrix representing the rotation associated to the unit quaternion $q$ in
 Therefore, the matrix reprensenting the action of $q$ in $\mathbb{H}$ and the rotation associated to $q$ in $E^3$ are the same and we will note the latter
 \begin{equation}
 \boxed{Q_q = \begin{pmatrix} \mathcal{Q}_q & \vec{0} \\ \vec{0}^T & 1 \end{pmatrix}}
-\label{rotation_matrix}
+\label{rotation_matrix}\\
 \end{equation}
+
+We can develop equation \ref{rotation_matrix_R3} to get an expression of the rotation matrix $\mathcal{Q}_q$ in $E^3$. With
+\begin{align*}
+  \left(\vec{e}_1 \equiv (1, 0, 0)^T, \vec{e}_2 \equiv (0, 1, 0)^T, \vec{e}_3 \equiv (0, 0, 1)^T\right)
+\end{align*}
+the canonical basis of $E^3$, we have
+\begin{align*}
+  \vec{q} \times \vec{e}_1 = \begin{pmatrix} 0 \\ q_3 \\ -q_2 \end{pmatrix}, \vec{q} \times \vec{e}_2 = \begin{pmatrix} -q_3 \\ 0 \\ q_1 \end{pmatrix}, \vec{q} \times \vec{e}_3 = \begin{pmatrix} q_2 \\ -q_1 \\ 0 \end{pmatrix}
+\end{align*}
+such that
+\begin{align*}
+  \vec{q} \times \bigcdot = \begin{pmatrix} 0 & -q_3 & q_2 \\ q_3 & 0 & -q_1 \\ -q_2 & q_1 & 0 \end{pmatrix} \text{ and } \vec{q} \times \bigcdot + q_0 \mathbbm{1}_3 = \begin{pmatrix} q_0 & -q_3 & q_2 \\ q_3 & q_0 & -q_1 \\ -q_2 & q_1 & q_0 \end{pmatrix}
+\end{align*}
+and then
+\begin{align*}
+  (\vec{q} \times \bigcdot + q_0 \mathbbm{1}_3)^2 =
+  \begin{pmatrix}
+    q_0^2 - q_3^2 - q_2^2 & q_1 q_2 - 2 q_0 q_3 & q_1 q_3 + 2 q_0 q_2 \\
+    q_1 q_2 + 2 q_0 q_3 & q_0^2 - q_3^2 - q_1^2 & q_2 q_3 - 2 q_0 q_1 \\
+    q_1 q_3 - 2 q_0 q_2 & q_2 q_3 + 2 q_0 q_1 & q_0^2 - q_1^2 - q_2^2
+  \end{pmatrix}
+\end{align*}
+thus leading to
+\begin{align*}
+  \mathcal{Q}_q = (\vec{q} \times \bigcdot + q_0 \mathbbm{1}_3)^2 + \vec{q} \vec{q}^T =
+  \begin{pmatrix}
+    q_0^2 + q_1^2 - q_3^2 - q_2^2 & 2 q_1 q_2 - 2 q_0 q_3 & 2 q_1 q_3 + 2 q_0 q_2 \\
+    2 q_1 q_2 + 2 q_0 q_3 & q_0^2 + q_2^2 - q_3^2 - q_1^2 & 2 q_2 q_3 - 2 q_0 q_1 \\
+    2 q_1 q_3 - 2 q_0 q_2 & 2 q_2 q_3 + 2 q_0 q_1 & q_0^2 + q_3^2 - q_1^2 - q_2^2
+  \end{pmatrix}
+\end{align*}
+where we can note that $q$ is an unit quaternion, \textit{i.e.} $N^2(q) = \sum_{i=0}^4 q_i^2 = 1$, and therefore
+\begin{equation}
+  \boxed{\mathcal{Q}_q =
+    \begin{pmatrix}
+      1 - 2 (q_2^2 + q_3^2) & 2 (q_1 q_2 - q_0 q_3) & 2 (q_1 q_3 + q_0 q_2) \\
+      2 (q_1 q_2 + q_0 q_3) & 1 - 2 (q_1^2 + q_3^2) & 2 (q_2 q_3 - q_0 q_1) \\
+      2 (q_1 q_3 - q_0 q_2) & 2 (q_2 q_3 + q_0 q_1) & 1 - 2 (q_1^2 + q_2^2)
+    \end{pmatrix}
+  }
+\label{rotation_matrix_R3_expression}
+\end{equation}
+in accordance with \cite{wiki:quaternions}.
 
 \section{Belonging matrix}
 
@@ -208,7 +251,7 @@ Let us note $\forall \vec{r_S} \in \bar{\mathcal{A}}$, $\vec{n}(\vec{r_S})$ the 
 We have that
 \begin{align*}
 \forall \vec{r} \in E^3, \mathcal{F}_{\mathcal{A}}(\vec{r} + \vec{dr}) &= (\vec{r} + \vec{dr})^TB(\vec{r} + \vec{dr})\\
-&= \underbrace{\vec{r}^TB\vec{r}}_{\mathcal{F}_{\mathcal{A}}(\vec{r})} + \underbrace{\vec{r}^TB\vec{dr} + \vec{dr}^TB\vec{dr}}_{2\vec{dr}^TB\vec{r}} + \vec{dr}^TB\vec{dr}
+&= \underbrace{\vec{r}^TB\vec{r}}_{\mathcal{F}_{\mathcal{A}}(\vec{r})} + \underbrace{\vec{r}^TB\vec{dr} + \vec{dr}^TB\vec{r}}_{2\vec{dr}^TB\vec{r}} + \vec{dr}^TB\vec{dr}
 \end{align*}
 therefore we can show that
 \begin{align*}

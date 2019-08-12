@@ -1,3 +1,4 @@
-*.DS_Store
-subfiles.sty
-aux
+**/.DS_Store
+**/subfiles.sty
+**/aux
+index.html_backup
