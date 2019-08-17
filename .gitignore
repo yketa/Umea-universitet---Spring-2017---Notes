@@ -1,4 +1,6 @@
 **/.DS_Store
 **/subfiles.sty
 **/aux
+**/.ipynb_checkpoints
+**/__pycache__
 index.html_backup

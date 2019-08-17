@@ -462,6 +462,8 @@ Error message and password prompt
 
 <li>Project</li>
 
+<li>Quartic modes</li>
+
 <li>TableOfContents</li>
 
 </ul>
@@ -9830,7 +9832,7 @@ config.macros.bibliography = {
 <div created="20181009080146960" modified="20190801131626468" title="$:/state/tab-2065006209">
 <pre>$:/core/ui/ControlPanel/Saving/General</pre>
 </div>
-<div created="20180416015308350" modified="20190812151011458" title="$:/state/tab/sidebar--1835078512">
+<div created="20180416015308350" modified="20190817120531071" title="$:/state/tab/sidebar--1835078512">
 <pre>TableOfContents</pre>
 </div>
 <div created="20180418024406433" modified="20190727110635194" title="$:/state/tabs/controlpanel/toolbars-1345989671">
@@ -10618,7 +10620,7 @@ This plugin also requires the JSZip plugin ([[$:/plugins/tiddlywiki/jszip]]) to 
 <div created="20180620032354454" modified="20180620032356781" title="$:/temp/RemoteAssetSearch/$:/config/OfficialPluginLibrary">
 <pre>bibtex</pre>
 </div>
-<div created="20180416033117939" modified="20190812163220913" title="$:/temp/search">
+<div created="20180416033117939" modified="20190817151721021" title="$:/temp/search">
 <pre></pre>
 </div>
 <div created="20180620031722320" modified="20180620031722320" tags="$:/tags/ServerConnection" title="$:/temp/ServerConnection/https://tiddlywiki.com/library/v5.1.15/index.html" url="https://tiddlywiki.com/library/v5.1.15/index.html">
@@ -10751,7 +10753,7 @@ This plugin also requires the JSZip plugin ([[$:/plugins/tiddlywiki/jszip]]) to 
 <div created="20190727110537306" modified="20190727110548195" title="$:/themes/tiddlywiki/vanilla/settings/fontfamily">
 <pre>&quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Lucida Grande&quot;, &quot;DejaVu Sans&quot;, sans-serif</pre>
 </div>
-<div created="20190812151828852" modified="20190812153559902" tags="$:/tags/Stylesheet" title="CustomStylesheet">
+<div created="20190812151828852" modified="20190817130830825" tags="$:/tags/Stylesheet" title="CustomStylesheet">
 <pre>/* White on pink selected text */
 * ::-moz-selection {
   background-color: #e85e8a;
@@ -10797,8 +10799,7 @@ button:focus {
 /* Gray edit field */
 tr.tc-edit-field {
   background-color: #1b1f20 !important;
-}
-</pre>
+}</pre>
 </div>
 <div created="20180620192041661" modified="20190812163100548" tags="$:/tags/Macro" title="Macros">
 <pre>\define jupyternotebook(path:&quot;&quot;)
@@ -10924,6 +10925,125 @@ You are free to copy and redistribute this work in any medium or format, as well
 ---
 
 Powered by [[TiddlyWiki|https://tiddlywiki.com/]] [img height=20 [Images/tiddlywiki.svg]]</pre>
+</div>
+<div created="20190817120941309" modified="20190817193057994" tags="TableOfContents" title="Quartic modes">
+<pre>We define quartic modes and describe their properties as they have been observed in isotropically compressed packings of frictionless soft ellipsoidal particles.
+
+! Dynamical matrix
+
+A given spheroidal particle $$i$$ has $$d_f = 5$$ degrees of freedom (DOF):
+
+* 3 translational DOF $$(t_{1i}, t_{2i}, t_{3i})$$,
+* 2 rotational DOF $$(r_{1i}, r_{2i})$$ orthogonal to its long axis.
+
+A static packing of $$N$$ spheroidal particles is thus described by the $$5N$$ vector of its DOF
+$$
+\underline{u} = (t_{11}, t_{21}, t_{31}, r_{11}, r_{21}, \ldots, t_{1N}, t_{2N}, t_{3N}, r_{1N}, r_{2N}).
+$$
+With the potential energy of the system
+$$
+V = \sum_{i &lt; j} \begin{cases} \frac{1}{2} k_e (1 - \mu_{ij})^2 &amp;\text{ if ellipsoids } i \text{ and } j \text{ are overlapping,} \\ 0 &amp;\text{ otherwise,} \end{cases}
+$$
+where $$\mu_{ij}$$ denotes the rescaling factor applied to ellipsoids $$i$$ and $$j$$ for them to be touching at a single point, we define the //dynamical matrix// ([[Schreck et al., 2012|https://journals.aps.org/pre/abstract/10.1103/PhysRevE.85.061305]])
+$$
+\begin{aligned}
+M_{kl} &amp;= \frac{\partial^2}{\partial u_k \partial u_l} V\\
+&amp;= \frac{\partial}{\partial u_k} \left(\sum_{i &lt; j}  \frac{\partial \mu_{ij}}{\partial u_l} \frac{\partial V}{\partial \mu_{ij}}\right)\\
+&amp;= \sum_{i &lt; j} \frac{\partial \mu_{ij}}{\partial u_k} \frac{\partial \mu_{ij}}{\partial u_l} \frac{\partial^2 V}{\partial \mu_{ij}^2} + \sum_{i &lt; j} \frac{\partial^2 \mu_{ij}}{\partial u_k \partial u_l} \frac{\partial V}{\partial \mu_{ij}}\\
+&amp;= H_{kl} - S_{kl},
+\end{aligned}
+$$
+where
+$$
+\begin{aligned}
+H_{kl} &amp;=  \sum_{i &lt; j} \frac{\partial \mu_{ij}}{\partial u_k} \frac{\partial \mu_{ij}}{\partial u_l} \frac{\partial^2 V}{\partial \mu_{ij}^2}\\
+&amp;= \sum_{ij} \frac{\partial \mu_{ij}}{\partial u_k} \frac{\partial \mu_{ij}}{\partial u_l} \begin{cases} k_e &amp;\text{ if ellipsoids } i \text{ and } j \text{ are overlapping,} \\ 0 &amp;\text{ otherwise,} \end{cases}
+\end{aligned}
+$$
+is the //stiffness matrix//, and
+$$
+\begin{aligned}
+S_{kl} &amp;= - \sum_{i &lt; j} \frac{\partial^2 \mu_{ij}}{\partial u_k \partial u_l} \frac{\partial V}{\partial \mu_{ij}}\\
+&amp;= \sum_{i &lt; j} \frac{\partial^2 \mu_{ij}}{\partial u_k \partial u_l} \begin{cases} k_e (1 - \mu_{ij}) &amp;\text{ if ellipsoids } i \text{ and } j \text{ are overlapping,} \\ 0 &amp;\text{ otherwise,} \end{cases}
+\end{aligned}
+$$
+is the //stress matrix//.
+
+! Hypostaticity
+
+We recall the isostatic conjecture which relies on the assumptions that ([[Chaikin et al., 2006|https://pubs.acs.org/doi/abs/10.1021/ie060032g]])
+
+# as many constraints as degrees of freedom are needed to fix the positions and orientations,
+# disordered packings will have the minimal number of contacts necessary since additional contacts implies additional correlations,
+
+such that //isostatic// packings have $$z = z_{\text{iso}}$$ contacts per particle where $$z_{\text{iso}} = 2 d_f$$.
+
+It has been shown that packings of frictionless spheres are isostatic at jamming ([[O'Hern et al. 2002|https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.88.075507]]). On the contrary, it has been observed that compression jammed packings of frictionless ellipsoidal particles are //hypostatic// (//i.e.// $$z &lt; z_{iso}$$) at jamming ([[Donev et al., 2004|https://science.sciencemag.org/content/303/5660/990]], [[Donev et al., 2007|https://journals.aps.org/pre/abstract/10.1103/PhysRevE.75.051304]]).
+
+! Quartic modes
+
+!! Definition
+
+//Quartic modes// have been described in isotropically compressed packings of ellipses ([[Mailman et al., 2009|https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.102.255501]], [[Schreck et al., 2012|https://journals.aps.org/pre/abstract/10.1103/PhysRevE.85.061305]]) and prolate spheroidal particles ([[Schreck et al., 2012|https://journals.aps.org/pre/abstract/10.1103/PhysRevE.85.061305]]). These have been described as either
+
+* eigenmodes $$\underline{e}_m$$ (//i.e.// eigenvectors) of the dynamical matrix $$M$$ with the lowest non-trivial-zero frequencies $$\omega_m$$ ($$\omega_i \propto \sqrt{m_m}$$ where $$m_m$$ is the eigenvalue associated to $$\underline{e}_m$$) ([[Mailman et al., 2009|https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.102.255501]]),
+* or eigenmodes $$\underline{e}_m$$ of the stiffness matrix $$H$$ with non-trivial &quot;zero&quot; eigenvalue (where &quot;zero&quot; eigenvalue is to be understood as lower to the lowest frequency obtained for the dynamical matrix), which are nearly eigenvectors of the dynamical matrix $$M$$ with the lowest non-zero frequencies $$\omega_m$$ ([[Schreck et al., 2012|https://journals.aps.org/pre/abstract/10.1103/PhysRevE.85.061305]]),
+
+at jamming or finite overcompression $$\Delta \phi = \phi_J - \phi &gt; 0$$.
+
+!! Properties
+
+!!! Scaling of frequencies
+
+We have that the frequencies of the quartic modes $$\underline{e}_m$$ scale as ([[Schreck et al., 2012|https://journals.aps.org/pre/abstract/10.1103/PhysRevE.85.061305]])
+$$
+\omega_m \sim (\Delta \phi)^{1/2} (\alpha - 1)^{1/2},
+$$
+for $$\alpha - 1 \ll 1$$.
+
+Other eigenmodes of the dynamical matrix $$M$$ — which have frequencies $$\omega &gt; \omega_m$$ — have overcompression-independent frequencies. We thus have that the second-derivative of the potential energy with respect to the DOF is always positive at $$\Delta \phi &gt; 0$$ and thus that overcompression stabilises packings of ellipsoidal particles.
+
+!!! Quartic potential energy
+
+We have that a deformation of amplitude $$\delta$$ along the eigenmodes $$\underline{e}_m$$ leads to an increase of the potential energy
+$$
+\frac{\Delta V}{N} = \frac{m}{2} \, \omega_m^2 + c_m \, \delta^4,
+$$
+with $$c_m &gt; 0$$ ([[Schreck et al., 2012|https://journals.aps.org/pre/abstract/10.1103/PhysRevE.85.061305]]). We therefore have, at jamming ($$\Delta \phi = 0 \Rightarrow \omega_m = 0$$), that harmonic response along these eignemodes vanishes and that they are stabilised by quartic terms (//i.e.// $$\propto \delta^4$$) in the expansion of the potential energy with respect to small displacements, hence the term //quartic// terms.
+
+!!! Rotational nature
+
+We can write quartic modes as
+$$
+\underline{e}_m = (t_{11}^{(m)}, t_{21}^{(m)}, t_{31}^{(m)}, r_{11}^{(m)}, r_{21}^{(m)}, \ldots, t_{1N}^{(m)}, t_{2N}^{(m)}, t_{3N}^{(m)}, r_{1N}^{(m)}, r_{2N}^{(m)})
+$$
+and consider these modes are normalised, //i.e.// $$\underline{e}_m^2 = 1$$. We thus define
+$$
+\begin{aligned}
+T_m &amp;= \sum_{i=1}^N \left(\left(t_{1i}^{(m)}\right)^2 + \left(t_{2i}^{(m)}\right)^2 + \left(t_{3i}^{(m)}\right)^2\right),\\
+R_m &amp;= \sum_{i=1}^N \left(\left(r_{1i}^{(m)}\right)^2 + \left(r_{2i}^{(m)}\right)^2\right) = 1 - T_m,
+\end{aligned}
+$$
+respectively their translational and rotational part.
+
+It has been observed (at finite overcompression $$0 &lt; \Delta \phi \ll 1$$) that for $$\alpha \ll 1$$ ($$\alpha \leq 1.2$$) we have $$T_m \ll R_m$$ ($$T_m \leq R_m$$), thus meaning that quartic modes are predominantly rotational in nature at low enough aspect ratio $$\alpha$$ ([[Schreck et al., 2012|https://journals.aps.org/pre/abstract/10.1103/PhysRevE.85.061305]]).
+
+!!! Number
+
+We have that there is $$2N(z_{\text{iso}} - z)$$ quartic mode, //i.e.// they match the distance to isostaticity ([[Schreck et al., 2012|https://journals.aps.org/pre/abstract/10.1103/PhysRevE.85.061305]]). Therefore, hypostaticity in ellipsoidal packings originates from quartic modes — these packings are isostatic with respect to quadratic modes only ([[Mailman et al., 2009|https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.102.255501]]).
+
+!!! Mechanical response to compression and shear
+
+Analysis of the response of isotropically compressed packings of ellipses to compression and shear showed that ([[Mailman et al., 2009|https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.102.255501]])
+
+* compression does not excite quartic modes and the scaling of the bulk modulus with overcompression is identical that in packings of spherical particles,
+* shear excites large contributions from the quartic modes, leading to a novel scaling of the shear modulus with overcompression (and aspect ratio).
+
+! Quartic potential energy
+
+Quartic scaling of the potential energy along quartic modes might be simply linked to the fact that the potential energy between two ellipsoids increases quartically with the rotation angle. We check this result within our model in the following notebook.
+
+&lt;&lt;jupyternotebook path:&quot;Miscellaneous/quartic_modes/quartic_modes&quot;&gt;&gt;</pre>
 </div>
 <div caption="Contents" created="20180416043645812" list-after="$:/core/ui/SideBar/Open" modified="20180417010609928" tags="$:/tags/SideBar" title="TableOfContents">
 <pre>&lt;div class=&quot;tc-table-of-contents&quot;&gt;
