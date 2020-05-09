@@ -1,0 +1,16 @@
+\usepackage{pgf, tikz}
+\usetikzlibrary{shapes.misc}
+\usetikzlibrary{decorations.pathreplacing}
+
+\tikzset{cross/.style={cross out, draw=black, minimum size=2*(#1-\pgflinewidth), inner sep=0pt, outer sep=0pt},
+%default radius will be 1pt. 
+cross/.default={0.25pt},
+    point/.style={
+    thick,
+    draw=black,
+    cross out,
+    inner sep=0pt,
+    minimum width=4pt,
+    minimum height=4pt,
+    },
+}

@@ -1,0 +1,20 @@
+\documentclass[crop,tikz]{standalone}
+\usepackage[subpreambles=true]{standalone}
+
+\input{figures/tikz/preamble}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=1.5]
+\draw (2.3,1.93) arc (40:140:3cm);
+\draw[thick, ->] (0,0) -- (-1.5,2.6) node[midway, left]{$q_0$};
+\draw[thick, ->] (0,0) -- (0,3) node[midway, left]{$q_1$};
+\draw (-1.4,2.41) arc (120:90:2.8cm) node[midway, below]{$|h\dot{q_0}|$};
+\draw[thick, ->] (-1.5,2.6) -- (-0.64,3.1) node[midway, above]{$\dot{q_0}$};
+\draw[dashed] (-0.64,3.1) -- (0.3,3.6);
+\draw[dashed] (0,3) -- (0,3.7);
+\draw[thick, <->] (-1.45,2.51) -- (0,3.315) node[midway, right]{$\tan(|h\dot{q_0}|)$};
+\draw[thick, ->] (0.1,0) -- (0.1,3.42) node[midway,right]{$q'_1$};
+\end{tikzpicture}
+
+\end{document}

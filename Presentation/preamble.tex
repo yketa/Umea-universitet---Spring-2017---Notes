@@ -1,0 +1,137 @@
+% There are many different themes available for Beamer. A comprehensive
+% list with examples is given here:
+% http://deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html
+% You can uncomment the themes below if you would like to use a different
+% one:
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+%\usetheme{Berkeley}
+%\usetheme{Berlin}
+%\usetheme{Boadilla}
+%\usetheme{boxes}
+%\usetheme{CambridgeUS}
+%\usetheme{Copenhagen}
+%\usetheme{Darmstadt}
+%\usetheme{default}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover}
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+%\usetheme{Luebeck}
+\usetheme{Madrid}
+%\usetheme{Malmoe}
+%\usetheme{Marburg}
+%\usetheme{Montpellier}
+%\usetheme{PaloAlto}
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw}
+
+\usepackage{graphicx} % inclusion des figures
+\usepackage{multimedia} %inclusion de vidÃ©os
+\usepackage{url}
+
+\usepackage{amsmath} % collection de symboles mathÃ©matiques
+\usepackage{amssymb} % collection de symboles mathÃ©matiques
+\everymath{\displaystyle} % affichage en mode bloc pour toutes les Ã©quations
+\usepackage{epstopdf} % Permet la conversion des .eps en .pdf pour les inclure
+\usepackage[utf8]{inputenc}       % utilisation directe des caractÃšres accentuÃ©s sur pc
+\usepackage[T1]{fontenc} % codage moderne des caractÃšres sous Latex
+\usepackage{upgreek} % lettres grecques
+\usepackage{nameref} % pour dÃ©signer des parties par leur nom
+\usepackage{url} % pour mettre des URL
+\usepackage{pgf, tikz} % tikz pour dessiner
+\usepackage{float}
+\usepackage[french]{babel}
+\usepackage{subcaption}
+
+\defbeamertemplate*{footline}{mytheme}%
+{  \begin{beamercolorbox}[ht=2.5ex]{bordure}
+\begin{beamercolorbox}[wd=0.2\paperwidth,ht=2.5ex,dp=1ex,center]{author in head/foot}%
+\usebeamerfont{author in head}\insertshortauthor
+\end{beamercolorbox}%
+% \begin{beamercolorbox}[wd=0.34\paperwidth,ht=2.5ex,dp=1ex,center]{title in head/foot}%
+% \usebeamerfont{title in head/foot}\insertshorttitle
+% \end{beamercolorbox}%
+% \begin{beamercolorbox}[wd=0.4\paperwidth,ht=2.5ex,dp=1ex,center]{title in head/foot}%
+% \usebeamerfont{title in head/foot}\insertdate
+% \end{beamercolorbox}%
+\begin{beamercolorbox}[wd=0.74\paperwidth,ht=2.5ex,dp=1ex,center]{title in head/foot}%
+\usebeamerfont{title in head/foot}\insertdate
+\end{beamercolorbox}%
+\begin{beamercolorbox}[wd=0.06\paperwidth,ht=2.5ex,dp=1ex,right]{date in head/foot}%
+\usebeamerfont{date in head/foot}\insertframenumber /\inserttotalframenumber{}\hspace{2ex}
+\end{beamercolorbox}%
+
+  \end{beamercolorbox}
+}
+
+\defbeamertemplate*{headline}{mytheme}%
+{  \begin{beamercolorbox}[ht=2.5ex]{bordure}
+\begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=2ex]{author in head/foot}%
+\usebeamerfont{author in head}\vskip6pt\insertsectionnumber.~\insertsection \hfill \insertsubsection
+\end{beamercolorbox}%
+
+  \end{beamercolorbox}
+}
+
+\providecommand\encircle[1]{%
+  \tikz[baseline=(X.base)] 
+    \node (X) [draw, shape=circle, inner sep=0] {\strut #1};}
+
+\providecommand{\appropto}{\mathrel{\vcenter{
+  \offinterlineskip\halign{\hfil$##$\cr
+    \propto\cr\noalign{\kern2pt}\sim\cr\noalign{\kern-2pt}}}}}
+    
+%%\AtBeginSubsection[]
+%%{
+%%  \begin{frame}<beamer>{}
+%%    \tableofcontents[currentsection,currentsubsection]
+%%  \end{frame}
+%%}
+\AtBeginSection[]
+{
+  \begin{frame}<beamer>{}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\providecommand{\so}{\mathfrak{so}}
+\providecommand{\drawat}[3]{\makebox[0pt][l]{\raisebox{#2}{\hspace*{#1}#3}}}
+\providecommand{\p}{\partial}
+\providecommand{\ds}{\displaystyle}
+\providecommand{\vs}{\vspace{0.3cm}}
+\providecommand{\e}{\mathbf{e}}
+\providecommand\fd[1]{\mathbf{#1}}
+\providecommand\ffd[1]{\boldsymbol{#1}}
+\providecommand\demi{\frac{1}{2}}
+\providecommand\indi{\hat{\imath}}
+\providecommand\indj{\hat{\jmath}}
+\providecommand\inda{\hat{\mu}}
+\providecommand\indb{\hat{\nu}}
+\providecommand\indl{\hat{l}}
+\providecommand\indk{\hat{k}}
+\providecommand\xii{x_{\indi}}
+\providecommand\xjj{x_{\indj}}
+\providecommand\indc{\hat{\rho}}
+\providecommand\indd{\hat{\beta}}
+\providecommand{\grand}[1]{[#1,\cdot]}
+\providecommand{\petit}[1]{[\cdot ,#1]}
+\providecommand{\seti}{\llbracket 1,n \rrbracket}
+\providecommand{\Qx}{Q\backslash \{x\}}
+\providecommand{\TQ}{\mathcal{T}_Q}
+\providecommand{\TQp}{\mathcal{T}_{Q'}}
+
+\newtheorem{theo}{Théorème}
+\newtheorem{defi}{Définition}
+\setbeamertemplate{blocks}[rounded][shadow=true]
+
+\providecommand{\isEquivTo}[1]{\underset{#1}{\sim}}
+
+\providecommand{\appropto}{\mathrel{\vcenter{
+  \offinterlineskip\halign{\hfil$##$\cr
+    \propto\cr\noalign{\kern2pt}\sim\cr\noalign{\kern-2pt}}}}}
