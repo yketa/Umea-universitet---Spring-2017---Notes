@@ -1,0 +1,45 @@
+\documentclass[a4paper]{report}
+
+\usepackage[mode=buildnew,subpreambles=true]{standalone}
+\input{preamble}
+
+\begin{document}
+
+% cover page
+\import{cover/}{cover.tex}
+
+% table of contents
+\tableofcontents
+\thispagestyle{empty}
+\newpage
+\setcounter{page}{1}
+
+% introduction
+\import{introduction/}{introduction.tex}
+
+% chapters
+% \import{chapters/}{quaternions.tex}
+% \import{chapters/}{ellipsoids.tex}
+\import{chapters/}{jamming.tex}
+\import{chapters/}{results.tex}
+
+% conclusion
+\import{conclusion/}{conclusion.tex}
+
+% bibliography
+\newpage
+\addcontentsline{toc}{chapter}{References}
+\bibliographystyle{unsrtnat}
+{\renewcommand{\bibname}{References}\bibliography{references/biblio}}
+
+% appendices
+\appendix
+\addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
+
+\import{appendices/}{app_force.tex}
+% \import{appendices/}{app_quaternions.tex}
+% \import{appendices/}{app_euler.tex}
+% \import{appendices/}{app_ellipsoids.tex}
+% \import{appendices/}{app_rg.tex}
+
+\end{document}

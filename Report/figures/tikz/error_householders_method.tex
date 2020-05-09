@@ -1,0 +1,22 @@
+\documentclass[crop,tikz]{standalone}
+\usepackage[subpreambles=true]{standalone}
+
+\input{figures/tikz/preamble}
+
+\begin{document}
+
+\begin{tikzpicture}
+\draw[->] (0,-1.5) -- (0,1.5) node[right]{$h_{\mathcal{A}\mathcal{B}}(\lambda)$};
+\draw[->] (-0.2,0) -- (6,0) node[below]{$\lambda$};
+\draw (3,-0.05) -- (3,0.05) node[above]{$\lambda^*$};
+\draw (1,-1) -- (5,1);
+\draw[dashed, thin] (0,0.5) node[left]{$\varepsilon$} -- (4,0.5);
+\draw[dashed, thin] (4,0.5) -- (4,0);
+\draw[dashed, thin] (0,-0.5) node[left]{$- \varepsilon$} -- (2,-0.5);
+\draw[dashed, thin] (2,-0.5) -- (2,0);
+\draw (4.25,1.25/2) -- (4.75,1.25/2);
+\draw (4.75,1.25/2) -- (4.75,1.75/2) node[midway,right]{$h'_{\mathcal{A}\mathcal{B}}(\lambda^*)$};
+\draw [decorate,decoration={brace,amplitude=10pt,mirror},yshift=3pt] (2,-0.2) -- (4,-0.2) node [black,midway,yshift=-15pt] {$err$};
+\end{tikzpicture}
+
+\end{document}

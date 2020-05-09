@@ -1,0 +1,95 @@
+\documentclass[class=report, float=false, crop=false]{standalone}
+\usepackage[subpreambles=true]{standalone}
+
+\input{preamble}
+
+\graphicspath{{figures/images/}}
+
+% \begin{cbunit}
+
+\begin{document}
+
+\chapter{Elastic force between ellipsoids}
+\label{appendix:force}
+
+\section{Reduced belonging matrix}
+
+An ellipsoid $\mathcal{A}$ of centre $\vec{v}$ and semi-axes $(R_i)_{i=1:3}$ can be described by the matrix
+\begin{equation}
+\bar{B}(O,(R_i)_{i=1:3}) \equiv O \text{diag}(R_i^{-2})_{i=1:3} O^T
+\end{equation}
+where $O$ is the symmetric rotation matrix corresponding to the change of basis from the ellipsoid frame to the reference frame, such as
+\begin{equation}
+\forall \vec{r} \in \mathbb{R}^3, \begin{cases} (\vec{r} - \vec{v})^T \bar{B} (\vec{r} - \vec{v}) < 1 &\text{ if } \vec{r} \in \mathcal{A} \setminus \bar{\mathcal{A}} \\ (\vec{r} - \vec{v})^T \bar{B} (\vec{r} - \vec{v}) = 1 &\text{ if } \vec{r} \in \bar{\mathcal{A}} \\ (\vec{r} - \vec{v})^T \bar{B} (\vec{r} - \vec{v}) > 1 &\text{ if } \vec{r} \notin \mathcal{A} \end{cases}
+\end{equation}
+and with which we can write
+\begin{equation}
+\mu^2(\vec{r}\in\mathbb{R}^3) = (\vec{r}-\vec{v})^T\bar{B}(O,(R_i)_{i=1:3})(\vec{r}-\vec{v})
+\label{rescaling_factor_squared}
+\end{equation}
+where $\mu(\vec{r})$ is the rescaling factor that has to be applied to the axes of $\mathcal{A}$ for $\vec{r}$ to be on its surface.\\
+
+For simplicity, we will write $\bar{B}_{\mathcal{A}} \equiv \bar{B}(O,(R_i)_{i=1:3})$.\\
+
+We have for all $\vec{r}$ on the surface of $\mathcal{A}$ that $\mu^2(\vec{r})=1$, therefore the surface of $\mathcal{A}$ is an isosurface of $\mu^2$. Therefore, we can conclude that the vector
+\begin{equation}
+\vec{\nabla}\mu^2(\vec{r}) = 2\bar{B}_{\mathcal{A}}(\vec{r}-\vec{v})
+\end{equation}
+is orthogonal to the surface of $\mathcal{A}$ in $\vec{r}$.
+
+\section{Force}
+
+We assumed that the force exerted on an ellipsoid $\mathcal{A}$ by an ellipsoid $\mathcal{B}$ of centre $\vec{r}_{\mathcal{A}}$ and $\vec{r}_{\mathcal{B}}$ respectively is
+\begin{equation}
+\vec{f}_{\mathcal{A}\mathcal{B}}^{\text{el}}(\vec{r_{\mathcal{A}}},\vec{r_{\mathcal{B}}}) = k_e (1 - \mu(\vec{r_{\mathcal{A}}},\vec{r_{\mathcal{B}}}))\frac{d\mu}{d\vec{r_{\mathcal{A}}}}(\vec{r_{\mathcal{A}}},\vec{r_{\mathcal{B}}})
+\end{equation}
+according to equation \ref{pre_force_el_ellipsoids}, where $\mu(\vec{r}_{\mathcal{A}},\vec{r}_{\mathcal{B}})$ is the rescaling factor that has to be applied to both $\mathcal{A}$ and $\mathcal{B}$ for them to be externally tangent.\\
+
+Contrarily to the case of spheres, we have for ellipsoids that the rescaling factor $\mu(\vec{r_{\mathcal{A}}},\vec{r_{\mathcal{B}}})$ is not uniquely determined by the positions of their centres. Indeed, if we were to add $\vec{dr_{\mathcal{A}}}$ to the position $\vec{r_{\mathcal{A}}}$ of the centre of ellipsoid $\mathcal{A}$, the contact point $\vec{r_C}$ with ellipsoid $\mathcal{B}$ would move as well.\\
+
+Since we are looking for the first derivative of the quantity $\mu(\vec{r_{\mathcal{A}}},\vec{r_{\mathcal{B}}})$, we will approximate rescaled ellipsoids by their respective tangent planes at $\vec{r_C}$ as suggested by \cite{donev}.\\
+
+\begin{figure}[h!]
+\centering
+\includestandalone{figures/tikz/derivative_rescaling_factor}
+\caption{Ellipsoids rescaled with rescaling factor $\mu(\vec{r_{\mathcal{A}}},\vec{r_{\mathcal{B}}})$ and their contact plane in plain thick trait. Ellipsoids rescaled with rescaling factor $\mu(\vec{r_{\mathcal{A}}} + \vec{dr_{\mathcal{A}}},\vec{r_{\mathcal{B}}})$ and their contact plane in dashed trait.}
+\label{contact_points_fig}
+\end{figure}
+
+If ellipsoid $\mathcal{A}$ is moved by $\vec{dr_{\mathcal{A}}}$, there appears a gap $dh$ between the tangent planes of the rescaled ellipsoids with
+\begin{equation}
+dh = \vec{dr_{\mathcal{A}}}\cdot\vec{n}_{\mathcal{A}}(\vec{r_C})
+\label{dh}
+\end{equation}
+where $\vec{n}_{\mathcal{A}}(\vec{r_C})$ is the outward-facing unitary surface vector of ellipsoid $\mathcal{A}$ in $\vec{r_C}$.\\
+
+To close this gap, we have to rescale the -- yet rescaled -- ellipsoids with a factor $\nu$ so that
+\begin{align*}
+% &d\nu~(\vec{r_C} - \vec{r_{\mathcal{A}}})\cdot\vec{n}_{\mathcal{A}}(\vec{r_C}) - d\nu~(\vec{r_C} - \vec{r_{\mathcal{B}}})\cdot\vec{n}_{\mathcal{A}}(\vec{r_C}) = dh\\
+% \Leftrightarrow~ &d\nu~ (\vec{r_{\mathcal{B}}} - \vec{r_{\mathcal{A}}})\cdot\vec{n}_{\mathcal{A}}(\vec{r_C}) = dh\\
+% \Leftrightarrow~ &d\nu = \frac{dh}{(\vec{r_{\mathcal{B}}} - \vec{r_{\mathcal{A}}})\cdot\vec{n}_{\mathcal{A}}(\vec{r_C})}
+\left((\vec{r_C} - \vec{r_{\mathcal{A}}}) - \nu (\vec{r_C} - \vec{r_{\mathcal{A}}})\right)\cdot\vec{n}_{\mathcal{A}}(\vec{r_C}) - \left((\vec{r_C} - \vec{r_{\mathcal{B}}}) - \nu (\vec{r_C} - \vec{r_{\mathcal{B}}})\right)\cdot\vec{n}_{\mathcal{A}}(\vec{r_C}) = dh \Rightarrow 1 - \nu = \frac{dh}{(\vec{r_{\mathcal{B}}} - \vec{r_{\mathcal{A}}})\cdot\vec{n}_{\mathcal{A}}(\vec{r_C})}
+\end{align*}
+and
+\begin{align*}
+\mu(\vec{r_{\mathcal{A}}} + \vec{dr_{\mathcal{A}}},\vec{r_{\mathcal{B}}}) = \nu\mu(\vec{r_{\mathcal{A}}},\vec{r_{\mathcal{B}}}) \Rightarrow \vec{dr_{\mathcal{A}}}\cdot\frac{d\mu}{\vec{dr_{\mathcal{A}}}}(\vec{r_{\mathcal{A}}},\vec{r_{\mathcal{B}}}) = -\mu(\vec{r_{\mathcal{A}}},\vec{r_{\mathcal{B}}})(1 - \nu)
+\end{align*}
+which, with equation \ref{dh}, leads to
+\begin{align*}
+\frac{d\mu}{d\vec{r_{\mathcal{A}}}}(\vec{r_{\mathcal{A}}},\vec{r_{\mathcal{B}}}) = -\mu(\vec{r_{\mathcal{A}}},\vec{r_{\mathcal{B}}})\frac{\vec{n}_{\mathcal{A}}(\vec{r_C})}{(\vec{r_{\mathcal{B}}} - \vec{r_{\mathcal{A}}})\cdot\vec{n}_{\mathcal{A}}(\vec{r_C})}
+\end{align*}
+We can then conclude, with equation \ref{surface_vec_reduced}, that
+\begin{equation}
+\frac{d\mu}{d\vec{r_{\mathcal{A}}}}(\vec{r_{\mathcal{A}}},\vec{r_{\mathcal{B}}}) = -\frac{\mu(\vec{r_{\mathcal{A}}},\vec{r_{\mathcal{B}}})}{(\vec{r_{\mathcal{B}}} - \vec{r_{\mathcal{A}}})^T\bar{B}_{\mathcal{A}}(\vec{r_C} - \vec{r_{\mathcal{A}}})}\bar{B}_{\mathcal{A}}(\vec{r_C} - \vec{r_{\mathcal{A}}})
+\end{equation}
+Therefore, with equation \ref{pre_force_el_ellipsoids}, we finally have that
+\begin{equation}
+\boxed{\vec{f}_{\mathcal{A}\mathcal{B}}^{\text{el}}(\vec{r_{\mathcal{A}}},\vec{r_{\mathcal{B}}}) = -k_e \frac{\mu(\vec{r_{\mathcal{A}}},\vec{r_{\mathcal{B}}})\left(1 - \mu(\vec{r_{\mathcal{A}}},\vec{r_{\mathcal{B}}})\right)}{(\vec{r_{\mathcal{B}}} - \vec{r_{\mathcal{A}}})^T\bar{B}_{\mathcal{A}}(\vec{r_C} - \vec{r_{\mathcal{A}}})}\bar{B}_{\mathcal{A}}(\vec{r_C} - \vec{r_{\mathcal{A}}})}
+\label{fel_ellipsoids}
+\end{equation}
+
+% \input{references/biblio}
+
+\end{document}
+
+% \end{cbunit}

@@ -1,0 +1,19 @@
+\documentclass[crop,tikz]{standalone}
+\usepackage[subpreambles=true]{standalone}
+
+\input{figures/tikz/preamble}
+
+\begin{document}
+
+\begin{tikzpicture}
+\draw[->] (0,-1) -- (0,5) node[right]{$\vec{e_z}$};
+\draw[->] (0,0) node[left]{$O$} -- (4.5*0.15643446504023087,4.5*0.9876883405951378) node[above]{$\vec{u}$};
+\draw[->] (0,0) -- (4.1*0.3090169943749474,4.1*0.9510565162951535) node[right]{$\vec{u'}$};
+\draw[->] (4.5*0.15643446504023087,4.5*0.9876883405951378) -- (4.1*0.3090169943749474,4.1*0.9510565162951535) node[midway, above, xshift = 5pt, yshift = -3pt]{$\vec{du}$};
+\draw (0,2.5) arc (90:81:2.5) node[midway, above]{$\phi$};
+\draw[dashed] (0,4.5*0.9876883405951378) -- (4.5*0.15643446504023087,4.5*0.9876883405951378);
+\draw[dashed] (0,4.5*0.9876883405951378) -- (4.1*0.3090169943749474,4.1*0.9510565162951535);
+\draw (4.5*0.15643446504023087/1.2,4.5*0.9876883405951378) arc (0:-23.28559663874032:4.5*0.15643446504023087/1.2) node[below, xshift = -5pt]{$d\theta$};
+\end{tikzpicture}
+
+\end{document}

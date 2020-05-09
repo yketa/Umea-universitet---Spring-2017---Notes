@@ -1,0 +1,176 @@
+\documentclass[class=report, float=false, crop=false]{standalone}
+\usepackage[subpreambles=true]{standalone}
+
+\input{preamble}
+
+\graphicspath{{figures/images/}}
+
+% \begin{cbunit}
+
+\begin{document}
+
+\chapter{Euler's equation}
+\label{appendix:euler}
+
+In this appendix we mean to remind the definitions of the rotation vector, the angular momentum, the tensor of moments of inertia and the establishment of the Euler's equation describing the rotation of a rigid body. All demonstrations are based on \cite{landau1972mechanics}.
+
+\section{Rotation vector}
+
+Consider a vector $\vec{u}$ on which we apply an infinitesimal rotation of angle $d\theta$ around the axis $\vec{e_z}$ (figure \ref{inf_rotation_fig}).\\
+
+\begin{figure}[h!]
+\centering
+\includestandalone{figures/tikz/infinitesimal_rotation}
+\caption{}
+\label{inf_rotation_fig}
+\end{figure}
+
+We then have $\vec{u'} = \vec{u} + \vec{du}$ with $|\vec{du}| = |\vec{u} ~\theta \sin\phi|$ and the direction of $\vec{du}$ being perpendicular to the plane formed by $\vec{e_z}$ and $\vec{u}$, which gives us
+\begin{equation}
+\vec{du} = d\theta \vec{e_z} \times \vec{u} = \vec{d\theta} \times \vec{u}
+\label{inf_rotation}
+\end{equation}
+therefore, if the rotation angle is a function of time $\theta(t)$ we have, by consideration that $d\theta(t) = \dot{\theta}(t)dt$, that
+\begin{equation}
+\frac{\vec{du}}{dt} = \dot{\theta}\vec{e_z} \times \vec{u}
+\end{equation}
+We can sum infinitesimal rotations therefore, in the general case -- with $\frac{d}{dt}|\vec{u}| = 0$ -- we can always define a vector $\vec{\omega}$ such that $\dot{\vec{u}} = \vec{\omega} \times \vec{u}$.\\
+
+A rigid body $\mathcal{O}$ is in rotation if we can define such a vector $\vec{\omega}$ which will be the same for all the points of the body. Therefore, whatever origin we may choose, if $\vec{p}$ and $\vec{q}$ point to two points $A$ and $B$ of the body -- which induces that $\frac{d}{dt} |\vec{p} - \vec{q}| = 0$ -- we will have that
+\begin{equation}
+\frac{d}{dt} \left( \vec{p} - \vec{q} \right) = \vec{\omega} \times \left( \vec{p} - \vec{q} \right)
+\end{equation}
+which is equivalent to
+\begin{equation}
+\forall A,B \in \mathcal{O}, \vec{v_B} = \vec{v_A} + \vec{\omega} \times \vec{AB}
+\label{comp_vitesse}
+\end{equation}
+where $\vec{v_A}$ and $\vec{v_B}$ are the velocities of the points $A$ and $B$.
+
+\section{Angular momentum}
+
+The mechanical properties of a closed system do not vary when it is rotated as a whole in any manner in space. Therefore, the Lagrangian of a rigid body $L(\vec{r_i},\vec{v_i},t)$ has to be unchanged by any infinitesimal rotation $\vec{d\theta}$.\\
+
+One can first notice that the equation $\ref{inf_rotation}$ can be applied on any vector of our space, therefore both the positions and velocities are affected by the rotation.\\
+
+We then have that
+\begin{align*}
+\forall \vec{d\theta},~ \delta L = L(\vec{r_i} + \vec{dr_i},\vec{v_i} + \vec{dv_i},t) - L(\vec{r_i},\vec{v_i},t) &= 0\\
+\Leftrightarrow \sum_i \left( \underbrace{\frac{\partial}{\partial\vec{r_i}} L}_{\dot{\vec{p_i}}} \cdot \underbrace{\vec{dr_i}}_{\vec{d\theta} \times \vec{r_i}} + \underbrace{\frac{\partial}{\partial\vec{v_i}} L}_{\vec{p_i}} \cdot \underbrace{\vec{dv_i}}_{\vec{d\theta} \times \vec{v_i}} \right) &= 0\\
+\Leftrightarrow \sum_i \left(\dot{\vec{p_i}} \cdot \vec{d\theta} \times \vec{r_i} + \vec{p_i} \cdot \vec{d\theta} \times \vec{v_i} \right) &= 0\\
+\Leftrightarrow \vec{d\theta} \cdot \sum_i \left(\vec{r_i}\times\dot{\vec{p_i}} + \vec{v_i}\times\vec{p_i}\right) &= 0\\
+\Leftrightarrow \vec{d\theta} \cdot \frac{d}{dt} \underbrace{\sum_i \vec{r_i}\times\vec{p_i}}_{\vec{A}} &= 0
+\end{align*}
+therefore the vector
+\begin{equation}
+\boxed{\vec{A} \equiv \sum_i \vec{r_i}\times\vec{p_i}}
+\label{ang_momentum}
+\end{equation}
+which we will call \textit{angular momentum}, is conserved for a closed system.\\
+
+We can give a relation between the angular momentum of the same rigid body in the frame of reference $F$ and the inertial frame of the body $F_O$ -- where the centre of mass $O$ is at rest --, the latter moving with velocity $\vec{V}$ relative to the former.\\
+
+We have to first notice that the velocities of the same point $a$ in these frames are linked by
+\begin{align*}
+\vec{v_a} = \vec{v_{a,O}} + \vec{V}
+\end{align*}
+from we can infer that
+\begin{align*}
+\vec{A} = \sum_i \vec{r_i} \times \vec{p_i} &= \sum_i \left(\vec{r_O} + \left(\vec{r_i} - \vec{r_O}\right)\right) \times \vec{p_i}\\
+&= \vec{r_O} \times \underbrace{\sum_i \vec{p_i}}_{\vec{P}} + \sum_i \left(\vec{r_i} - \vec{r_O}\right) \times \vec{p_i}\\
+&= \vec{r_O} \times \vec{P} + \sum_i m_i \left(\vec{r_i} - \vec{r_O}\right) \times \left(\vec{v_{i,O}} + \vec{V}\right)\\
+&= \vec{r_O} \times \vec{P} + \underbrace{\sum_i \left(\vec{r_i} - \vec{r_O}\right) \times \vec{v_{i,O}}}_{\vec{A_O}} + \cancelto{0}{\sum_i m_i \left(\vec{r_i} - \vec{r_O}\right)}~~\times\vec{V}
+\end{align*}
+where $\vec{P}$ is the total momentum of the rigid body.\\
+
+Therefore we have the following relation
+\begin{equation}
+\boxed{\vec{A} = \vec{r_O} \times \vec{P} + \vec{A_O}}
+\label{body_to_ref}
+\end{equation}
+
+\section{Tensor of moments of inertia}
+
+The angular momentum in equation \ref{ang_momentum} is more easily expressed in the inertial frame of the body where the centre of mass of the body is at rest. We can then infer the angular momentum in the frame of reference with the mean of equation \ref{body_to_ref}.\\
+
+Consider $\vec{\omega}$ the rotation vector of the rigid body, in the inertial frame of the body we then have that the momentum of any point $i$ is
+\begin{align*}
+\forall i, \vec{p_i} = m\vec{v_i} = m\vec{\omega}\times\vec{r_i}
+\end{align*}
+therefore, the angular momentum $\vec{A_O}$ is
+\begin{align*}
+\vec{A_O} &= \sum_i \vec{r_i}\times\vec{p_i} = \sum_i m_i \vec{r_i}\times\left(\vec{\omega}\times\vec{r_i}\right)\\
+&= \sum_i m_i \left(\vec{r_i}^2 \vec{\omega} - \vec{r_i} \left(\vec{r_i} \cdot \vec{\omega}\right)\right)\\
+&= \sum_k \vec{e_k} \left( \sum_i m_i \left(\vec{r_i}^2\omega_k - r_{i,k}\sum_l r_{i,l}\omega_l\right) \right)\\
+&= \sum_k \vec{e_k} \left( \sum_l \left(\sum_i m_i \left(\vec{r_i}^2 \delta_{k,l} - r_{i,k}r_{i,l}\right)\right)\omega_l\right)\\
+\end{align*}
+We can denote the following symmetric matrix
+\begin{equation}
+\boxed{\forall k,l \in \llbracket1,3\rrbracket, \bar{\bar{I}}_{k,l} \equiv \sum_i m_i \left(\vec{r_i}^2 \delta_{k,l} - r_{i,k}r_{i,l}\right)}
+\label{tensor_inertia}
+\end{equation}
+the \textit{tensor of moments of inertia}, which then enables us to write
+\begin{equation}
+\boxed{\vec{A} = \bar{\bar{I}} \vec{\omega}}
+\label{ang_momentum_inertia}
+\end{equation}
+which remains true if the body is regarded as continuous.\\
+
+According to the spectral theorem, there exists an orthonormal base of space $(\vec{u_1},\vec{u_2},\vec{u_3})$ in which $\bar{\bar{I}}$ is diagonal with
+\begin{equation}
+\forall k,l \in \llbracket1,3\rrbracket, \bar{\bar{I}}_{k,l} = \delta_{k,l}I_k
+\label{tensor_inertia_diag}
+\end{equation}
+these axes are then called the \textit{principal axes of inertia} of the body.
+
+\section{Conservation of the angular momentum}
+
+From equation \ref{ang_momentum} we can write that
+\begin{align*}
+\frac{d}{dt}\vec{A} = \frac{d}{dt} \sum_i \vec{r_i}\times\vec{p_i} = \sum_i \Big(\cancelto{0}{\underbrace{\dot{\vec{r_i}}}_{\vec{v_i}}\times\vec{p_i}} + \vec{r_i}\times\underbrace{\dot{\vec{p_i}}}_{\vec{F_i}}\Big) = \sum_i \vec{r_i}\times\vec{F_i}
+\end{align*}
+where $\vec{F_i}$ is the total force exerted on the point $i$ of the rigid body.\\
+
+We will denote
+\begin{equation}
+\vec{M} = \sum_i \vec{r_i}\times\vec{F_i}
+\end{equation}
+the total \textit{torque} exerted on the rigid body, then the following equation
+\begin{equation}
+\boxed{\frac{d}{dt} \vec{A} = \vec{M}}
+\label{TMC}
+\end{equation}
+formulates the conservation of the angular momentum.
+
+\section{Euler's equation}
+
+We have that the angular momentum $\vec{A}$ in equation \ref{TMC} is hard to express in any frame of reference -- see equations \ref{tensor_inertia} and \ref{ang_momentum_inertia}.\\
+
+For a given rigid body $\mathcal{O}$, we then choose to write the conservation of the angular momentum in the system of coordinates corresponding to the principal axes of inertia $(\vec{u_1},\vec{u_2},\vec{u_3})$ of $\mathcal{O}$, where the tensor of moments of inertia is diagonal. In this frame, the derivative of the angular momentum relatively to the fixed frame of reference can be decomposed in a first part
+\begin{align*}
+\frac{d'}{dt} \vec{A} = \sum_k \frac{d}{dt}\Big(\underbrace{\vec{A}\cdot\vec{u_k}}_{A_k}\Big)\vec{u_k}
+\end{align*}
+corresponding to the rate of change of $\vec{A}$ relatively to the rotating frame and a second part
+\begin{align*}
+\vec{\omega} \times \vec{A}
+\end{align*}
+corresponding to the change of $\vec{A}$ due only to the rotation of the frame.\\
+
+We can infer from equations \ref{ang_momentum_inertia} and \ref{tensor_inertia_diag} that
+\begin{align*}
+\forall k \in \llbracket1,3\rrbracket, A_k = I_k \omega_k
+\end{align*}
+with all the $I_k$ being constant, therefore, with $\vec{M} = \sum_k M_k \vec{u_k}$ the total torque exerted on $\mathcal{O}$, we can finally write the following Euler's equation
+\begin{equation}
+\boxed{\forall k \in \llbracket1,3\rrbracket,~ I_k \dot{\omega_k} + \varepsilon_{k,l,m}\omega_lI_m\omega_m = M_k}
+\label{euler_rot}
+\end{equation}
+which rules the rotation of a rigid body.\\
+
+We can note that the tensor of moments of inertia of a spherically symmetric body is a scalar matrix, therefore the equation \ref{TMC} can be directly solved without the considerations of this part.
+
+% \input{references/biblio}
+
+\end{document}
+
+% \end{cbunit}

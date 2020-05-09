@@ -1,0 +1,240 @@
+\documentclass[class=report, float=false, crop=false]{standalone}
+\usepackage[subpreambles=true]{standalone}
+
+\input{preamble}
+
+\graphicspath{{figures/images/}}
+
+% \begin{cbunit}
+
+\begin{document}
+
+\chapter{Ellipsoids}
+\label{appendix:ellipsoids}
+
+\section{Definition}
+
+An ellipsoid is a surface that may be obtained from a sphere by deforming it by means of directional scalings, or more generally, of an affine transformation \cite{wiki:Ellipsoid}.\\
+
+Within a Cartesian coordiante system in which the origin is the center of the ellipsoid and the coordinate axes are axes of the ellipsoid, a vector \(\vec{r} = \begin{pmatrix} x \\ y \\ z \end{pmatrix} \in \mathbb{R}^3\) belongs to the surface of the ellispoid if and only if
+\begin{equation}
+\frac{x^2}{a^2} + \frac{y^2}{b^2} + \frac{z^2}{c^2} = 1
+\label{ellipsoid_cartesian}
+\end{equation}
+where $a$, $b$ and $c \in \mathbb{R}$ are the the semi-axes of the ellipsoid.\\
+
+Equivalently to equation \ref{ellipsoid_cartesian}, an ellipsoid $\mathcal{A}$ can be defined by a positive definite matrix $A \in \mathcal{M}_3(\mathbb{R})$ and a vector $\vec{v} \in \mathbb{R}^3$ such that
+\begin{equation}
+\boxed{\forall \vec{r} \in \mathbb{R}^3, \vec{r} \in \bar{\mathcal{A}} \Leftrightarrow (\vec{r}-\vec{v})^TA(\vec{r}-\vec{v}) = 1}
+\label{ellipsoid_matrix}
+\end{equation}
+The eigenvectors of $A$ then define the principal axes of $\mathcal{A}$ and the associated eigenvalues are the reciprocals of the squares of the semi-axes. The vector $\vec{v}$ defines the center of the ellipsoid.
+
+\section{Homogeneous coordinates}
+
+\subsection{Quick reminder}
+
+A vector \(\vec{r} = \begin{pmatrix} x \\ y \\ z \end{pmatrix} \in \mathbb{R}^3\) is equivalent to its homogeneous form \(\begin{pmatrix} x \\ y \\ z \\ 1 \end{pmatrix} \in E^3\) where $E^3$ is the Euclidean 3D projective space.\\
+
+Moreover, we have that in $E^3$, $\forall \lambda \in \mathbb{R}^*$ and $\forall (x,y,z) \in \mathbb{R}^3$, \(\begin{pmatrix} x \\ y \\ z \\ 1 \end{pmatrix}\) and \(\begin{pmatrix} \frac{x}{\lambda} \\ \frac{y}{\lambda} \\ \frac{z}{\lambda} \\ 1 \end{pmatrix}\) represent the exact same point. Therefore, we will always assume that the last coordinate of our vectors in $E^3$ is 1.\\
+
+From the property above, you naturally have that any point in $E^3$ whose last coordinate would be $0$ is then infinitely far from the origin \(\begin{pmatrix} 0 \\ 0 \\ 0 \\ 1 \end{pmatrix}\).
+
+\subsection{Useful affine transformations}
+
+\subsubsection{Translation}
+
+We define in $\mathbb{R}^3$ the translation of vector $\vec{u} \in \mathbb{R}^3$ as
+\begin{align*}
+\mathcal{T}_{\vec{u}} \colon &\mathbb{R}^3 \to \mathbb{R}^3\\     &\phantomarrow{\mathbb{R}^3}{\vec{v}} \vec{v} + \vec{u}
+\end{align*}
+
+In $E^3$, this function $\mathcal{T}_{\vec{u}}$ is represented by the matrix $T_{\vec{u}}$:
+\begin{equation}
+\boxed{T_{\vec{u}} = \begin{pmatrix} \mathbbm{1}_3 & \vec{u} \\ \vec{0}^T & 1 \end{pmatrix}}
+\label{translation_matrix}
+\end{equation}
+
+\subsubsection{Dilatation}
+
+We define in $\mathbb{R}^3$ the dilatation of factor $a \in \mathbb{R}$ as
+\begin{align*}
+\mathcal{X}_{a} \colon &\mathbb{R}^3 \to \mathbb{R}^3\\     &\phantomarrow{\mathbb{R}^3}{\vec{v}} a\vec{v}
+\end{align*}
+
+In $E^3$, this function $\mathcal{X}_{a}$ is represented by the matrix $X_{a}$:
+\begin{equation}
+\boxed{X_{a} = \begin{pmatrix} a\mathbbm{1}_3 & \vec{0} \\ \vec{0}^T & 1 \end{pmatrix}}
+\label{dilatation_matrix}
+\end{equation}
+
+\subsubsection{Rotation}
+
+We showed in part \ref{action_rotation} that every 3D rotation can be expressed as the action of some unit quaternion.\\
+
+The product of quaternions being bilinear, we can associate the action of a quaternion to a linear function in a vectorial space and therefore to a matrix \cite{shoemake}.\\
+
+Consider $q = [\vec{q},q_0],p = [\vec{p},p_0] \in \mathbb{H}$. According to part \ref{quat_properties}, we have $qp = [\underbrace{\vec{q}\times\vec{p}}_{Ap} + \underbrace{q_0\vec{p}}_{Bp} + \underbrace{p_0\vec{q}}_{Cp},\underbrace{q_0p_0}_{Dp}~\underbrace{-\vec{q}\cdot\vec{p}}_{Ep}]$, with
+\begin{align*}
+A = \begin{pmatrix} \vec{q} \times \bigcdot & \vec{0} \\ \vec{0}^T & 0 \end{pmatrix}, B = \begin{pmatrix} q_0 \mathbbm{1}_3 & \vec{0} \\ \vec{0}^T & 0 \end{pmatrix}, C = \begin{pmatrix} 0_3 & \vec{q} \\ \vec{0}^T & 0 \end{pmatrix}, D = \begin{pmatrix} 0_3 & \vec{0} \\ \vec{0}^T & q_0 \end{pmatrix}, E = \begin{pmatrix} 0_3 & \vec{0} \\ -\vec{q}^T & 0 \end{pmatrix}
+\end{align*}
+Therefore the left multiplication by $q$ in $\mathbb{H}$ can be represented by the matrix
+\begin{align*}
+L_q &= A + B + C + D + E\\
+&= \begin{pmatrix} \vec{q} \times \bigcdot + q_0\mathbbm{1}_3 & \vec{q} \\ -\vec{q}^T & q_0 \end{pmatrix}
+\end{align*}
+
+Similarly, we have $pq^* = [\underbrace{\vec{q}\times\vec{p}}_{Ap} + \underbrace{q_0\vec{p}}_{Bp}~\underbrace{-p_0\vec{q}}_{-Cp},\underbrace{q_0p_0}_{Dp} + \underbrace{\vec{q}\cdot\vec{p}}_{-Ep}]$, therefore the right multiplication by $q^*$ can be represented by the matrix
+\begin{align*}
+R_{q^*} &= A + B - C + D - E\\
+&= \begin{pmatrix} \vec{q} \times \bigcdot + q_0\mathbbm{1}_3 & -\vec{q} \\ \vec{q}^T & q_0 \end{pmatrix}
+\end{align*}
+
+Consequently, the matrix representing the action of the unit quaternion $q$ in $\mathbb{H}$ is 
+\begin{align*}
+Q_q = L_qR_{q^*} = R_{q^*}L_q = \begin{pmatrix} \mathcal{Q}_q & \vec{0} \\ \vec{0}^T & \underbrace{N^2(q)}_{=1} \end{pmatrix}
+\end{align*}
+where
+\begin{equation}
+\boxed{\mathcal{Q}_q = (\vec{q}\times\bigcdot + q_0\mathbbm{1}_3)^2 + \vec{q}\vec{q}^T}
+\label{rotation_matrix_R3}
+\end{equation}
+is the matrix representing the rotation associated to the unit quaternion $q$ in $\mathbb{R}^3$.\\
+
+Therefore, the matrix reprensenting the action of $q$ in $\mathbb{H}$ and the rotation associated to $q$ in $E^3$ are the same and we will note the latter
+\begin{equation}
+\boxed{Q_q = \begin{pmatrix} \mathcal{Q}_q & \vec{0} \\ \vec{0}^T & 1 \end{pmatrix}}
+\label{rotation_matrix}
+\end{equation}
+
+\section{Belonging matrix}
+
+\subsection{Definition}
+
+We want to find for any ellipsoid $\mathcal{A}$ a matrix $B$ acting on homogeneous coordinates with the following properties
+\begin{equation}
+\forall \vec{r} \in E^3, \begin{cases} \vec{r}^T B \vec{r} < 0 &\text{ if } \vec{r} \in \mathcal{A} \setminus \bar{\mathcal{A}} \\ \vec{r}^T B \vec{r} = 0 &\text{ if } \vec{r} \in \bar{\mathcal{A}} \\ \vec{r}^T B \vec{r} > 0 &\text{ if } \vec{r} \notin \mathcal{A} \end{cases}
+\label{belonging_definition}
+\end{equation}
+which we will call the \textit{belonging matrix} of $\mathcal{A}$.
+
+\subsection{Expression}
+\label{belonging_exp}
+
+We have seen with equation \ref{ellipsoid_matrix} that the belonging to the surface of an ellispoid could be expressed with a matrix whose eigenvectors define the principal axes of the ellipsoid and whose eigenvalues define the reciprocals of the squares of the semi-axes. Therefore, if we denote $(R_i)_{i=1:3}$ the semi-axes of the ellipsoid, this matrix can be written as $A = P^{-1}\text{diag}(R_1^{-2},R_2^{-2},R_3^{-2})P$.\\
+
+The semi-axes of an ellipsoid define an orthogonal base of $\mathbb{R}^3$. Therefore P is the transition matrix from the orthogonal base formed by the principal axes of the ellipsoid to the original Euclidean base $(\vec{e_i})_{i=1:3}$, and inversely for $P^{-1}$.\\
+
+Consequently, we have that $\forall i \in \llbracket1,3\rrbracket, \vec{v} + R_iP^{-1}\vec{e_i} \in \bar{\mathcal{A}}$ and so
+\begin{align*}
+\forall i \in \llbracket1,3\rrbracket,&(P^{-1}R_i\vec{e_i})^TA(P^{-1}R_i\vec{e_i}) = 1\\ \Leftrightarrow&(P^{-1}R_i\vec{e_i})^TP^{-1}\text{diag}(R_j^{-2})_{j=1:3}P(P^{-1}R_i\vec{e_i}) = 1\\
+\Leftrightarrow &R_i\vec{e_i}^T(P^{-1})^TP^{-1}\text{diag}(R_j^{-2})_{j=1:3}\underbrace{PP^{-1}}_{\mathbbm{1}_3}R_i\vec{e_i} = 1\\
+\Leftrightarrow &\vec{e_i}^T(P^{-1})^TP^{-1}\underbrace{\text{diag}(R_j^{-2})_{j=1:3}R_i^2\vec{e_i}}_{\vec{e_i}} = 1\\
+\Leftrightarrow &\vec{e_i}^T(P^{-1})^TP^{-1}\vec{e_i} = 1
+\end{align*}
+Thus, the norm of every column vector of $P^{-1}$ equals to 1. Therefore, $P^{-1}$, and equivalently $P$, is an orthonormal matrix.\\
+
+If $P$ is an orthonormal matrix, then the principal axes of the ellipsoids are derived from the original Euclidean base through rotations and permutations of axis. Without loss of generality, we can consider that there are no permutations of axis, leading to $P = \mathcal{Q}_q^{-1} = \mathcal{Q}_q^T$ with $q$ the quaternion describing the orientation of the ellipsoid. Equation \ref{ellipsoid_matrix} thus becomes:
+\begin{align*}
+\forall \vec{r} \in \mathbb{R}^3, \vec{r} \in \bar{\mathcal{A}} \Leftrightarrow (\vec{r}-\vec{v})^T\mathcal{Q}_q\text{diag}(R_i^{-2})_{i=1:3}\mathcal{Q}_q^T(\vec{r}-\vec{v}) = 1
+\end{align*}
+
+We can get rid of the $\vec{v}$ by using homogeneous coordinates. In $E^3$, $\vec{r} - \vec{v}$ becomes $T_{-\vec{v}}\vec{r}$ and, to conserve the scalar product, $\text{diag}(R_i^{-2})_{i=1:3}$ becomes $\text{diag}(R_i^{-2},0)_{i=1:3}$.\\
+
+We always assume that the last coordinate of our vectors in $E^3$ is 1, therefore we can notice that $\forall \vec{u} \in E^3, \vec{u}^T\text{diag}(0,0,0,-1)\vec{u} = -1$. We can then rewrite equation \ref{ellipsoid_matrix}:
+\begin{align*}
+\forall \vec{r} \in E^3, \vec{r} \in \bar{\mathcal{A}} \Leftrightarrow &\vec{r}^TT_{-\vec{v}}^TQ_q\text{diag}(R_i^{-2},0)_{i=1:3}Q_q^TT_{-\vec{v}}\vec{r} = 1\\
+\Leftrightarrow&\vec{r}^T\underbrace{T_{-\vec{v}}^TQ_q\text{diag}(R_i^{-2},-1)_{i=1:3}Q_q^TT_{-\vec{v}}}_{\mathcal{C}}\vec{r} = 0
+\end{align*}
+The matrix $\mathcal{C}$ is a good candidate for the belonging matrix of $\mathcal{A}$, we then have to understand how it works.\\
+
+The $T_{-\vec{v}}$ translation and the $Q_q^T$ rotation bring back the principal axes of the ellipsoid to the original Euclidean base and origin. Without loss of generality, we can then consider that the principal axes of the ellipsoids are along $(\vec{e_1},\vec{e_2},\vec{e_3})$.\\
+
+For a vector \(\vec{r} = \begin{pmatrix} x \\ y \\ z \end{pmatrix} \in \mathbb{R}^3\), we have
+\begin{align*}
+&\frac{x^2}{R_1^2} + \frac{y^2}{R_2^2} + \frac{z^2}{R_3^2} = \mu^2\\
+\Leftrightarrow & \frac{x^2}{(\mu R_1)^2} + \frac{y^2}{(\mu R_2)^2} + \frac{z^2}{(\mu R_3)^2} = 1
+\end{align*}
+therefore, $\mu$ can be construed as the rescaling factor that has to be applied to the ellipsoid for $\vec{r}$ to be on its surface. Then, $\mu < 1$ if $\vec{r} \in \mathcal{A}\setminus\bar{\mathcal{A}}$, $\mu = 1$ if $\vec{r} \in \bar{\mathcal{A}}$, and $\mu > 1$ otherwise.\\
+
+Since we have that $\forall \vec{r} \in E^3, \vec{r}^T\mathcal{C}\vec{r} = \mu^2 - 1$, $\mathcal{C}$ is the matrix we have been looking for, and we can define
+\begin{equation}
+\boxed{B(\vec{v},q,(R_i)_{i=1:3}) \equiv T_{-\vec{v}}^TQ_q\text{diag}(R_i^{-2},-1)_{i=1:3}Q_q^TT_{-\vec{v}}}
+\label{belonging_matrix}
+\end{equation}
+
+One must notice that such a matrix is symmetric. We can also define the \textit{belonging function} of the ellipsoid $\mathcal{A}$
+\begin{equation}
+\boxed{\begin{aligned}\mathcal{F}_{\mathcal{A}} \colon &E^3 \to \mathbb{R}\\     &\phantomarrow{E^3}{\vec{r}} \vec{r}^TB(\vec{v},q,(R_i)_{i=1:3})\vec{r}\end{aligned}}
+\label{belonging_function}
+\end{equation}
+such that $\forall \vec{r} \in E^3$, $\vec{r} \in \mathcal{A} \Leftrightarrow \mathcal{F}_{\mathcal{A}}(\vec{r}) \leq 0$ and
+\begin{equation}
+\boxed{\mathcal{F}_{\mathcal{A}}(\vec{r}) = \mu^2(\vec{r}) - 1}
+\end{equation}
+with $\mu^2(\vec{r})$ the rescaling factor that has to be applied to the ellipsoid for $\vec{r}$ to be on its surface.
+
+\subsection{Reduced belonging matrix}
+
+The equation \ref{belonging_matrix} is theoretically relevant, however it is not computationally efficient.\\
+
+On the one side, resorting to homogeneous coordinates and expressing the translation with a translation matrix (equation \ref{translation_matrix}) leads to more operations than to express the rotation in $\mathbb{R}^3$ directly. On the other side, we have seen in part \ref{quaternions_interest} that the rotation of a vector was quicker performed when converting the quaternion associated to the rotation to a rotation matrix.\\
+
+We then introduce, for an ellipsoid $\mathcal{A}$ whose centre is located in $\vec{v}$, whose orientation is described by the unit quaternion $q$ and whose semi-axes are $(R_i)_{i=1:3}$, the associate \textit{reduced belonging matrix}
+\begin{equation}
+\boxed{\bar{B}(q,(R_i)_{i=1:3}) \equiv \mathcal{Q}_q\text{diag}(R_i^{-2})_{i=1:3}\mathcal{Q}_q^T}
+\label{reduced_belonging_matrix}
+\end{equation}
+with $\mathcal{Q}_q$ the $\mathbb{R}^3$ rotation matrix associated to $q$ (equation \ref{rotation_matrix_R3}). One must notice that the reduced belonging matrix is also symmetric. Furthermore, this reduced belonging matrix has the following properties
+\begin{equation}
+\forall \vec{r} \in \mathbb{R}^3, \begin{cases} (\vec{r} - \vec{v})^T \bar{B} (\vec{r} - \vec{v}) < 1 &\text{ if } \vec{r} \in \mathcal{A} \setminus \bar{\mathcal{A}} \\ (\vec{r} - \vec{v})^T \bar{B} (\vec{r} - \vec{v}) = 1 &\text{ if } \vec{r} \in \bar{\mathcal{A}} \\ (\vec{r} - \vec{v})^T \bar{B} (\vec{r} - \vec{v}) > 1 &\text{ if } \vec{r} \notin \mathcal{A} \end{cases}
+\label{reduced_belonging_definition}
+\end{equation}
+according to equation \ref{belonging_definition}, which leads to the following expression for the belonging function:
+\begin{equation}
+\boxed{\begin{aligned}\mathcal{F}_{\mathcal{A}} \colon &\mathbb{R}^3 \to \mathbb{R}\\     &\phantomarrow{\mathbb{R}^3}{\vec{r}} (\vec{r} - \vec{v})^T\bar{B}(q,(R_i)_{i=1:3})(\vec{r}-\vec{v}) - 1\end{aligned}}
+\label{belonging_function_reduced}
+\end{equation}
+
+\section{Unit normal vectors}
+
+Since the surface of the ellipsoid -- the locus of points where $\mathcal{F}_{\mathcal{A}}(\vec{r}) = 0$ -- is an isosurface of the function $\mathcal{F}_{\mathcal{A}}$, we have that $\forall \vec{r_S} \in \bar{\mathcal{A}}, \vec{\nabla}\mathcal{F}_{\mathcal{A}}(\vec{r_S})$ is a non-unit outward-facing normal vector to the ellipsoid in $\vec{r_S}$.\\
+
+Let us note $\forall \vec{r_S} \in \bar{\mathcal{A}}$, $\vec{n}(\vec{r_S})$ the unit outward-facing normal vector to the ellipsoid in $\vec{r_S}$. Then $\vec{n}(\vec{r_S}) // \vec{\nabla}\mathcal{F}_{\mathcal{A}}(\vec{r_S})$, we thus have to find the direction of this gradient.
+
+\subsection{Expression with the belonging matrix}
+\label{normal_vector_belonging}
+
+We have that
+\begin{align*}
+\forall \vec{r} \in E^3, \mathcal{F}_{\mathcal{A}}(\vec{r} + \vec{dr}) &= (\vec{r} + \vec{dr})^TB(\vec{r} + \vec{dr})\\
+&= \underbrace{\vec{r}^TB\vec{r}}_{\mathcal{F}_{\mathcal{A}}(\vec{r})} + \underbrace{\vec{r}^TB\vec{dr} + \vec{dr}^TB\vec{dr}}_{2\vec{dr}^TB\vec{r}} + \vec{dr}^TB\vec{dr}
+\end{align*}
+therefore we can show that
+\begin{align*}
+\forall \vec{r} \in E^3, \forall i \in \llbracket1,3\rrbracket,~ &\mathcal{F}_{\mathcal{A}}(\vec{r} + dr_i\vec{e_i}) - \mathcal{F}_{\mathcal{A}}(\vec{r}) = 2dr_i\vec{e_i}^TB\vec{r} + dr_i^2\vec{e_i}B\vec{e_i}\\
+\Rightarrow&\frac{\partial}{\partial e_i}\mathcal{F}_{\mathcal{A}}(\vec{r}) = \lim_{dr_i \to 0} \frac{\mathcal{F}_{\mathcal{A}}(\vec{r} + dr_i\vec{e_i}) - \mathcal{F}_{\mathcal{A}}(\vec{r})}{dr_i} = 2\vec{e_i}^TB\vec{r}\\
+\Rightarrow&\vec{\nabla}\mathcal{F}_{\mathcal{A}}(\vec{r}) = \sum_{i=1}^3\left(\frac{\partial}{\partial e_i}\mathcal{F}_{\mathcal{A}}(\vec{r})\right)\vec{e_i} = 2\underbrace{\sum_{i=1}^3(\vec{e_i}^TB\vec{r})\vec{e_i}}_{B\vec{r}}
+\end{align*}
+\textit{i.e.} $\vec{\nabla}\mathcal{F}_{\mathcal{A}}(\vec{r}) = 2B\vec{r}$. Consequently, we finally have that
+\begin{equation}
+\boxed{\forall \vec{r_S}\in \bar{\mathcal{A}}, \vec{n}(\vec{r_S}) = \frac{B(\vec{v},q,(R_i)_{i=1:3})\vec{r_S}}{|B(\vec{v},q,(R_i)_{i=1:3})\vec{r_S}|}}
+\end{equation}
+
+\subsection{Expression with the reduced belonging matrix}
+
+With the same notations while assuming that the centre of the ellipsoid is located in $\vec{v}$, we can notice that replacing $\vec{r}$ by $(\vec{r} - \vec{v})$ in the demonstration of part \ref{normal_vector_belonging} leads to the following expression
+\begin{align*}
+\forall \vec{r} \in E^3, \forall i \in \llbracket1,3\rrbracket,~ &\mathcal{F}_{\mathcal{A}}(\vec{r} + dr_i\vec{e_i}) - \mathcal{F}_{\mathcal{A}}(\vec{r}) = 2dr_i\vec{e_i}^T\bar{B}(\vec{r} - \vec{v}) + dr_i^2\vec{e_i}\bar{B}\vec{e_i}
+\end{align*}
+and thus, by analogy, the following result
+\begin{equation}
+\boxed{\forall \vec{r_S}\in \bar{\mathcal{A}}, \vec{n}(\vec{r_S}) = \frac{\bar{B}(q,(R_i)_{i=1:3})(\vec{r_S} - \vec{v})}{|\bar{B}(q,(R_i)_{i=1:3})(\vec{r_S} - \vec{v})|}}
+\label{surface_vec_reduced}
+\end{equation}
+
+% \input{references/biblio}
+
+\end{document}
+
+% \end{cbunit}
